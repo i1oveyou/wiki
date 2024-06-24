@@ -1,0 +1,140 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-elfRe-C语言-基础C</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-elfRe-C语言-基础C</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#so文件" id="toc-so文件">so文件</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="so文件">so文件</h1>
+<p>像window调用库文件一样，在<code>linux</code>下，也有相应的API因为加载库文件而存在。它们主要是以下几个函数：</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">函数名</th>
+<th style="text-align: left;">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">dlopen</td>
+<td style="text-align: left;">打开对象文件，使其可被程序访问</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dlsym</td>
+<td style="text-align: left;">获取执行了 <code>dlopen</code>
+函数的对象文件中的函数的地址</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dlerror</td>
+<td
+style="text-align: left;">该函数没有参数，它会在发生前面的错误时返回一个字符串，同时将其从内存中清空；
+在没有错误发生时返回 NULL，</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dlclose</td>
+<td
+style="text-align: left;">关闭目标文件。如果无需再调用共享对象的话，应用程序可以调用该方法来通知操作系统不再需要句柄和对象引用了。它完全是按引用来计数的，所以同一个共享对象的多个用户相互间不会发生冲突（只要还有一个用户在使用它，它就会在内存中）。任何通过已关闭的对象的
+<code>dlsym</code> 解析的符号都将不再可用</td>
+</tr>
+</tbody>
+</table>
+<p>实例</p>
+<p>首先，您需要包含必要的头文件：</p>
+<pre><code>#include &lt;dlfcn.h&gt;  </code></pre>
+<p>使用<code>dlopen</code>函数来加载共享库，类似于<code>LoadLibraryA</code>的功能。</p>
+<pre><code>void* handle = dlopen(&quot;libmylibrary.so&quot;, RTLD_LAZY);</code></pre>
+<p>动态库加载成功后,就可以获取相关函数的地址了</p>
+<p>可以使用<code>dlsym</code>函数来获取共享库中导出函数的指针</p>
+<pre><code>void (*myFunction)() = dlsym(handle, &quot;functionName&quot;);   </code></pre>
+<p>最后dll的释放</p>
+<pre><code>dlclose(handle);</code></pre>
+<p>关于<code>dlopen</code></p>
+<p>其中，<code>filename</code> 参数指定共享库文件名，<code>flag</code>
+参数是打开模式，有如下几种取值：</p>
+<ul>
+<li><code>RTLD_NOW</code>：在 <code>dlopen</code>
+调用时，立即解析符号并绑定至全局符号表中。</li>
+<li><code>RTLD_LAZY</code>：只在符号被使用时才进行解析和绑定操作。</li>
+<li><code>RTLD_GLOBAL</code>：将共享库中定义的符号添加到全局符号表中，使得其他共享库也可以访问该符号。</li>
+<li><code>RTLD_LOCAL</code>：仅将共享库中定义的符号添加到局部符号表中，使得对该共享库的后续加载操作也会使用局部符号表中的符号。</li>
+</ul>
+<p>如果要获取 已经加载的模块</p>
+<pre><code>dladdr</code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

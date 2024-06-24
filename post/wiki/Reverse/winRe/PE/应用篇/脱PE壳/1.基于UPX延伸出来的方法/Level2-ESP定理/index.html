@@ -1,0 +1,176 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-PE-应用篇-脱PE壳-1.基于UPX延伸出来的方法-Level2-ESP定理</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-PE-应用篇-脱PE壳-1.基于UPX延伸出来的方法-Level2-ESP定理</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#esp定理" id="toc-esp定理">ESP定理</a></li>
+        <li><a href="#upx" id="toc-upx">upx</a>
+        <ul>
+        <li><a href="#x64" id="toc-x64">x64</a></li>
+        <li><a href="#x86" id="toc-x86">x86</a></li>
+        </ul></li>
+        <li><a href="#aspack" id="toc-aspack">Aspack</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="esp定理">ESP定理</h1>
+<p>自我理解:</p>
+<p>比如离开家和进入家里,我们都会进入一扇门</p>
+<p>如果我们在门那里设置一个访问断点</p>
+<p>那么就可以找到它什么时候离开家的,
+因为离家出走还是回家,都会访问那一个门</p>
+<p>找到OEP后,具体的利用插件dump,参考level1</p>
+<p>那么ESP定理中</p>
+<p>pushad就是进门</p>
+<p>popad就是离开门</p>
+<p>差不多那样比喻手法</p>
+<h1 id="upx">upx</h1>
+<h2 id="x64">x64</h2>
+<p>程序的ep如下</p>
+<p>先F7一下,进入门</p>
+<figure>
+<img src="img/image-20230801135208750.png"
+alt="image-20230801135208750" />
+<figcaption aria-hidden="true">image-20230801135208750</figcaption>
+</figure>
+<p>下硬件断点</p>
+<blockquote>
+<p>ps: 关于什么是硬件断点,与之对应的什么是软件断点</p>
+<p>这个和调试器原理有关,软件断点一般是0xCC的可执行断点</p>
+<p>功能: 硬件断点&gt;软件断点</p>
+<p>硬件断点包含
+访问断点,写入断点,当然可执行断点也算一种访问断点,自我认为</p>
+</blockquote>
+<p>下断点如图</p>
+<p>在哪里下断点? esp指向的那一块内存</p>
+<p>比如我们在栈出口就可以找到这个内存</p>
+<figure>
+<img src="img/image-20230801141004205.png"
+alt="image-20230801141004205" />
+<figcaption aria-hidden="true">image-20230801141004205</figcaption>
+</figure>
+<p>为了扩大断点命中率,当popad的时候,好触发断点</p>
+<p>我下了8字节断点,好像也没必要,但是喜欢下大点的范围</p>
+<p>ps: 栈窗口示意</p>
+<figure>
+<img src="img/image-20230801135250132.png"
+alt="image-20230801135250132" />
+<figcaption aria-hidden="true">image-20230801135250132</figcaption>
+</figure>
+<p>然后F9</p>
+<figure>
+<img src="img/image-20230801135739389.png"
+alt="image-20230801135739389" />
+<figcaption aria-hidden="true">image-20230801135739389</figcaption>
+</figure>
+<p>然后图中的jmp就是去玩OEP了</p>
+<p>具体脱壳见level1</p>
+<h2 id="x86">x86</h2>
+<figure>
+<img src="img/image-20230801140249980.png"
+alt="image-20230801140249980" />
+<figcaption aria-hidden="true">image-20230801140249980</figcaption>
+</figure>
+<p>在pushad后,我们一样的去下硬件断点</p>
+<p>找到esp指向的内存</p>
+<figure>
+<img src="img/image-20230801141646709.png"
+alt="image-20230801141646709" />
+<figcaption aria-hidden="true">image-20230801141646709</figcaption>
+</figure>
+<p>在 x86 架构中，<code>pushad</code>
+指令用于将一组通用寄存器（EAX、ECX、EDX、EBX、ESP、EBP、ESI、EDI）的值依次入栈。</p>
+<p>每个寄存器的大小为 4 字节，因此<code>pushad</code>指令将总共入栈 32
+字节的数据。</p>
+<p>所以我们在32字节以内任意地方下断点都可以</p>
+<figure>
+<img src="img/image-20230801142212214.png"
+alt="image-20230801142212214" />
+<figcaption aria-hidden="true">image-20230801142212214</figcaption>
+</figure>
+<p>下断</p>
+<figure>
+<img src="img/image-20230801142506712.png"
+alt="image-20230801142506712" />
+<figcaption aria-hidden="true">image-20230801142506712</figcaption>
+</figure>
+<p>在popad的时候,触发了访问断点</p>
+<figure>
+<img src="img/image-20230801142342599.png"
+alt="image-20230801142342599" />
+<figcaption aria-hidden="true">image-20230801142342599</figcaption>
+</figure>
+<p>然后就是去玩OEP脱壳了</p>
+<h1 id="aspack">Aspack</h1>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

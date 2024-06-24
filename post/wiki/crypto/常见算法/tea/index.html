@@ -1,0 +1,263 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-crypto-常见算法-tea</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-crypto-常见算法-tea</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#tea" id="toc-tea">tea</a></li>
+        <li><a href="#xtea" id="toc-xtea">xtea</a></li>
+        <li><a href="#xxtea" id="toc-xxtea">xxtea</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="tea">tea</h1>
+<p>一个很简单的算法</p>
+<p>主要是加加</p>
+<p>逆运算就是减减</p>
+<p>一次性加密8个字节</p>
+<p>要求key是16字节</p>
+<p>完整的加密是</p>
+<pre><code>void encrypt(DWORD32* v, DWORD32* k)
+{
+    DWORD32 sum = 0, i;
+    DWORD32 delta = 0x9e3779b9;
+    for (i = 0; i &lt; 32; i++)
+    {
+        sum += delta;
+        v[0] += f(v[1], sum, k);
+        v[1] += f(v[0], sum, &amp;k[2]);
+    }
+}</code></pre>
+<p>假如已知加密是下面</p>
+<pre><code>    v[0] += f(v[1], sum, k);
+    v[1] += f(v[0], sum, &amp;k[2]);</code></pre>
+<p>那么解密的话肯定是</p>
+<p>因为v0在最后一步加密是不变的</p>
+<p>所以应该先解密v1,v1解出来,然后就解开v0</p>
+<p>解密是</p>
+<pre><code>    v[1] -= f(v[0], sum, &amp;k[2]);
+    v[0] += f(v[1], sum, k);</code></pre>
+<p>所以完整的解密</p>
+<pre><code>void decrypt(DWORD32* v, DWORD32* k)
+{
+    DWORD32 sum = 0xC6EF3720, i;
+    DWORD32 delta = 0x9e3779b9;
+    for (i = 0; i &lt; 32; i++)
+    {
+        v[1] -= f(v[0], sum, &amp;k[2]);//解密的时候,你给他v0,不能先给v1
+        v[0] -= f(v[1], sum, k);
+        sum -= delta;
+    }
+}</code></pre>
+<p>也还是很好理解的</p>
+<p>那么问题来了,f函数是什么东西</p>
+<pre><code>DWORD32 f(DWORD32 value, DWORD32 sum,DWORD32* k)
+{
+    DWORD32 x, y, z;
+    x = (value &lt;&lt; 4) + k[0];
+    y = value + sum;
+    z = (value &gt;&gt; 5) + k[1];
+    return x^ y^ z;
+}</code></pre>
+<p>它就长这个样子</p>
+<p>也就一个异或</p>
+<p>无论f多么复杂,我么只需要知道,进来的数据决定了出去的数据就可以了</p>
+<p>也就是进来的 (value,sum,k) -&gt; (x ^ y ^ z)</p>
+<p>我么要逆的也不是f函数</p>
+<p>而是逆那个–和++的函数</p>
+<p>所以这就是简单的tea算法</p>
+<p>对于f函数,它不一定是&lt;&lt;4或者&gt;&gt;5,可以任意的</p>
+<p>也就是无论f函数多么复杂,只需要保证 (value,sum,k) -&gt; (x ^ y ^
+z)这个就可以了</p>
+<h1 id="xtea">xtea</h1>
+<p>其实和tea大同小异</p>
+<p>多的不说</p>
+<p>他的加密是</p>
+<pre><code>void fenc(DWORD32 v[2], DWORD32 key[4])
+{
+    int i;
+    DWORD32 sum = 0, delta = 0x9E3779B9;
+    for (i = 0; i &lt; 32; i++)
+    {
+        v[0] += f(v[1], sum + key[sum &amp; 3]);
+        sum += delta;
+        v[1] += f(v[0], sum + key[(sum &gt;&gt; 11) &amp; 3]);
+    }
+    return;
+}</code></pre>
+<p>比如加密是</p>
+<pre><code>        v[0] += f(v[1], sum + key[sum &amp; 3]);
+        sum += delta;
+        v[1] += f(v[0], sum + key[(sum &gt;&gt; 11) &amp; 3]);</code></pre>
+<p>可想而知</p>
+<p>解密</p>
+<pre><code>        v[1] += f(v[0], sum + key[(sum &gt;&gt; 11) &amp; 3]);
+        sum -= delta;
+        v[0] += f(v[1], sum + key[sum &amp; 3]);</code></pre>
+<p>所以完整的解密便是</p>
+<pre><code>void fdec( DWORD32 v[2], DWORD32 key[4])
+{
+    int i;
+    DWORD32  delta = 0x9E3779B9, sum = delta * 32;
+    for (i = 0; i &lt; 32; i++)
+    {
+        v[1] -= f(v[0], sum + key[(sum &gt;&gt; 11) &amp; 3]);
+        sum -= delta;
+        v[0] -= f(v[1], sum + key[sum &amp; 3]);;
+    }
+    return;
+}</code></pre>
+<p>其中的f函数,变化了一下</p>
+<pre><code>DWORD32 f(DWORD32 value,  DWORD32 k)
+{
+    DWORD32 x, y, z;
+    x = value &lt;&lt; 4;
+    y = value &gt;&gt; 5;
+    z = (x ^ y) + value;
+    return z ^ k;
+}</code></pre>
+<h1 id="xxtea">xxtea</h1>
+<p>始算法要求每次加密8字节(2个DWORD) key要求是16字节(4个DWORD)</p>
+<p>其实和tea算法大同小异</p>
+<p>只不过稍稍f函数编复杂了,之前就说过,f函数的复杂程度,其实没有太大关系</p>
+<p>整体加密流程如下</p>
+<pre><code>void encrypt(DWORD32* m, DWORD32* k, DWORD32 len)
+{
+
+    DWORD32 delta = 0x9e3779b9, rounds = 0, sum = 0;
+    int i = 0;
+
+    first = 0;
+    end = len - 1;
+    rounds = 6 + 52 / len;//轮回的次数
+
+    for (; rounds; rounds--)//先设置end的值为最后一个，因为加密第一个要用
+    {
+        sum += delta;
+        for (i = 0; i &lt; len; i++)
+        {
+            m[i] += f(i, m, (sum &gt;&gt; 2) &amp; 3, sum, k);
+        }
+    }
+}</code></pre>
+<p>核心关键点其实比xtea,tea算法更加的简单</p>
+<p>加密是</p>
+<pre><code> m[i] += f(i, m, (sum &gt;&gt; 2) &amp; 3, sum, k);</code></pre>
+<p>那么解密当然是</p>
+<pre><code> m[i] -= f(i, m, (sum &gt;&gt; 2) &amp; 3, sum, k);</code></pre>
+<p>所以解密脚本就是</p>
+<pre><code>void decrypt(DWORD32* c, DWORD32* k, DWORD32 len)
+{
+    DWORD32 sum, rounds;
+    DWORD32 delta = 0x9e3779b9;
+    int i;
+
+    rounds = 6 + 52 / len;
+    sum = rounds * delta;
+
+    for (; rounds; rounds--)
+    {
+        for (i = end; i &gt;= 0; i--)
+        {
+            c[i] -= f(i, c, (sum &gt;&gt; 2) &amp; 3, sum, k);
+        }
+        sum -= delta;
+    }
+}</code></pre>
+<p>其中f函数可能比较的复杂</p>
+<pre><code>DWORD32 f(int i, DWORD32* m, DWORD32 e, DWORD32 sum, DWORD32* key)
+{
+    DWORD32 a, b, c, d;
+    DWORD32 next_one, pre_one;
+
+    pre_one = (i == first ? m[end] : m[i - 1]);
+    next_one = (i == end ? m[first] : m[i + 1]);
+
+    a = pre_one &gt;&gt; 5 ^ next_one &lt;&lt; 2;
+    b = pre_one &lt;&lt; 4 ^ next_one &gt;&gt; 3;
+    c = sum ^ next_one;
+    d = key[(i &amp; 0b11) ^ e] ^ pre_one;
+
+    return (a + b) ^ (c + d);
+}</code></pre>
+<p>当前这一位加密,和前面那一位和后面那一位都有关系</p>
+<pre><code> m[i] += f(i, m, (sum &gt;&gt; 2) &amp; 3, sum, k);</code></pre>
+<p>这样的话,对解密会造成一些影响?</p>
+<figure>
+<img src="./img/Untitled.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>可以看出
+如果你正序开始解的话,第一个蓝色的求依赖于2个没有被加密的球,而那2个球已经被加密了
+如果你逆序的话,黄色的求,依赖于2个被加密的球,是可以解开的</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

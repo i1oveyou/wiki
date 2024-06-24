@@ -1,0 +1,667 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-反调试-1.R3-3.干扰静态分析-1.花指令</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-反调试-1.R3-3.干扰静态分析-1.花指令</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#垃圾代码" id="toc-垃圾代码">垃圾代码</a></li>
+        <li><a href="#待学习链接"
+        id="toc-待学习链接">待学习链接</a></li>
+        <li><a href="#跳转指令" id="toc-跳转指令">跳转指令</a>
+        <ul>
+        <li><a href="#组跳转指令"
+        id="toc-组跳转指令">8组跳转指令</a></li>
+        <li><a href="#其它类型" id="toc-其它类型">其它类型</a></li>
+        </ul></li>
+        <li><a href="#花指令类型" id="toc-花指令类型">花指令类型</a>
+        <ul>
+        <li><a href="#强制跳转" id="toc-强制跳转">强制跳转</a></li>
+        <li><a href="#基于互补条件的跳"
+        id="toc-基于互补条件的跳">基于互补条件的跳</a></li>
+        <li><a href="#基于条件的跳转"
+        id="toc-基于条件的跳转">基于条件的跳转</a>
+        <ul>
+        <li><a href="#zf" id="toc-zf">ZF</a></li>
+        <li><a href="#cf" id="toc-cf">CF</a></li>
+        <li><a href="#sf" id="toc-sf">SF</a></li>
+        <li><a href="#of" id="toc-of">OF</a></li>
+        <li><a href="#pf" id="toc-pf">PF</a></li>
+        </ul></li>
+        <li><a href="#call-跳转" id="toc-call-跳转">call 跳转</a></li>
+        <li><a href="#其它类型-1" id="toc-其它类型-1">其它类型</a>
+        <ul>
+        <li><a href="#布尔永真" id="toc-布尔永真">布尔永真</a></li>
+        <li><a href="#自毁形" id="toc-自毁形">自毁形</a></li>
+        </ul></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="垃圾代码">垃圾代码</h1>
+<h1 id="待学习链接">待学习链接</h1>
+<p><strong>一些简单的花指令的解析(含Intel指令集)</strong></p>
+<p>https://www.52pojie.cn/thread-1068444-1-1.html</p>
+<p>花指令 :</p>
+<p>如何构造: <a
+href="https://www.52pojie.cn/thread-326995-1-1.html">https://www.52pojie.cn/thread-326995-1-1.html</a></p>
+<p>如何用IDC解决: <a
+href="https://www.cnblogs.com/LyShark/p/13100048.html">https://www.cnblogs.com/LyShark/p/13100048.html</a></p>
+<p>我们不应该垃圾代码不仅仅起着一个混淆的作用</p>
+<p>因为一旦nop后,垃圾代码就不再起作用.我们应该</p>
+<p>1).
+让垃圾代码参与加密和运算,你的垃圾代码甚至可以是一堆字符串,用于加密</p>
+<p>2). 让垃圾代码和有效代码加密挨着,穿插运行(不知道如何实现)</p>
+<p>3).</p>
+<h1 id="跳转指令">跳转指令</h1>
+<h2 id="组跳转指令">8组跳转指令</h2>
+<p>我说的是短跳转指令,跳转范围只有-128,+128</p>
+<p>0), JO/JNO: 0x70/0x71</p>
+<p>1), JC/JNC: 0x72/0x73</p>
+<blockquote>
+<p>ps: 机器码,jc=jb=jnae,jnc=jnb=jae</p>
+</blockquote>
+<p>2), JZ/JNZ: 0x74/0x75</p>
+<blockquote>
+<p>ps:机器码,JE=JZ,JNE=JNZ</p>
+</blockquote>
+<p>3), JBE/JA:0x76/0x77</p>
+<p>4), JS/JNS: 0x78/0x79</p>
+<p>5), JP/JNP: 0x7A/0x7B</p>
+<p>6), JL/JGE: 0x7C/0x7D</p>
+<p>7), JLE/JG: 0x7E/0x7F,</p>
+<blockquote>
+<p>ps:JLE=JNG</p>
+</blockquote>
+<p>具体到条件的分类:</p>
+<p>ZF = 1 或 SF = 1: JLE/JNG</p>
+<p>ZF = 0 且 SF = 0: JA/JNBE</p>
+<p>SF^OF=0 :JGE/JL</p>
+<p>SF ^OF=1: JL/JNGE</p>
+<p>OF: OF=1就JO ,OF=0就JNO</p>
+<p>SF: SF=1就JS,SF=0就JNS</p>
+<p>CF: CF=1就JC/JB/JNAE,CF=0就JAE/JNC</p>
+<p>ZF: ZF=1就JZ/JE,ZF=0就JNZ/JNE</p>
+<h2 id="其它类型">其它类型</h2>
+<p>短call :0xE8 + 偏移</p>
+<p>短jmp: 0xEB</p>
+<p>长jmp: 0xE9</p>
+<h1 id="花指令类型">花指令类型</h1>
+<p>一些垃圾代码应该去随机生成,而不是自己去手写</p>
+<p>比如利用时间的随机性去生成,然后写入</p>
+<p>主要就用1/2/4的宽度,因为对程序执行毫无影响,所以就长度任意</p>
+<h2 id="强制跳转">强制跳转</h2>
+<blockquote>
+<p>强制跳转: 通常短jmp会比较好</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    __asm <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">jmp</span> tag1</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nop</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nop</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nop</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">nop</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tag1:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}<span class="co">;</span></span></code></pre></div>
+<h2 id="基于互补条件的跳">基于互补条件的跳</h2>
+<blockquote>
+<p>基于互补条件的跳</p>
+</blockquote>
+<p>不一定是jz/jnz,甚至可以是js/jns, ja/jbe以此类推</p>
+<p>就常见的那8组互补指令</p>
+<p>长度4</p>
+<pre class="assembly"><code>    __asm {
+    jz tag1
+    jnz tag1
+    nop
+    nop
+    nop
+    nop
+    tag1:
+    }
+    unsigned char data[10] = {
+    0xF3, 0xAB, 0x74, 0x06, 0x75, 0x04, 0x90, 0x90, 0x90, 0x90
+    };</code></pre>
+<p>长度2</p>
+<pre class="assembly"><code>     __asm {
+        jz tag1
+        jnz tag1
+        nop
+        nop
+        tag1:
+    }
+    unsigned char loc_41175F[6] = {
+    0x74, 0x04, 0x75, 0x02, 0x90, 0x90
+};</code></pre>
+<p>长度1</p>
+<pre class="assembly"><code>    __asm {
+    jz tag1
+    jnz tag1
+    nop
+    tag1:
+    }
+    unsigned char loc_411765[5] = {
+    0x74, 0x03, 0x75, 0x01, 0x90
+    };</code></pre>
+<p>ps: jmp那边也有6/4/3,这里是10/6/5</p>
+<p>之后根据编写,随意替换那8组互补的指令</p>
+<p>并随机初始化0x90</p>
+<h2 id="基于条件的跳转">基于条件的跳转</h2>
+<blockquote>
+<p>基于条件的跳转</p>
+</blockquote>
+<p>缺点:</p>
+<p>需要构造条件,条件的构造可能需要其它汇编指令,于是就破坏了环境,于是就需要保存和恢复环境</p>
+<p>保存环境的这种,就需要pushad/popad</p>
+<p>如果要去patch这种花指令就特别简单</p>
+<p>只需要把pushad和popad之间的字节码nop,然后再nop pushad和popad</p>
+<p>所以对于需要pushad和popad的我们不考虑</p>
+<p>但是话有说回来</p>
+<p>我们为什么要用pushad来保存环境? 因为简单,暴力</p>
+<p>比如我们用到eax,只保存eax可以使用push eax</p>
+<p>可是为了多样话,我们可能用push ecx,</p>
+<p>所以我们就用了pushad和popad</p>
+<p>但是pushad和popad又容易被patch</p>
+<p>总结一句话:
+如果我们能偶不使用pushad和popad,又保存了环境那么就会让花指令去除变得简单了</p>
+<p>这样的话呀,有引起了我们的一个思考</p>
+<p>那就是如何把花指令嵌套在源码中</p>
+<p>说一下我们之前对微型SMC的处理</p>
+<ul>
+<li>先把n个__asm nop 植入源代码,编译为二进制文件</li>
+<li>用脚本实现90的寻找,然后把微型SMC覆盖到90</li>
+<li>用脚本实现key的随机化</li>
+<li>用脚本实现key的读取,然后对字节码解密</li>
+</ul>
+<p>那么对于此刻的花指令来说</p>
+<p>该如何处理? 貌似还是采用相同的方式,哈哈</p>
+<p>其实呢? SMC之所以处理得比较快,是因为我只想出了3种简单的smc</p>
+<p>然乎编译为二进制,然后覆盖</p>
+<p>对于花指令来说的话,类似超多种,估计有几十种,</p>
+<p>编译就有点恼火,要手动编译</p>
+<pre class="assembly"><code>50                            push    eax
+51                            push    ecx
+52                            push    edx
+53                            push    ebx
+;66 50                         push    ax
+;66 51                         push    cx
+;66 52                         push    dx
+;66 53                         push    bx
+58                            pop     eax
+59                            pop     ecx
+5A                            pop     edx
+5B                            pop     ebx
+;66 58                         pop     ax
+;66 59                         pop     cx
+;66 5A                         pop     dx
+;66 5B                         pop     bx</code></pre>
+<h3 id="zf">ZF</h3>
+<p>1),常见的jz和jnz就不说了,看zf标志位,zf的初始化也很简单</p>
+<p>xor</p>
+<pre class="assembly"><code>33 C0                         xor     eax, eax
+33 C9                         xor     ecx, ecx
+33 D2                         xor     edx, edx
+33 DB                         xor     ebx, ebx
+;33 F6                         xor     esi, esi
+;33 FF                         xor     edi, edi
+;66 33 C0                      xor     ax, ax
+;66 33 DB                      xor     bx, bx
+;66 33 C9                      xor     cx, cx
+;66 33 D2                      xor     dx, dx
+32 C0                         xor     al, al
+32 C9                         xor     cl, cl
+32 D2                         xor     dl, dl
+32 DB                         xor     bl, bl
+32 E4                         xor     ah, ah
+32 ED                         xor     ch, ch
+32 F6                         xor     dh, dh
+32 FF                         xor     bh, bh</code></pre>
+<p>sub</p>
+<pre class="assembly"><code>2B C0                         sub     eax, eax
+2B C9                         sub     ecx, ecx
+2B D2                         sub     edx, edx
+2B DB                         sub     ebx, ebx
+;sub     esi, esi
+;sub     edi, edi
+;66 2B C0                      sub     ax, ax
+;66 2B DB                      sub     bx, bx
+;66 2B C9                      sub     cx, cx
+;66 2B D2                      sub     dx, dx
+2A C0                         sub     al, al
+2A C9                         sub     cl, cl
+2A D2                         sub     dl, dl
+2A DB                         sub     bl, bl
+2A E4                         sub     ah, ah
+2A ED                         sub     ch, ch
+2A F6                         sub     dh, dh
+2A FF                         sub     bh, bh</code></pre>
+<p>因为16位寄存器的opcode长度是3,其它都是2,导致不一致</p>
+<p>所以呢,我们以后再考虑3的情况</p>
+<pre class="assembly"><code>__asm{
+    push eax
+    xor eax,eax
+    jz label1
+    nop
+    nop
+    nop
+    nop
+    
+    label1:
+    pop eax
+}</code></pre>
+<h3 id="cf">CF</h3>
+<p>2), 基于CF标志位的</p>
+<p>STC 让CF=1</p>
+<p>CLC 让CF=0</p>
+<p>CMC 让CF取反</p>
+<p>然后其他的汇编指令好像就没了</p>
+<pre><code>STD（设置方向标志 DF）：将方向标志 DF 设置为1，用于字符串操作。
+CLD（清除方向标志 DF）：将方向标志 DF 设置为0，用于字符串操作。
+STI（设置中断标志 IF）：将中断标志 IF 设置为1，允许中断。
+CLI（清除中断标志 IF）：将中断标志 IF 设置为0，禁止中断</code></pre>
+<p>当然也可以通过运算,针对于无符号数运算</p>
+<p>比如</p>
+<pre><code>mov al,0x20
+add al,0xff //无符号数,加法进位
+
+mov al,0x20
+sub al,0xff //无符号数,减法借位</code></pre>
+<p>基于CF的跳转指令,记住jc/jnc就可以了</p>
+<pre><code>jc=jb=jnae,jnc=jnb=jae</code></pre>
+<p>为了让长度更加小,我们就用STC/CLC</p>
+<p>CF1=</p>
+<pre class="assembly"><code>__asm{
+    STC
+    jc label1 
+    nop
+    nop
+    nop
+    nop
+    label1 :
+}
+unsigned char data[7] = {
+    0xF9, 0x72, 0x04, 0x90, 0x90, 0x90, 0x90
+};</code></pre>
+<p>CF=0</p>
+<pre class="assembly"><code>__asm{
+    CLC
+    jnc label1 
+    nop
+    nop
+    nop
+    nop
+    label1 :
+}
+unsigned char data[7] = {
+    0xF8, 0x73, 0x04, 0x90, 0x90, 0x90, 0x90
+};</code></pre>
+<p>分别对应了长度是7/5/4</p>
+<h3 id="sf">SF</h3>
+<p>3), 计算结果是负数,SF=1,正数SF=0</p>
+<pre><code>mov al,0x10 ;原来是正数
+add al,0x7f ;变为负数
+xor al,al   ; 变为正数</code></pre>
+<p>我们不需要关心负多少,正多少</p>
+<p>也不需要关心以前的数据是正是负数</p>
+<p>只需要关心是负的,是正的就可以了</p>
+<p>SF=1,计算是负数</p>
+<pre class="assembly"><code>xor al,al ;31C0
+add al,0x80 ;0480
+
+不一定是是al,还有很多
+不一定是0x80,还有很多,满足的条件就是&gt;0x7F
+不一定是add,也可以是sub</code></pre>
+<p>SF=0,计算是正数</p>
+<pre class="assembly"><code>只要结果是0,就是正数,会比较方便,当然你也可以写的更加复杂,通过计算来获取正数
+
+mov al,0x10
+add al,0x50</code></pre>
+<p>一些mov操作</p>
+<pre class="assembly"><code>B0 80                         mov     al, 80h ; &#39;€&#39;
+B1 80                         mov     cl, 80h ; &#39;€&#39;
+B2 80                         mov     dl, 80h ; &#39;€&#39;
+B3 80                         mov     bl, 80h ; &#39;€&#39;
+B4 80                         mov     ah, 80h ; &#39;€&#39;
+B5 80                         mov     ch, 80h ; &#39;€&#39;
+B6 80                         mov     dh, 80h ; &#39;€&#39;
+B7 80                         mov     bh, 80h ; &#39;€&#39;</code></pre>
+<p>一些add操作,很奇怪,哈哈</p>
+<pre class="assembly"><code>;04 80                         add     al, 80h ; &#39;€&#39;
+80 C1 80                      add     cl, 80h ; &#39;€&#39;
+80 C2 80                      add     dl, 80h ; &#39;€&#39;
+80 C3 80                      add     bl, 80h ; &#39;€&#39;
+;80 C4 80                      add     ah, 80h ; &#39;€&#39;
+80 C5 80                      add     ch, 80h ; &#39;€&#39;
+80 C6 80                      add     dh, 80h ; &#39;€&#39;
+80 C7 80                      add     bh, 80h ; &#39;€&#39;</code></pre>
+<p>SF=1</p>
+<pre class="assembly"><code>__asm{
+    push eax
+    xor al,al 
+    add al,0x80
+    js tag1
+    nop
+    nop
+    nop
+    nop
+    tag1:
+    pop eax
+}</code></pre>
+<p>SF=0,只要结果=0,那么的话,等同于ZF=1</p>
+<pre class="assembly"><code>__asm{
+    push eax
+    xor al,al
+    jns tag1
+    nop
+    nop
+    nop
+    nop
+    tag1:
+    pop eax
+}</code></pre>
+<p>计算版本</p>
+<pre class="assembly"><code>__asm{
+    push eax
+    mov al,0x10
+    add al,0x30
+    jns tag1
+    nop
+    nop
+    nop
+    nop
+    tag1:
+    pop eax
+}</code></pre>
+<h3 id="of">OF</h3>
+<p>把一个寄存器看作有符号的,如果超过了他表示的有符号范围就溢出了</p>
+<p>比如无法正数最大0x7F,+1的话,OF=1</p>
+<p>比如负数最小是0x80,-1的话,OF=1</p>
+<p>注意OF是有符号运算</p>
+<p>OF改变只会出现在</p>
+<p>正数+正数(正数-负数)</p>
+<p>负数+负数(负数-正数)</p>
+<p>s那里</p>
+<pre class="assembly"><code>mov al,0x70
+add al,0x70 ;OF溢出了
+
+mov al,0x70
+sub al,0x90
+
+mov al,0x80
+add al,0x80 ;OF溢出了
+
+mov al,0x80
+sub al,0x10
+</code></pre>
+<p>不一定是al,</p>
+<p>也不一定是0x80,0x70</p>
+<p>满足的条件是: 都是正数或者负数</p>
+<h3 id="pf">PF</h3>
+<p>无论寄存器多大,只看低8位,是否是偶数个1,是的话,PF=1,</p>
+<blockquote>
+<p>ps: 是运算结果哟,不是说mov一个,然后低8位,而不是sub,add</p>
+</blockquote>
+<p>奇数个1就PF=0</p>
+<pre><code>mov al,0x10
+add al,0xe0 ;偶数个1
+
+mov al,0x10
+add al,0xe8 ;奇数一个1</code></pre>
+<p>PF跳转是比较麻烦,因为要保证偶数个bit位是1</p>
+<p>PF的东西</p>
+<h2 id="call-跳转">call 跳转</h2>
+<p>没啥介绍的,,,,,,就是修改返回地址</p>
+<p>call 可以修改eip</p>
+<p>ret也可以修改eip</p>
+<p>修改eip的方式</p>
+<pre class="assembly"><code>    __asm
+    {
+        call tag1;
+        nop
+        nop
+        nop
+        nop
+    tag1:
+        add byte ptr ss : [esp] , 6;本质上来说是6个,多一个nop就+1
+        ret;                                    
+        nop
+        nop
+        nop
+        nop
+    }</code></pre>
+<pre class="assembly"><code>__asm{
+    call label1;
+    nop
+    nop
+    nop
+    nop
+label1:
+    call label2;
+    nop
+    nop
+    nop
+    nop
+label2:
+    call label3;
+    nop
+    nop
+    nop
+    nop
+label3:
+    add esp,12; //恢复栈的正常
+}</code></pre>
+<pre class="assembly"><code>    call LABEL1
+    nop
+    nop
+    nop
+    nop
+LABEL2:
+    jmp LABEL3
+    nop
+    nop
+    nop
+    nop
+LABEL1:
+    call LABEL2
+    nop
+    nop
+    nop
+    nop
+LABEL3:
+    add esp,8</code></pre>
+<h2 id="其它类型-1">其它类型</h2>
+<h3 id="布尔永真">布尔永真</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    LoadLibrary<span class="op">(</span><span class="st">&quot;kernel64.dll&quot;</span><span class="op">);</span><span class="co">//函数返回值存储于eax中</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//用确定性构造不确定性</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        cmp eax<span class="op">,</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        jb  LABEL_CanNotBe_1<span class="op">;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        jnb LABEL_MustBe_1<span class="op">;</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>LABEL_CanNotBe_1<span class="op">:</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        push eax<span class="op">;</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        add esp<span class="op">,</span><span class="bn">0x100</span><span class="op">;</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        pop esp<span class="op">;</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        mov dword ptr <span class="op">[</span>ebp<span class="op">+</span>ecx<span class="op">*</span><span class="dv">4</span><span class="op">+</span><span class="dv">2</span><span class="op">],</span>ebx<span class="op">;</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        _emit <span class="bn">0xE8</span><span class="op">;</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>LABEL_MustBe_1<span class="op">:</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;__</span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">);</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="自毁形">自毁形</h3>
+<h4 id="exitprocess">ExitProcess</h4>
+<p>就是无形之间破坏了堆栈的平衡</p>
+<p>也就是它无法在函数退出的时候,准确的判断堆栈平衡</p>
+<p>比如退出函数长这个样子</p>
+<pre><code>mov     ecx, [ebp+uExitCode]
+push    ecx             ; uExitCode
+call    ds:ExitProcess</code></pre>
+<p>如果来一个这样的代码</p>
+<pre><code>push    0       ; uExitCode
+call    ds:ExitProcess
+cmp     esi, esp
+call    __chkesp</code></pre>
+<p>可以看到后面那个代码会有一个__chkesp</p>
+<p>其实这个代码根本不会执行</p>
+<p>然后影响了IDA的反编译</p>
+<p>因为IDA不知道怎么翻译它…</p>
+<p>因为它不会被执行,,,也不知道应该放在源代码的哪里</p>
+<h4 id="call后不管后续">call后不管后续</h4>
+<p>比如下面这个]</p>
+<p>本来最后应该是</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="bn">0040115</span><span class="er">B</span> <span class="dv">8</span><span class="er">B</span> E5                         mov     esp<span class="op">,</span> ebp</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="bn">0040115</span><span class="er">D</span> <span class="dv">5</span><span class="er">D</span>                            pop     ebp</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="bn">0040115</span><span class="er">E</span> C3                            retn</span></code></pre></div>
+<p>但是它只有</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="dv">10005</span><span class="er">FCD</span> <span class="dv">5</span><span class="er">D</span>                            pop     ebp</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="dv">10005</span><span class="er">FCE</span> <span class="dv">90</span>                            nop</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="dv">10005</span><span class="er">FCF</span> <span class="dv">90</span>                            nop</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="dv">10005</span><span class="er">FD0</span> C3                            retn</span></code></pre></div>
+<p>导致esp的东西丢失了</p>
+<p>这样会导致栈丢失或者不平衡, 自我猜测</p>
+<p>但是,,,,如果说他要干的所有事情都在</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>text<span class="op">:</span><span class="dv">10005</span><span class="er">FC6</span> E8 <span class="dv">87</span> FE FF FF                call    near ptr sub_10005E52</span></code></pre></div>
+<p>干万了,那么不管以后的异常怎么样,,,他都把坏事早早的结束了</p>
+<p>所以后面的事情已经无所谓了</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

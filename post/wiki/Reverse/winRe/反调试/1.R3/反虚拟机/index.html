@@ -1,0 +1,293 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-反调试-1.R3-反虚拟机</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-反调试-1.R3-反虚拟机</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#参考链接links"
+        id="toc-参考链接links">参考链接links</a></li>
+        <li><a href="#section" id="toc-section">—</a></li>
+        <li><a href="#目录特征" id="toc-目录特征">目录特征</a>
+        <ul>
+        <li><a href="#wmare" id="toc-wmare">wmare</a></li>
+        </ul></li>
+        <li><a href="#文件检测" id="toc-文件检测">文件检测</a>
+        <ul>
+        <li><a href="#vmware" id="toc-vmware">VMware</a></li>
+        <li><a href="#virtualbox"
+        id="toc-virtualbox">VirtualBox</a></li>
+        </ul></li>
+        <li><a href="#进程信息" id="toc-进程信息">进程信息</a>
+        <ul>
+        <li><a href="#vmware-1" id="toc-vmware-1">VMware</a></li>
+        <li><a href="#virtualbox-1"
+        id="toc-virtualbox-1">VirtualBox</a></li>
+        </ul></li>
+        <li><a href="#注册表检测" id="toc-注册表检测">注册表检测</a>
+        <ul>
+        <li><a href="#vmware-2" id="toc-vmware-2">Vmware</a></li>
+        </ul></li>
+        <li><a href="#服务检测" id="toc-服务检测">服务检测</a>
+        <ul>
+        <li><a href="#vmware-3" id="toc-vmware-3">vmware</a></li>
+        </ul></li>
+        <li><a href="#mac地址检测" id="toc-mac地址检测">MAC地址检测</a>
+        <ul>
+        <li><a href="#vmware-4" id="toc-vmware-4">Vmware</a></li>
+        <li><a href="#virtualbox-2"
+        id="toc-virtualbox-2">VirtualBox</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <blockquote>
+<p>wik-log\1.Wiki\1.R3</p>
+</blockquote>
+<h1 id="参考链接links">参考链接links</h1>
+<p><a
+href="https://drunkmars.top/2021/07/05/vmtest/">一种简单的反虚拟机调试方法</a></p>
+<h1 id="section">—</h1>
+<p>其实就个人而言的话,,我认为反虚拟机技术就是检测虚拟机的特征</p>
+<p>虚拟机会有哪些特征?</p>
+<ul>
+<li>目录/文件的特征</li>
+<li>进程的特征</li>
+<li>服务的特征</li>
+<li>基于底层指令的特征</li>
+<li>…</li>
+</ul>
+<p>同时,,请注意,,,一些特征信息具有时效性..</p>
+<p>也就是随着版本的更新,,,一些信息会消失了</p>
+<p>比如某个进程特征没了,,,感觉也是很正常的</p>
+<h1 id="目录特征">目录特征</h1>
+<h2 id="wmare">wmare</h2>
+<pre><code>C:\Program Files\VMware
+C:\ProgramData\VMware
+C:\Windows\Temp\vmware-SYSTEM</code></pre>
+<figure>
+<img src="./img/image-20240124112841351.png"
+alt="image-20240124112841351" />
+<figcaption aria-hidden="true">image-20240124112841351</figcaption>
+</figure>
+<p>判断目录是否存在的api</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;shlwapi.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>BOOL PathIsDirectory<span class="op">(</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    LPCTSTR pszPath</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<h1 id="文件检测">文件检测</h1>
+<p>一些虚拟机特有的文件,当然也是基于目录的</p>
+<h2 id="vmware">VMware</h2>
+<p>常规文件:</p>
+<pre><code>c:\windows\system32\drivers\vmtoolshook.dll
+c:\windows\system32\drivers\vmtray.exe
+c:\windows\system32\drivers\vmgfs.dll</code></pre>
+<p>驱动文件:</p>
+<p>进入火绒剑,可以很好的观察</p>
+<figure>
+<img src="./img/image-20240124134145542.png"
+alt="image-20240124134145542" />
+<figcaption aria-hidden="true">image-20240124134145542</figcaption>
+</figure>
+<pre><code>C:\Windows\system32\DRIVERS\vm3dmp.sys
+C:\Windows\system32\DRIVERS\vm3dmp_loader.sys
+C:\Windows\System32\drivers\vmci.sys
+C:\Windows\system32\DRIVERS\vmmemctl.sys
+C:\Windows\System32\drivers\vmmouse.sys
+C:\Windows\system32\DRIVERS\vmrawdsk.sys
+C:\Windows\System32\drivers\vmusbmouse.sys
+C:\Windows\system32\DRIVERS\vsock.sys
+C:\Windows\system32\DRIVERS\vmhgfs.sys</code></pre>
+<h2 id="virtualbox">VirtualBox</h2>
+<pre><code>c:\windows\system32\drivers\VBoxMouse.sys
+c:\windows\system32\drivers\vboxguest.sys
+c:\windows\system32\vboxdisp.dll
+c:\windows\system32\vboxhook.dll</code></pre>
+<h1 id="进程信息">进程信息</h1>
+<h2 id="vmware-1">VMware</h2>
+<p>比如只有vmware的虚拟机才特有的进程</p>
+<figure>
+<img src="./img/image-20240124130045828.png"
+alt="image-20240124130045828" />
+<figcaption aria-hidden="true">image-20240124130045828</figcaption>
+</figure>
+<p>于是我们就可以遍历进程,,如果发现有相关的进程,,,就说明此系统是vmware的虚拟机</p>
+<p>ps: 进程遍历的代码还是比较简单的</p>
+<p>从网上看到的其它信息</p>
+<pre><code>vm3dservice.exe
+VGAuthService.exe
+Vmtoolsd.exe
+---
+Vmwaretrat.exe
+Vmwareuser.exe
+Vmacthlp.exe</code></pre>
+<h2 id="virtualbox-1">VirtualBox</h2>
+<pre><code>vboxservice.exe
+vboxtray.exe</code></pre>
+<p>parakkeks desktop常见的进程</p>
+<pre><code>prl_tools.exe</code></pre>
+<h1 id="注册表检测">注册表检测</h1>
+<p>通过读取主机具有虚拟机特性的注册表位置来判断是否处于虚拟机环境中。</p>
+<h2 id="vmware-2">Vmware</h2>
+<pre><code>计算机\HKEY_CLASSES_ROOT\Applications\VMwareHostOpen.exe</code></pre>
+<figure>
+<img src="./img/image-20240124131451037.png"
+alt="image-20240124131451037" />
+<figcaption aria-hidden="true">image-20240124131451037</figcaption>
+</figure>
+<h1 id="服务检测">服务检测</h1>
+<p>去火绒剑找服务也是可以看到虚拟机特有的东西</p>
+<h2 id="vmware-3">vmware</h2>
+<figure>
+<img src="./img/image-20240124134935668.png"
+alt="image-20240124134935668" />
+<figcaption aria-hidden="true">image-20240124134935668</figcaption>
+</figure>
+<h1 id="mac地址检测">MAC地址检测</h1>
+<h2 id="vmware-4">Vmware</h2>
+<pre><code>00:05:69
+00:0c:29
+00:50:56</code></pre>
+<p>比如我去测试一下</p>
+<figure>
+<img src="./img/image-20240124135303595.png"
+alt="image-20240124135303595" />
+<figcaption aria-hidden="true">image-20240124135303595</figcaption>
+</figure>
+<h2 id="virtualbox-2">VirtualBox</h2>
+<pre><code>08:00:27</code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

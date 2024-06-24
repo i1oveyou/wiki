@@ -1,0 +1,541 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-elfRe-ELF文件格式-1.初级篇-1.ELF_header</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-elfRe-ELF文件格式-1.初级篇-1.ELF_header</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#前言" id="toc-前言">前言</a></li>
+        <li><a href="#结构体成员" id="toc-结构体成员">结构体成员</a>
+        <ul>
+        <li><a href="#e_ident" id="toc-e_ident">e_ident</a></li>
+        <li><a href="#e_type" id="toc-e_type">e_type</a></li>
+        <li><a href="#e_machine" id="toc-e_machine">e_machine</a></li>
+        <li><a href="#e_entry" id="toc-e_entry">e_entry</a></li>
+        <li><a href="#节段" id="toc-节段">节&amp;&amp;段</a></li>
+        <li><a href="#e_shstrndx"
+        id="toc-e_shstrndx">e_shstrndx</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="前言">前言</h1>
+<p>ELF 文件头的位置是固定的，其它内容的位置全都可变</p>
+<p>ELF 文件头规定了其它内容的布局是怎么样的</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> elf32_hdr<span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> e_ident<span class="op">[</span>EI_NIDENT<span class="op">];</span><span class="co">//EI_NIDENT=16;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  WORD  <span class="dt">e_type</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  WORD  e_machine<span class="op">;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  DWORD e_version<span class="op">;</span> <span class="co">//文件版本，目前常见的ELF 文件版本均为EV_CURRENT（1）。</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  DWORD e_entry<span class="op">;</span>  <span class="co">/* Entry point */</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  DWORD e_phoff<span class="op">;</span> <span class="co">//Program Header 文件偏移</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  DWORD e_shoff<span class="op">;</span> <span class="co">//Section Header 文件偏移</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  DWORD e_flags<span class="op">;</span> <span class="co">//处理器特定的标志，一般为0。</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  WORD  e_ehsize<span class="op">;</span> <span class="co">//Elf_Header的大小（字节）</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  WORD  e_phentsize<span class="op">;</span> <span class="co">// （Program Header）的大小（字节）。</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  WORD  e_phnum<span class="op">;</span><span class="co">//Program的数量。</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  WORD  e_shentsize<span class="op">;</span><span class="co">//（Section Header）的大小（字节）。</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  WORD  e_shnum<span class="op">;</span><span class="co">//Section的数量。</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  WORD  e_shstrndx<span class="op">;</span><span class="co">//</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf32_Ehdr<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> elf64_hdr <span class="op">{</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> e_ident<span class="op">[</span>EI_NIDENT<span class="op">];</span> <span class="co">/* ELF &quot;magic number&quot; */</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  WORD <span class="dt">e_type</span><span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  WORD e_machine<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  DWORD e_version<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  ULONGLONG e_entry<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  ULONGLONG e_phoff<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  ULONGLONG e_shoff<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  DWORD e_flags<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  WORD e_ehsize<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  WORD e_phentsize<span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  WORD e_phnum<span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  WORD e_shentsize<span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  WORD e_shnum<span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  WORD e_shstrndx<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Ehdr<span class="op">;</span></span></code></pre></div>
+<p>从elf_hdr来看</p>
+<p>x64的比x86的多12字节,成员名字是一样的</p>
+<p>但是其中有3个成员的长度从4变为8,所以长度会增加3x4=12字节</p>
+<pre><code>//这3个成员大小发生改变
+ULONGLONG e_entry;
+ULONGLONG e_phoff;
+ULONGLONG e_shoff;</code></pre>
+<h1 id="结构体成员">结构体成员</h1>
+<h2 id="e_ident">e_ident</h2>
+<p>它的作用是什么?</p>
+<p>用于解码和解析文件内容的数据，</p>
+<p>如果不知道编码格式，系统将无法知道怎么去读取目标文件</p>
+<p>是不依赖于具体操作系统的执行什么的</p>
+<p>关于 <code>unsigned char e_ident[EI_NIDENT];</code></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define EI_NIDENT </span><span class="op">(</span><span class="dv">16</span><span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> e_ident<span class="op">[</span>EI_NIDENT<span class="op">];</span> <span class="co">/* Magic number and other info */</span>       <span class="co">// 1 byte * 16</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    <span class="dt">e_type</span><span class="op">;</span>         <span class="co">/* Object file type */</span>                  <span class="co">// 2 bytes</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_machine<span class="op">;</span>      <span class="co">/* Architecture */</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  Elf64_Word    e_version<span class="op">;</span>      <span class="co">/* Object file version */</span>               <span class="co">// 4 bytes</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  Elf64_Addr    e_entry<span class="op">;</span>        <span class="co">/* Entry point virtual address */</span>       <span class="co">// 8 bytes</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  Elf64_Off     e_phoff<span class="op">;</span>        <span class="co">/* Program header table file offset */</span>  <span class="co">// 8 bytes</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  Elf64_Off     e_shoff<span class="op">;</span>        <span class="co">/* Section header table file offset */</span>      </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  Elf64_Word    e_flags<span class="op">;</span>        <span class="co">/* Processor-specific flags */</span>             </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_ehsize<span class="op">;</span>       <span class="co">/* ELF header size in bytes */</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_phentsize<span class="op">;</span>        <span class="co">/* Program header table entry size */</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_phnum<span class="op">;</span>        <span class="co">/* Program header table entry count */</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_shentsize<span class="op">;</span>        <span class="co">/* Section header table entry size */</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_shnum<span class="op">;</span>        <span class="co">/* Section header table entry count */</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  Elf64_Half    e_shstrndx<span class="op">;</span>     <span class="co">/* Section header string table index */</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Ehdr<span class="op">;</span></span></code></pre></div>
+<p>下表介绍<code>e_ident</code>数组的结构。其中每个成员均占用 1
+字节空间。</p>
+<table>
+<thead>
+<tr class="header">
+<th>数据成员名称</th>
+<th>数组下标的索引</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EI_MAG0</td>
+<td>0</td>
+<td>‘.’</td>
+</tr>
+<tr class="even">
+<td>EI_MAG1</td>
+<td>1</td>
+<td>‘E’</td>
+</tr>
+<tr class="odd">
+<td>EI_MAG2</td>
+<td>2</td>
+<td>‘L’</td>
+</tr>
+<tr class="even">
+<td>EI_MAG3</td>
+<td>3</td>
+<td>‘F’</td>
+</tr>
+<tr class="odd">
+<td>EI_CLASS</td>
+<td>4</td>
+<td>文件类别,x86,x64,…</td>
+</tr>
+<tr class="even">
+<td>EI_DATA</td>
+<td>5</td>
+<td>编码格式,大端还是小端</td>
+</tr>
+<tr class="odd">
+<td>EI_VERSION</td>
+<td>6</td>
+<td>文件版本,固定为EV_CURRENT（1）。</td>
+</tr>
+<tr class="even">
+<td>EI_OSABI</td>
+<td>7</td>
+<td>OS ABI 识别标志</td>
+</tr>
+<tr class="odd">
+<td>EI_ABIVERSION</td>
+<td>8</td>
+<td>ABI 版本</td>
+</tr>
+<tr class="even">
+<td>EI_PAD</td>
+<td>9</td>
+<td>补充字节开始的地址</td>
+</tr>
+</tbody>
+</table>
+<p>EI_MAG0 ~ EI_MAG3</p>
+<p>类似于PE的PE00或者MZ</p>
+<p>所以这个字段的内容是<code>.ELF</code></p>
+<p>用于标识这是一个 ELF 文件。</p>
+<p>EI_CLASS</p>
+<table>
+<thead>
+<tr class="header">
+<th>名字</th>
+<th>值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ELFCLASSNONE</td>
+<td>0</td>
+<td>非法目标文件</td>
+</tr>
+<tr class="even">
+<td>ELFCLASS32</td>
+<td>1</td>
+<td>32 位目标文件</td>
+</tr>
+<tr class="odd">
+<td>ELFCLASS64</td>
+<td>2</td>
+<td>64 位目标文件</td>
+</tr>
+</tbody>
+</table>
+<pre><code>#define EI_CLASS    4       /* File class byte index */
+#define ELFCLASSNONE    0       /* Invalid class */
+#define ELFCLASS32  1       /* 32-bit objects */
+#define ELFCLASS64  2       /* 64-bit objects */
+#define ELFCLASSNUM 3</code></pre>
+<p>EI_DATA</p>
+<p>数据编码格式</p>
+<table>
+<thead>
+<tr class="header">
+<th>名字</th>
+<th>值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ELFDATANONE</td>
+<td>0</td>
+<td>非法编码格式</td>
+</tr>
+<tr class="even">
+<td>ELFDATA2LSB</td>
+<td>1</td>
+<td>LSB 编码(小头编码) 小端序</td>
+</tr>
+<tr class="odd">
+<td>ELFDATA2MSB</td>
+<td>2</td>
+<td>MSB 编码(大头编码) 大端序</td>
+</tr>
+</tbody>
+</table>
+<pre><code>#define EI_DATA     5       /* Data encoding byte index */
+#define ELFDATANONE 0       /* Invalid data encoding */
+#define ELFDATA2LSB 1       /* 2&#39;s complement, little endian */
+#define ELFDATA2MSB 2       /* 2&#39;s complement, big endian */
+#define ELFDATANUM  3</code></pre>
+<h2 id="e_type">e_type</h2>
+<p>ELF的文件类型，定义如下：</p>
+<p>注：GCC使用编译选项 -pie 编译的可执行文件实际 也是DT_DYN类型</p>
+<pre class="text"><code>#define  ET_REL    1 //可重定位文 件（如目标文件）
+#define  ET_EXEC   2 // 可执行文件（可直接执行的文件）
+#define  ET_DYN    3 // 共享目标文件（如SO库）
+#define  ET_CORE   4 //Core文件（吐核文件）</code></pre>
+<p>对于 ET_REL 类型 的ELF文件，节是必须存在的</p>
+<p>然后我们回忆一下PE文件的话,
+NtHeader.FileHeader.Characteristics就定义了一个pe文件的具体类型</p>
+<p>可重定位文件: (relocatable file)就是常见的.obj文件或者.o文件</p>
+<p>共享目标文件: 感觉类似于一个dll,
+要么参与一个目标的生成,要么被动态链接到一个进程</p>
+<p>可执行文件: 经过链接的，可以执行的程序文</p>
+<p>该数据类型是uint16_t数据类型的，占两个字节。通过字段查看，可以看到这个值为<code>00 02</code>。表格定义如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ET_NONE</td>
+<td>0x0000</td>
+<td>未知目标文件格式</td>
+</tr>
+<tr class="even">
+<td>ET_ERL</td>
+<td>0x0001</td>
+<td>可重定位文件</td>
+</tr>
+<tr class="odd">
+<td>ET_EXEC</td>
+<td>0x0002</td>
+<td>可执行文件</td>
+</tr>
+<tr class="even">
+<td>ET_DYN</td>
+<td>0x0003</td>
+<td>共享目标文件</td>
+</tr>
+<tr class="odd">
+<td>ET_CORE</td>
+<td>0x0004</td>
+<td>Core文件(转储格式)</td>
+</tr>
+<tr class="even">
+<td>ET_LOPROC</td>
+<td>0xFF00</td>
+<td>特定处理器文件扩展下边界</td>
+</tr>
+<tr class="odd">
+<td>ET_HIPROC</td>
+<td>0xFFFF</td>
+<td>特定处理器文件扩展上边界</td>
+</tr>
+</tbody>
+</table>
+<p>对应表格内容，可以看到类型为<code>EXEC</code>即可执行文件类型。</p>
+<h2 id="e_machine">e_machine</h2>
+<p>关于这个字段的解析，基本上就是表示该elf文件是针对哪个处理器架构的。</p>
+<p>下面只列出几个常见的架构的序号</p>
+<table>
+<thead>
+<tr class="header">
+<th>名称</th>
+<th>取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EM_NONE</td>
+<td>0</td>
+<td>No machine</td>
+</tr>
+<tr class="even">
+<td>EM_SPARC</td>
+<td>2</td>
+<td>SPARC</td>
+</tr>
+<tr class="odd">
+<td>EM_386</td>
+<td>3</td>
+<td>Intel 80386</td>
+</tr>
+<tr class="even">
+<td>EM_MIPS</td>
+<td>8</td>
+<td>MIPS I Architecture</td>
+</tr>
+<tr class="odd">
+<td>EM_PPC</td>
+<td>0x14</td>
+<td>PowerPC</td>
+</tr>
+<tr class="even">
+<td>EM_ARM</td>
+<td>0x28</td>
+<td>Advanced RISC Machines ARM</td>
+</tr>
+</tbody>
+</table>
+<p>他是一个WORD,所以范围很广</p>
+<h2 id="e_entry">e_entry</h2>
+<p>此字段指明程序入口的虚拟地址。即当文件被加载到进程空间里后，入口程</p>
+<p>序在进程地址空间里的地址。对于可执行程序文件来说，当 ELF
+文件完成加载之</p>
+<p>后，程序将从这里开始运行；而对于其它文件来说，这个值应该是 0。</p>
+<h2 id="节段">节&amp;&amp;段</h2>
+<p>这2个成员,分别告诉了,section header在哪,Program
+Header在哪,貌似都是文件偏移</p>
+<pre><code>  //x64
+  ULONGLONG e_phoff;
+  ULONGLONG e_shoff;
+  
+  //x86
+  DWORD e_phoff; //Program Header 基于文件的偏移
+  DWORD e_shoff; //Section Header 基于文件的偏移</code></pre>
+<p>下面这4个成员,分别告诉了</p>
+<p>section header的结构体大小,是一个结构体的大小</p>
+<p>section header的总数量</p>
+<p>Program Header的结构体大小,是一个结构体的大小</p>
+<p>Program Header的总数量</p>
+<pre><code>  WORD e_phentsize;
+  WORD e_phnum;
+  WORD e_shentsize;
+  WORD e_shnum;</code></pre>
+<h2 id="e_shstrndx">e_shstrndx</h2>
+<p>这个成员和节的名字有关,</p>
+<p>他是节表SectionHeader的一个index,</p>
+<p>这个index对应的节就代表了<code>.shstrtab</code> ,存放section名，</p>
+<p>在运行过程中是必须的，在连接过程中是可选的，因为它的作用是告诉系统如何创建进程的镜像</p>
+<p>通过 <code>readelf -l demo.elf</code> 指令,我们就明白</p>
+<p>段是什么样子的,然后节又是什么样子的</p>
+<pre><code>Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x1080
+There are 13 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+                 0x00000000000002d8 0x00000000000002d8  R      0x8
+  INTERP         0x0000000000000318 0x0000000000000318 0x0000000000000318
+                 0x000000000000001c 0x000000000000001c  R      0x1
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000680 0x0000000000000680  R      0x1000
+  LOAD           0x0000000000001000 0x0000000000001000 0x0000000000001000
+                 0x00000000000001cd 0x00000000000001cd  R E    0x1000
+  LOAD           0x0000000000002000 0x0000000000002000 0x0000000000002000
+                 0x00000000000000e4 0x00000000000000e4  R      0x1000
+  LOAD           0x0000000000002db0 0x0000000000003db0 0x0000000000003db0
+  ...
+
+ Section to Segment mapping:
+  Segment Sections...
+   00
+   01     .interp
+   02     .interp .note.gnu.property .note.gnu.build-id .note.ABI-tag .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt
+   03     .init .plt .plt.got .plt.sec .text .fini
+   04     .rodata .eh_frame_hdr .eh_frame
+   05     .init_array .fini_array .dynamic .got .data .bss
+   06     .dynamic
+   07     .note.gnu.property
+   08     .note.gnu.build-id .note.ABI-tag
+   09     .note.gnu.property
+   10     .eh_frame_hdr
+   11
+   12     .init_array .fini_array .dynamic .got</code></pre>
+<p>通过导出信息我们可以看到</p>
+<pre><code>Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x1080
+There are 13 program headers, starting at offset 64</code></pre>
+<p>然后有13个段,</p>
+<p>在每个段中,又由很多的Section组成</p>
+<p>比如我们可以看到
+<code>program headers[03]={.init .plt .plt.got .plt.sec .text .fini}</code></p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-Android-武功-调试大法-apk-elf</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-Android-武功-调试大法-apk-elf</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#位的elf" id="toc-位的elf">64位的elf</a>
+        <ul>
+        <li><a href="#环境" id="toc-环境">环境</a></li>
+        <li><a href="#操作" id="toc-操作">操作</a></li>
+        </ul></li>
+        <li><a href="#其它" id="toc-其它">其它</a>
+        <ul>
+        <li><a href="#root的手机"
+        id="toc-root的手机">root的手机</a></li>
+        <li><a href="#位elf" id="toc-位elf">32位elf</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <p>就是调试Android环境下可以执行的elf文件</p>
+<h1 id="位的elf">64位的elf</h1>
+<p>链接：https://pan.baidu.com/s/137vgJthujyJyXJ6MSBiQgw?pwd=5sz5</p>
+<p>提取码：5sz5</p>
+<h2 id="环境">环境</h2>
+<p>非root的Redmi K70</p>
+<p>IDA 7.5</p>
+<h2 id="操作">操作</h2>
+<p>1），把IDA\7.7_server64上传到手机的指定目录</p>
+<pre><code>vermeer:/data/local/tmp/dbg $ chmod a+X ./android_server64
+vermeer:/data/local/tmp/dbg $ ./android_server64
+IDA Android 64-bit remote debug server(ST) v7.7.27. Hex-Rays (c) 2004-2022
+Listening on 0.0.0.0:23946...</code></pre>
+<p>2），然后adb做端口转发</p>
+<pre><code>C:\Users\xxxxx&gt;adb forward tcp:23946 tcp:23946
+23946</code></pre>
+<p>3），断点：然后ida打开elf，在目标位置下一个断点</p>
+<figure>
+<img src="./img/image-20240617163954249.png"
+alt="image-20240617163954249" />
+<figcaption aria-hidden="true">image-20240617163954249</figcaption>
+</figure>
+<p>4），模式：ida debug模式选择</p>
+<figure>
+<img src="./img/image-20240617164009123.png"
+alt="image-20240617164009123" />
+<figcaption aria-hidden="true">image-20240617164009123</figcaption>
+</figure>
+<p>5），debugger-&gt;debug process option：</p>
+<p>在hostname栏填写127.0.0.1或者localhost</p>
+<figure>
+<img src="./img/image-20240617164051083.png"
+alt="image-20240617164051083" />
+<figcaption aria-hidden="true">image-20240617164051083</figcaption>
+</figure>
+<p>然后F9开启调试即可</p>
+<figure>
+<img src="./img/image-20240617164105410.png"
+alt="image-20240617164105410" />
+<figcaption aria-hidden="true">image-20240617164105410</figcaption>
+</figure>
+<h1 id="其它">其它</h1>
+<h2 id="root的手机">root的手机</h2>
+<p>root的手机没那么麻烦，在之前的步骤上</p>
+<p>少了 adb的端口转发</p>
+<pre><code>C:\Users\xxxxx&gt;adb forward tcp:23946 tcp:23946
+23946</code></pre>
+<p>多了ip地址的获取</p>
+<pre><code>PBCM10:/data/local/tmp/dbg $ ip a
+...
+28: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1460 qdisc mq state UP group default qlen 3000
+...
+    inet 192.168.101.15/24 brd 192.168.101.255 scope global wlan0
+...</code></pre>
+<p>在debugger process
+option中，我们就该填写192.168.101.15，而不是127.0.1了</p>
+<h2 id="位elf">32位elf</h2>
+<p>那就使用android_server,而不是android_server64了</p>
+<p>其它差不多一样</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>win32.API.文件系统</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">win32.API.文件系统</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#基础概念" id="toc-基础概念">基础概念</a></li>
+        <li><a href="#文件系统操作-常见-api"
+        id="toc-文件系统操作-常见-api">文件系统操作 常见 API</a></li>
+        <li><a href="#高级文件操作"
+        id="toc-高级文件操作">高级文件操作</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="基础概念">基础概念</h1>
+<p><strong>文件对象</strong></p>
+<p>学过C++的可能比较好理解，学过C的可以把文件对象当成是标准库中操作文件的FILE结构体。</p>
+<p><strong>文件流</strong></p>
+<p>当我们开始操作一个文件的时候，这个文件的打开关闭都由程序控制，而其中的内容是可以动态增减的，</p>
+<p>这样的情况类似水流一般，我们把这样的文件状态称作文件流。</p>
+<p><strong>文件句柄</strong></p>
+<p>当我们打开文件的时候，系统分配的一个句柄标识。</p>
+<p><strong>文件指针</strong></p>
+<p>博主看来，这个通常是文件读写操作时，存储相对于文件起始位置的一个指针。</p>
+<p>那么实际上，用户的输入、输出这一类的“缓存”也就是这样的状态，通常是叫做输入流和输出流，</p>
+<p>除了这两个还有一个错误流。C语言中的标准库(stdio.h)中有定义这三个常用的流，</p>
+<p>也即stdin(标准输入流)、stdout(标准输出流)和stderr(标准错误流)。</p>
+<p>如果大家仔细深究 stdio.h
+的头文件会发现，这些流的定义跟文件的定义实际上是同样的。</p>
+<p>好了，回到终点，那么既然这些东西都已经是 “流”
+的状态了，那么也就意味着我们不需要去打开什么文件，</p>
+<p>来生成什么文件流，直接可以用文件操作的函数来操作这些输入输出流。</p>
+<p>比如输入</p>
+<pre><code>scanf(&quot;%d&quot;, &amp;i);
+实际上就是 fscanf(stdin, &quot;%d&quot;, &amp;i); 的简写而已。</code></pre>
+<p>比如 fgets</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span><span class="pp">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span><span class="pp">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> welcome<span class="op">();</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> Command_str<span class="op">[</span>MAX_PATH<span class="op">];</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    DWORD Command_len<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    HANDLE hConsoleInput<span class="op">;</span>  </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 获取输出流的句柄</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    hConsoleInput <span class="op">=</span> GetStdHandle<span class="op">(</span>STD_INPUT_HANDLE<span class="op">);</span>  </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 输出欢迎信息</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    welcome<span class="op">();</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 清空命令字符串</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        memset<span class="op">(&amp;</span>Command_str<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> MAX_PATH<span class="op">);</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 输出提示符</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;nLscmd&gt;;&quot;</span><span class="op">);</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 读取输入流</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        ReadFile<span class="op">(</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            hConsoleInput<span class="op">,</span>  <span class="co">// 文件句柄</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            Command_str<span class="op">,</span>    <span class="co">// 获取内容的缓冲字符数组</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            MAX_PATH<span class="op">,</span>       <span class="co">// 缓冲数组大小</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">&amp;</span>Command_len<span class="op">,</span>   <span class="co">// 实际读出的大小</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            NULL<span class="op">);</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;接收到命令：[</span><span class="sc">%s</span><span class="st">]&quot;</span><span class="op">,</span> Command_str<span class="op">);</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> welcome<span class="op">()</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Lellansin&#39;s CMD Tool [版本 0.0.1]n&quot;</span><span class="op">);</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;学习自制 (c) www.lellansin.com 欢迎交流n&quot;</span><span class="op">);</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="文件系统操作-常见-api">文件系统操作 常见 API</h1>
+<table>
+<thead>
+<tr class="header">
+<th>CreateFile</th>
+<th>创建、打开文件</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ReadFile</td>
+<td>读取文件内容</td>
+</tr>
+<tr class="even">
+<td>WriteFile</td>
+<td>写入文件内容</td>
+</tr>
+<tr class="odd">
+<td>SetFilePointer</td>
+<td>移动文件指针</td>
+</tr>
+<tr class="even">
+<td>SetEndOfFile</td>
+<td>设置文件结尾标志</td>
+</tr>
+<tr class="odd">
+<td>CopyFile</td>
+<td>文件拷贝</td>
+</tr>
+<tr class="even">
+<td>DeleteFile</td>
+<td>文件删除</td>
+</tr>
+<tr class="odd">
+<td>MoveFile</td>
+<td>文件移动</td>
+</tr>
+<tr class="even">
+<td>CreateDirectory</td>
+<td>创建一个目录</td>
+</tr>
+<tr class="odd">
+<td>RemoveDirectory</td>
+<td>删除一个目录</td>
+</tr>
+<tr class="even">
+<td>GetCurrentDirectory</td>
+<td>获取当前程序所在目录</td>
+</tr>
+<tr class="odd">
+<td>SetCurrentDirectory</td>
+<td>设置当前程序所在目录</td>
+</tr>
+<tr class="even">
+<td>FindFirstFile</td>
+<td>查找指定目录下的第一个文件</td>
+</tr>
+<tr class="odd">
+<td>FindNextFile</td>
+<td>查找下一个文件</td>
+</tr>
+<tr class="even">
+<td>LockFile</td>
+<td>文件锁定</td>
+</tr>
+<tr class="odd">
+<td>UnlockFile</td>
+<td>文件解锁</td>
+</tr>
+<tr class="even">
+<td>GetFileType</td>
+<td>获取文件类型</td>
+</tr>
+<tr class="odd">
+<td>GetFileSize</td>
+<td>获取文件的大小</td>
+</tr>
+<tr class="even">
+<td>GetFileAttributes</td>
+<td>获取文件属性</td>
+</tr>
+<tr class="odd">
+<td>SetFileAttributes</td>
+<td>设置文件属性</td>
+</tr>
+<tr class="even">
+<td>GetFileTime</td>
+<td>获取文件时间</td>
+</tr>
+<tr class="odd">
+<td>GetFileInformationByHandle</td>
+<td>获取文件信息</td>
+</tr>
+<tr class="even">
+<td>GetFullPathName</td>
+<td>获取文件的完整路径</td>
+</tr>
+<tr class="odd">
+<td>GetModuleFileName</td>
+<td>获取当前模块全路径</td>
+</tr>
+</tbody>
+</table>
+<p>文档详见：<a
+href="https://learn.microsoft.com/zh-cn/windows/win32/fileio/file-management-functions?redirectedfrom=MSDN">MSDN
+文件操作 详细文档</a></p>
+<h1 id="高级文件操作">高级文件操作</h1>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>CreateFileMapping</th>
+<th>创建文件的映射对象</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MapViewOfFile</td>
+<td>创建视图，将创建的文件映射对象到当前进程的地址空间中</td>
+</tr>
+<tr class="even">
+<td>FlushViewOfFile</td>
+<td>将视图中数据都写入磁盘，对视图的操作都会反映到磁盘上的文件中</td>
+</tr>
+<tr class="odd">
+<td>OpenFileMapping</td>
+<td>打开已存在的文件映射</td>
+</tr>
+<tr class="even">
+<td>UnmapViewOfFile</td>
+<td>取消文件映射</td>
+</tr>
+<tr class="odd">
+<td>QueryDosDevice</td>
+<td>查询 MS-DOS 设备的名称</td>
+</tr>
+</tbody>
+</table>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

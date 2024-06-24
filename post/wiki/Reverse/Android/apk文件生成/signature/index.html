@@ -1,0 +1,153 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>Hello World</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">Hello World</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#前言" id="toc-前言">前言</a></li>
+        <li><a href="#生成jks" id="toc-生成jks">生成JKS</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h2 id="前言">前言</h2>
+<blockquote>
+<p><strong>JKS</strong>文件是一个java中的密钥管理库。</p>
+</blockquote>
+<p>里面可以放很多的东西，这里只存放一类东西就是密钥，仓库当然会有一把锁，防范别人随便乱拿，这个就是JKS文件的密码。</p>
+<p>里面存放的密钥也各有不同，每个密钥都有一个名字（在下面叫别名），</p>
+<p>一类就密钥对，一类叫公钥，一类叫私钥，</p>
+<p>密钥对就是包含公钥和私钥的。</p>
+<p>这里的公钥只要你能进入仓库你就可以随便查看拿走，私钥则是有密码的，只允许有权限的人查看拿走。</p>
+<blockquote>
+<p>Keytool:Keytool 是一个JAVA环境下的安全钥匙与证书的管理工具</p>
+</blockquote>
+<p>Keytool将密钥（key）和证书（certificates）存在一个称为keystore
+的文件(受密码保护)中。</p>
+<p>在keystore里，包含两种数据：</p>
+<ul>
+<li><p>Key entity
+(密钥实体)——密钥（secretkey）,也叫私钥和配对公钥（采用非对称加密）</p></li>
+<li><p>trustedcertificate
+entries（可信任的证书实体）——只包含公钥</p></li>
+</ul>
+<h2 id="生成jks">生成JKS</h2>
+<pre><code>keytool -genkey -keyalg RSA -keysize 1024 -validity 365 -dname &quot;CN=test, OU=test,O=test, L=shanghai, ST=shanghai, C=CN&quot; -alias csii_key -keypass 888888 -keystore csii.jks -storepass 123456</code></pre>
+<p>CN=(名字与姓氏),</p>
+<p>OU=(组织单位名称),</p>
+<p>O=(组织名称),</p>
+<p>L=(城市或区域名称),</p>
+<p>ST=(州或省份名称),</p>
+<p>C=(单位的两字母国家代码)</p>
+<p>读取JKS</p>
+<pre><code>┌──(kali㉿G16-7620)-[~]
+└─$ keytool -list -v -keystore csii.jks -storepass 123456
+
+</code></pre>
+<pre><code>┌──(kali㉿G16-7620)-[~]
+└─$ keytool -genkey -keyalg RSA -keysize 1024 -validity 365 -dname &quot;CN=redqx, OU=D0g3,O=CUIT, L=chengdu, ST=sichuan, C=CN&quot; -alias D0g3 -keypass 2021.D0g3.com -keystore D0g3.jks -storepass 2021.D0g3.com</code></pre>
+<p>下面填写的信息要和keytool的信息一致</p>
+<figure>
+<img src="./img/image-20240619191029386.png"
+alt="image-20240619191029386" />
+<figcaption aria-hidden="true">image-20240619191029386</figcaption>
+</figure>
+<p>下面这个图是Android Studio借用jks给当前项目的apk签名</p>
+<figure>
+<img src="./img/image-20240619191040628.png"
+alt="image-20240619191040628" />
+<figcaption aria-hidden="true">image-20240619191040628</figcaption>
+</figure>
+<p>我们用jks给第三方的给pk签名</p>
+<pre><code>┌──(kali㉿G16-7620)-[~/code/file]
+└─$ apksigner sign --ks D0g3.jks --ks-key-alias D0g3 -ks-pass pass:2021.D0g3.com --key-pass pass:2021.D0g3.com --v1-signing-enabled true --v2-signing-enabled false --v3-signing-enabled true --out UnCrackable-Level2-signed.apk UnCrackable-Level2.apk </code></pre>
+<p>输出文件是signed.apk</p>
+<p>输入文件是crackme_02-debug-v1.1.apk</p>
+<p>参数</p>
+<pre><code>
+ sign --ks D0g3.jks 
+ --ks-key-alias D0g3 
+ -ks-pass pass:2021.D0g3.com 
+ --key-pass pass:2021.D0g3.com 
+
+--v1-signing-enabled true 
+--v2-signing-enabled false 
+--v3-signing-enabled true </code></pre>
+<pre><code>查看apk签名详情：
+java -jar apksigner.jar verify -v --print-certs test-signed.apk
+ 
+查看apk签名类型：
+android/prebuilts/sdk/tools/linux/bin/apksigner verify -v test.apk
+
+查看apk 版本信息：
+android/prebuilts/sdk/tools/linux/bin/aapt dump badging test.apk</code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

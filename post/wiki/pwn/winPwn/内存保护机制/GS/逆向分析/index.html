@@ -1,0 +1,300 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-pwn-winPwn-内存保护机制-GS-逆向分析</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-pwn-winPwn-内存保护机制-GS-逆向分析</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#gs逆向分析"
+        id="toc-gs逆向分析">GS逆向分析</a></li>
+        <li><a href="#逆向01" id="toc-逆向01">逆向01</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="gs逆向分析">GS逆向分析</h1>
+<h1 id="逆向01">逆向01</h1>
+<p>示例函数如下</p>
+<p>环境</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">//vs2013-x86-debug</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> bubble_sort<span class="op">(</span><span class="dt">int</span> arr<span class="op">[],</span> <span class="dt">int</span> len<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">,</span> j<span class="op">,</span> temp<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> len <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> len <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> i<span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>arr<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> arr<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">])</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> arr<span class="op">[</span>j<span class="op">];</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        arr<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> arr<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">];</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        arr<span class="op">[</span>j <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test1<span class="op">(){</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> arr<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">34</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">82</span><span class="op">,</span> <span class="dv">55</span><span class="op">,</span> <span class="dv">89</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">37</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">64</span><span class="op">,</span> <span class="dv">35</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">70</span> <span class="op">};</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> len <span class="op">=</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span> <span class="kw">sizeof</span><span class="op">(</span>arr<span class="op">)</span> <span class="op">/</span> <span class="kw">sizeof</span><span class="op">(*</span>arr<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    bubble_sort<span class="op">(</span>arr<span class="op">,</span> len<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> len<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span><span class="op">,</span> arr<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    test1<span class="op">();</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>首先我们来查看test1的函数头部</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411340 <span class="kw">push</span>    <span class="kw">ebp</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411341 <span class="kw">mov</span>     <span class="kw">ebp</span><span class="op">,</span> <span class="kw">esp</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411343 <span class="kw">sub</span>     <span class="kw">esp</span><span class="op">,</span> <span class="bn">84h</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411349 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> ___security_cookie</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>0041134E <span class="kw">xor</span>     <span class="kw">eax</span><span class="op">,</span> <span class="kw">ebp</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411350 <span class="kw">mov</span>     <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>dwLocal_security_cookie_xor<span class="op">],</span> <span class="kw">eax</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411353 <span class="kw">push</span>    <span class="kw">ebx</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411354 <span class="kw">push</span>    <span class="kw">esi</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411355 <span class="kw">push</span>    <span class="kw">edi</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411356 <span class="kw">mov</span>     <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>var_3C<span class="op">],</span> <span class="bn">16h</span></span></code></pre></div>
+<p>可以看见</p>
+<p>eax获取了___security_cookie</p>
+<p>然后eax和ebp进行异或</p>
+<p>然后把结果存入当前函数栈的 [ebp+dwLocal_security_cookie_xor]</p>
+<p>如果再细看反汇编, 只有函数末尾才会有___security_cookie的引用</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411401</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411401 loc_411401<span class="op">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411401 <span class="kw">xor</span>     <span class="kw">eax</span><span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411403 <span class="kw">pop</span>     <span class="kw">edi</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411404 <span class="kw">pop</span>     <span class="kw">esi</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411405 <span class="kw">pop</span>     <span class="kw">ebx</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411406 <span class="kw">mov</span>     <span class="kw">ecx</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>dwLocal_security_cookie_xor<span class="op">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411409 <span class="kw">xor</span>     <span class="kw">ecx</span><span class="op">,</span> <span class="kw">ebp</span>        <span class="co">; StackCookie</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>0041140B <span class="cf">call</span>    j_@__security_check_cookie@4 <span class="co">; __security_check_cookie(x)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411410 <span class="kw">mov</span>     <span class="kw">esp</span><span class="op">,</span> <span class="kw">ebp</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411412 <span class="kw">pop</span>     <span class="kw">ebp</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411413 <span class="cf">retn</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411413 sub_411340 endp</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411413</span></code></pre></div>
+<p>可以看见</p>
+<p>首先取出dwLocal_security_cookie_xor</p>
+<p>然后把原始的ebp进行一个异或还原</p>
+<p>然后调用<code>j_@__security_check_cookie@4</code></p>
+<p>我们进入j_<span class="citation"
+data-cites="__security_check_cookie">@__security_check_cookie</span><span
+class="citation" data-cites="4">@4</span> 看看</p>
+<figure>
+<img src="./img/Untitled%209.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>首先拿着ecx和security_cookie比较,,,正常情况下,,二者是相同的</p>
+<p>然后正常的<code>rep retn</code></p>
+<p>如果不相同,,就进入了<code>j____report_gsfailure</code></p>
+<p>哪些情况会造成失败呢?</p>
+<ol type="1">
+<li>ebp不支持
+<ol type="1">
+<li>缓冲区溢出,修改了ebp</li>
+<li>本身函数的堆栈的平衡就有问题,导致ebp没有正确的还原</li>
+<li>…</li>
+</ol></li>
+<li>[ebp+dwLocal_security_cookie_xor]被修改</li>
+<li>ebp,ecx被调试器暂停,然后被修改了</li>
+<li>…</li>
+</ol>
+<p>然后我们进入<code>j____report_gsfailure</code> 看看</p>
+<figure>
+<img src="./img/Untitled%2010.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>他会进入分支</p>
+<p>经过调试发现</p>
+<p>IsProcessorFeaturePresent(PF_FASTFAIL_AVAILABLE) 返回1</p>
+<p>所以会进入中断 <code>mov ecx ,2 int 29h</code> 也就是失败了</p>
+<p>右边的分支,,我们去看看</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>0041199B</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>0041199B loc_41199B<span class="op">:</span>             <span class="co">; 不支持该指令集</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>0041199B <span class="kw">mov</span>     dword_416240<span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119A0 <span class="kw">mov</span>     dword_41623C<span class="op">,</span> <span class="kw">ecx</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119A6 <span class="kw">mov</span>     dword_416238<span class="op">,</span> <span class="kw">edx</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119AC <span class="kw">mov</span>     dword_416234<span class="op">,</span> <span class="kw">ebx</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119B2 <span class="kw">mov</span>     dword_416230<span class="op">,</span> <span class="kw">esi</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119B8 <span class="kw">mov</span>     dword_41622C<span class="op">,</span> <span class="kw">edi</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119BE <span class="kw">mov</span>     word_416258<span class="op">,</span> <span class="kw">ss</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119C5 <span class="kw">mov</span>     word_41624C<span class="op">,</span> <span class="kw">cs</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119CC <span class="kw">mov</span>     word_416228<span class="op">,</span> <span class="kw">ds</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119D3 <span class="kw">mov</span>     word_416224<span class="op">,</span> <span class="kw">es</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119DA <span class="kw">mov</span>     word_416220<span class="op">,</span> <span class="kw">fs</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119E1 <span class="kw">mov</span>     word_41621C<span class="op">,</span> <span class="kw">gs</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119E8 <span class="kw">pushf</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119E9 <span class="kw">pop</span>     dword_416250</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119EF <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>var_s0<span class="op">]</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119F2 <span class="kw">mov</span>     dword_416244<span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119F7 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span><span class="dv">4</span><span class="op">]</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119FA <span class="kw">mov</span>     dword_416248<span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>004119FF <span class="kw">lea</span>     <span class="kw">eax</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>arg_0<span class="op">]</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A02 <span class="kw">mov</span>     dword_416254<span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A07 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>var_324<span class="op">]</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A0D <span class="kw">mov</span>     dword_416190<span class="op">,</span> <span class="bn">10001h</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A17 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> dword_416248</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A1C <span class="kw">mov</span>     dword_41614C<span class="op">,</span> <span class="kw">eax</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A21 <span class="kw">mov</span>     dword_416140<span class="op">,</span> <span class="dv">0</span><span class="er">C0000409h</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A2B <span class="kw">mov</span>     dword_416144<span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A35 <span class="kw">mov</span>     dword_416150<span class="op">,</span> <span class="dv">1</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A3F <span class="kw">mov</span>     <span class="kw">ecx</span><span class="op">,</span> <span class="dv">4</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A44 <span class="kw">imul</span>    <span class="kw">edx</span><span class="op">,</span> <span class="kw">ecx</span><span class="op">,</span> <span class="dv">0</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A47 <span class="kw">mov</span>     dword_416154<span class="op">[</span><span class="kw">edx</span><span class="op">],</span> <span class="dv">2</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A51 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="dv">4</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A56 <span class="kw">imul</span>    <span class="kw">ecx</span><span class="op">,</span> <span class="kw">eax</span><span class="op">,</span> <span class="dv">0</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A59 <span class="kw">mov</span>     <span class="kw">edx</span><span class="op">,</span> ___security_cookie</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A5F <span class="kw">mov</span>     <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span><span class="kw">ecx</span><span class="op">+</span>var_8<span class="op">],</span> <span class="kw">edx</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A63 <span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="dv">4</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A68 <span class="kw">shl</span>     <span class="kw">eax</span><span class="op">,</span> <span class="dv">0</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A6B <span class="kw">mov</span>     <span class="kw">ecx</span><span class="op">,</span> dword_416004</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A71 <span class="kw">mov</span>     <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span><span class="kw">eax</span><span class="op">+</span>var_8<span class="op">],</span> <span class="kw">ecx</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A75 <span class="kw">push</span>    offset off_414930</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A7A <span class="cf">call</span>    j____raise_securityfailure</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A7F <span class="kw">mov</span>     <span class="kw">esp</span><span class="op">,</span> <span class="kw">ebp</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A81 <span class="kw">pop</span>     <span class="kw">ebp</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A82 <span class="cf">retn</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="fu">.text:</span>00411A82 ___report_gsfailure endp</span></code></pre></div>
+<p>前期不知道在干什么</p>
+<p>然后raise_securityfailure 是干嘛的? →
+发生安全性失败时引发异常的一种方式。</p>
+<p>所以会引发异常,执行就g掉</p>
+<p>至于会引发什么样的异常,,简单查了一下,没发现</p>
+<p>所以,,结论是什么?</p>
+<p>我们得尽量让 <code>j_@__security_check_cookie@4</code> 不出现异常</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

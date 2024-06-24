@@ -1,0 +1,314 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-PE-数据目录表-01.导入表</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-PE-数据目录表-01.导入表</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#前言" id="toc-前言">前言</a></li>
+        <li><a href="#结构体" id="toc-结构体">结构体</a></li>
+        <li><a href="#关于-originalfirstthunk-firstthunk"
+        id="toc-关于-originalfirstthunk-firstthunk">关于
+        OriginalFirstThunk | FirstThunk</a></li>
+        <li><a href="#originalfirstthunk和firstthunk的结构"
+        id="toc-originalfirstthunk和firstthunk的结构">OriginalFirstThunk和FirstThunk的结构</a></li>
+        <li><a href="#iat的call类型"
+        id="toc-iat的call类型">IAT的call类型</a></li>
+        <li><a href="#导入表那么多个"
+        id="toc-导入表那么多个">导入表那么多个</a></li>
+        <li><a href="#关于字符串导入和序号导入"
+        id="toc-关于字符串导入和序号导入">关于字符串导入和序号导入</a></li>
+        <li><a href="#导入表隐藏"
+        id="toc-导入表隐藏">导入表隐藏?</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="前言">前言</h1>
+<p>导出数据所在的节通常名字是.idata</p>
+<p>数据目录表中一共有4中类型和函数导入表有关</p>
+<ol type="1">
+<li>导入表 Import</li>
+<li>导入函数地址表 IAT</li>
+<li>绑定导入表</li>
+<li>延迟加载导入表</li>
+</ol>
+<p>每个导入表都是结构体,这些结构体连续分布</p>
+<p>每一个要导入的dll结构体也具体指向了很多具体的数据</p>
+<p>在DIY创建导入表的时候,说IAT和INT表至少8字节才算有效</p>
+<figure>
+<img src="img/7dd3496d4e184434a98edc11de043e96Untitled.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>导入表遍历问题 参考代码 [1.代码大全\1.二进制\1.dict.md]</p>
+<h1 id="结构体">结构体</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _IMAGE_IMPORT_DESCRIPTOR</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x00</span> <span class="kw">union</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="bn">0x00</span>        DWORD Characteristics<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="bn">0x00</span>        DWORD OriginalFirstThunk<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="co">//INT 指向一个数组,数组成员是指针,以0结尾,指针又指向一个结构体</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="co">//如果数组成员是0x80000xxxx----,表示他为序号导入</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="co">//否则为名称导入,OriginalFirstThunk指向的是函数的名字,那么指向的结构应该为{Hint+Name}的结构</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     <span class="op">}</span> u<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x04</span> DWORD  TimeDateStamp<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">//无用 当时间戳=0,表示dll的地址没有被绑定 ,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">//否者表示dll的地址被绑定了</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x08</span> DWORD  ForwarderChain<span class="op">;</span>     <span class="co">//无用</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x0c</span> DWORD  Dll_Name<span class="op">;</span><span class="co">//指向dll字符串的RVA ,0结尾,导入dll的时候,可以不要.dll后缀名</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x10</span>  DWORD FirstThunk<span class="op">;</span><span class="co">//IAT,以0结尾,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">//@[comment(&quot;MVI_tracked&quot;)]</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_IMPORT_BY_NAME <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    WORD    Hint<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    CHAR   Name<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_IMPORT_BY_NAME<span class="op">,</span> <span class="op">*</span>PIMAGE_IMPORT_BY_NAME<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">//关于OriginalFirstThunk和FirstThunk的结构,简单的理解为数组就可以了</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">//@[comment(&quot;MVI_tracked&quot;)]</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_THUNK_DATA64 <span class="op">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        ULONGLONG ForwarderString<span class="op">;</span>  <span class="co">// PBYTE</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        ULONGLONG Function<span class="op">;</span>         <span class="co">// PDWORD</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        ULONGLONG Ordinal<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        ULONGLONG AddressOfData<span class="op">;</span>    <span class="co">// PIMAGE_IMPORT_BY_NAME</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> u1<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_THUNK_DATA64<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> IMAGE_THUNK_DATA64 <span class="op">*</span> PIMAGE_THUNK_DATA64<span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;poppack.h&quot;</span><span class="pp">                        </span><span class="co">// Back to 4 byte packing</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">//@[comment(&quot;MVI_tracked&quot;)]</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_THUNK_DATA32 <span class="op">{</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        DWORD ForwarderString<span class="op">;</span>      <span class="co">// PBYTE</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        DWORD Function<span class="op">;</span>             <span class="co">// PDWORD</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        DWORD Ordinal<span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        DWORD AddressOfData<span class="op">;</span>        <span class="co">// PIMAGE_IMPORT_BY_NAME</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> u1<span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_THUNK_DATA32<span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> IMAGE_THUNK_DATA32 <span class="op">*</span> PIMAGE_THUNK_DATA32<span class="op">;</span></span></code></pre></div>
+<p>现在有个问题, Dll_Name指向的是W版本字符串还是A版本字符串</p>
+<p>对于x86和x64的导出表, AddressOfFunctions, AddressOfNames
+都指向一个DWORD的数组,成员都是4字节</p>
+<p>但是对于x86和x64的带入表,</p>
+<p>x64下 OriginalFirstThunk 和 FirstThunk 指向一个DWORD64的数组</p>
+<p>x86下 OriginalFirstThunk 和 FirstThunk 指向一个DWORD32的数组</p>
+<h1 id="关于-originalfirstthunk-firstthunk">关于 OriginalFirstThunk |
+FirstThunk</h1>
+<p>关于INT,IAT 他们是类似于一次函数y=kx的关系,一一对应</p>
+<p>在exe没加载之前,IAT和INT类似</p>
+<p>在exe加载后,数据INT和IAT出现不同</p>
+<p>1
+在模块加载前,他们分别指向一个不同的数组,但是数组的内容是相同的,比如数组成员都指向函数的名字(字符串)</p>
+<p>2
+在模块加载后,FirstThunk指向的数组,内容不在和OriginalFirstThunk一致,而是指向具体的函数</p>
+<figure>
+<img src="img/7dd3496d4e184434a98edc11de043e96Untitled1.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h1
+id="originalfirstthunk和firstthunk的结构">OriginalFirstThunk和FirstThunk的结构</h1>
+<p>通常情况下OriginalFirstThunk和FirstThunk指向相同的数据内容,</p>
+<p>我们称这种为双桥结构的导入表,也就是通过OriginalFirstThunk和FirstThunk</p>
+<p>我们都可以遍历到INT,这是在exe加载前的情况</p>
+<p>还有一种情况是只有FirstThunk指向了INT,此刻称之为单桥结构,这种结构不可以绑定导入表</p>
+<figure>
+<img src="img/7dd3496d4e184434a98edc11de043e96Untitled3.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>关于为什么会有OriginalFirstThunk和FirstThunk指向了相同的数据内容,</p>
+<p>而且你还觉得很啰嗦…</p>
+<p>如果只有FirstThunk,当PeLOad后,之前的函数名称的指针数组就丢失了,</p>
+<p>数组的内容被替换为函数的地址VA</p>
+<p>那么就不再还有指针数组指向API的NAME</p>
+<figure>
+<img src="img/7dd3496d4e184434a98edc11de043e96Untitled4.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>当然,如果孤掷一注的话,我门也不需要有谁指向这个名称数组</p>
+<h1 id="iat的call类型">IAT的call类型</h1>
+<p>类似于函数指针</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xxx<span class="op">=</span>MessageBOX</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>call xxx</span></code></pre></div>
+<p>比如</p>
+<p>FF 15 98 B0 41 00 call <em>(ds:MessageBoxA) ;其实就是call
+</em>(指针)</p>
+<p>其中 98 B0 41 00-&gt;
+0040B098其实就是FirstThunk指向的那个数组的某个成员</p>
+<p>而0040B098指向的那个地址,也就是MessageBoxA真正的地址</p>
+<p>0040B098指向什么? 看下面</p>
+<pre><code>.idata:0041B098 C0 17 E6 76             MessageBoxA dd offset user32_MessageBoxA
+ .idata:0041B098                                                                 ; CODE XREF: _main_0+31↑p
+ .idata:0041B098                                                                 ; DATA XREF: _main_0+31↑r ...
+ .idata:0041B09C 00 00 00 00 00 00 00 00
+ .idata:0041B09C 00 00 00 00 00 00 00 00</code></pre>
+<p>可以看出0041B098指向的地址就是C0 17 E6 76
+,也就是76E617C0,就是真真函数的地址</p>
+<pre><code>USER32.dll:76E617C0 8B FF                   mov     edi, edi
+ USER32.dll:76E617C2 55                      push    ebp
+ USER32.dll:76E617C3 8B EC                   mov     ebp, esp
+ USER32.dll:76E617C5 83 3D 94 6C E8 76 00    cmp     dword_76E86C94, 0
+ USER32.dll:76E617CC 74 22                   jz      short loc_76E617F0</code></pre>
+<h1 id="导入表那么多个">导入表那么多个</h1>
+<p>什么时候结束??</p>
+<p>当成员的struct
+_IMAGE_IMPORT_DESCRIPTOR.Dll_Name字段是0就结束..而不需要整个结构体全部为0</p>
+<figure>
+<img src="img/7dd3496d4e184434a98edc11de043e96Untitled2.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>所以我们就可以把其它部分赋值为任意值,然后只把Dll_Name赋值为0</p>
+<h1 id="关于字符串导入和序号导入">关于字符串导入和序号导入</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>GetProcAddress<span class="op">(</span>Kernel32_Base<span class="op">,</span> CreateFileW<span class="st">&quot;);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>GetProcAddress<span class="op">(</span>Kernel32_Base<span class="op">,</span> <span class="op">(</span><span class="dt">char</span><span class="op">*)</span><span class="bn">0xCE</span><span class="op">);</span></span></code></pre></div>
+<p>实际的序号导入,并不是0xCE,而是一个DWORD32或者DWORD64的长度,然后二进制最高位是1</p>
+<p>比如是0x800000CE或者0x80000000000000CE</p>
+<h1 id="导入表隐藏">导入表隐藏?</h1>
+<p>其实就是动态加载API</p>
+<p>这感觉是最垃圾的一种导入表隐藏技术</p>
+<p>动态加载API,而不是把要用的API写入源代码</p>
+<p>通用可以实现导入表隐藏敏感API</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-shellcode-有哪些方式引用字符串或者变量</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-shellcode-有哪些方式引用字符串或者变量</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#shellcode数据引用"
+        id="toc-shellcode数据引用">shellcode数据引用</a></li>
+        <li><a href="#字符串比较"
+        id="toc-字符串比较">字符串比较</a></li>
+        <li><a href="#字符串引用" id="toc-字符串引用">字符串引用</a>
+        <ul>
+        <li><a href="#way1-在字节码中插入字符串"
+        id="toc-way1-在字节码中插入字符串">way1
+        在字节码中插入字符串</a></li>
+        <li><a href="#way2-push入栈" id="toc-way2-push入栈">way2
+        push入栈</a></li>
+        <li><a href="#way3-依然是在字节码中插入字符串但"
+        id="toc-way3-依然是在字节码中插入字符串但">way3
+        依然是在字节码中插入字符串,但…</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="shellcode数据引用">shellcode数据引用</h1>
+<h1 id="字符串比较">字符串比较</h1>
+<p>比如我们想实现一个<code>strcmp(xxx,"GetProaddress")</code></p>
+<p>汇编如何实现</p>
+<pre class="assembly"><code>cmp dword ptr[eax], 0x50746547; //Getp
+jnz Get_Function;
+cmp dword ptr[eax + 0x4], 0x41636f72; //rocA
+jnz Get_Function;
+cmp dword ptr[eax + 0x8], 0x65726464; //ddre
+jnz Get_Function;</code></pre>
+<p>可以看到他把<code>GetProaddress</code>拆分为一些4字节来比较,思路比较奇特</p>
+<p>当然这里也看尽了了一种特殊的方式去引用字符串,也就是拆分字符串</p>
+<h1 id="字符串引用">字符串引用</h1>
+<h2 id="way1-在字节码中插入字符串">way1 在字节码中插入字符串</h2>
+<p>这是使用汇编的编译器引用字符串的例子</p>
+<pre class="assembly"><code>.386
+.model flat,stdcall
+.stack 4096
+
+
+.data
+
+
+.code
+main PROC
+    call end_of_string
+    db &#39;evil.exe&#39;,0
+    end_of_string:
+    ret
+main ENDP
+END main</code></pre>
+<p>这个是x86内嵌汇编例子,比较傻b鸡肋</p>
+<pre class="assembly"><code>    _asm
+    {   call $ + 5;
+        pop esi;
+        add esi, 8
+        jmp tag
+        _emit 0x4C;
+        _emit 0x6F;
+        _emit 0x61;
+        _emit 0x64;
+        _emit 0x4C;
+        _emit 0x69;
+        _emit 0x62;
+        _emit 0x72;
+        _emit 0x61;
+        _emit 0x72;
+        _emit 0x79;
+        _emit 0x41;
+        _emit 0x00;
+    tag:
+    }  </code></pre>
+<p>这种方式的话,,,还可以起到一定的干扰静态分析的效果</p>
+<h2 id="way2-push入栈">way2 push入栈</h2>
+<p>其实和之前的一样,,,,</p>
+<p>也是把字符串拆分为4字节一组或者其它什么什么的</p>
+<p>然后我们push 入栈</p>
+<p>最后我们再获取esp,于是esp就指向了</p>
+<pre class="assembly"><code>push 0                ; WinExec uCmdShow
+push 0x6578652e       ; exe. : 6578652e
+push 0x636c6163       ; clac : 636c6163
+; 然偶就是引用esp的操作了</code></pre>
+<h2 id="way3-依然是在字节码中插入字符串但">way3
+依然是在字节码中插入字符串,但…</h2>
+<p>这是c语言生成汇编那种,,,,</p>
+<pre><code>char szBuff[]={&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;};</code></pre>
+<p>类似于这种</p>
+<p>为什么不用,我就不多说了</p>
+<pre><code>char szBuff[]=&quot;12345&quot;;</code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-PE-应用篇-脱PE壳-1.基于UPX延伸出来的方法-Level3-两次断点法</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-PE-应用篇-脱PE壳-1.基于UPX延伸出来的方法-Level3-两次断点法</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#upx--" id="toc-upx--">UPX -</a>
+        <ul>
+        <li><a href="#位利用-xdbg" id="toc-位利用-xdbg">32位利用
+        xdbg</a></li>
+        <li><a href="#x64-xdbg" id="toc-x64-xdbg">x64 xdbg</a></li>
+        <li><a href="#疑惑" id="toc-疑惑">疑惑</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <p>参考链接:</p>
+<p>https://blog.csdn.net/jyk764717697/article/details/7306621</p>
+<p>二次断点法（又叫内存镜像法）</p>
+<p>壳如果要把原来加密或压缩的代码运行起来就必须要解压和解密原来的代码。</p>
+<p>而这一个过程我们难道不能将他看做是对代码段（code段）的写入吗</p>
+<p>所以就满足可以触发内存访问断点的条件</p>
+<p>当然能也可以触发内存可执行断点之类的</p>
+<h1 id="upx--">UPX -</h1>
+<h2 id="位利用-xdbg">32位利用 xdbg</h2>
+<p>首先我们看一下一个exe 加壳前后的变化</p>
+<p>加壳前</p>
+<figure>
+<img src="img/image-20230802114046032.png"
+alt="image-20230802114046032" />
+<figcaption aria-hidden="true">image-20230802114046032</figcaption>
+</figure>
+<p>加壳后</p>
+<figure>
+<img src="img/image-20230802114115961.png"
+alt="image-20230802114115961" />
+<figcaption aria-hidden="true">image-20230802114115961</figcaption>
+</figure>
+<p>加壳后</p>
+<p><code>.UPX0</code>是一个空的节区</p>
+<p><code>.UPX1</code>和<code>.rsrc</code>节区估计和压缩的数据有关</p>
+<p>然后解压缩的数据放在UPX0节区,然后在UPX0执行</p>
+<p>所以我们可以在.rsrc下一个内存访问断点,F9,</p>
+<p>如果停止下来,说明它开始解密数据了</p>
+<p>然后在.UPX0下一个内存执行断点,然后F9</p>
+<p>具体步骤如下</p>
+<p>在程序ep处</p>
+<figure>
+<img src="img/image-20230802120354290.png"
+alt="image-20230802120354290" />
+<figcaption aria-hidden="true">image-20230802120354290</figcaption>
+</figure>
+<p>第一个断点</p>
+<figure>
+<img src="img/image-20230802120739316.png"
+alt="image-20230802120739316" />
+<figcaption aria-hidden="true">image-20230802120739316</figcaption>
+</figure>
+<p>然后F9一下</p>
+<p>停下来了,因为ESI+0x1A218访问了资源节</p>
+<figure>
+<img src="img/image-20230802120408338.png"
+alt="image-20230802120408338" />
+<figcaption aria-hidden="true">image-20230802120408338</figcaption>
+</figure>
+<p>第二个断点</p>
+<figure>
+<img src="img/image-20230802120630980.png"
+alt="image-20230802120630980" />
+<figcaption aria-hidden="true">image-20230802120630980</figcaption>
+</figure>
+<p>然后F9一下,到了OEP</p>
+<figure>
+<img src="img/image-20230802120813459.png"
+alt="image-20230802120813459" />
+<figcaption aria-hidden="true">image-20230802120813459</figcaption>
+</figure>
+<p>ps:我的异常设置如下,默认选项</p>
+<figure>
+<img src="img/image-20230802120853139.png"
+alt="image-20230802120853139" />
+<figcaption aria-hidden="true">image-20230802120853139</figcaption>
+</figure>
+<p>到了</p>
+<h2 id="x64-xdbg">x64 xdbg</h2>
+<p>操作一模一样,参考x86的</p>
+<h2 id="疑惑">疑惑</h2>
+<p>为什么我们不可以直接在UXP0下一个可执行断点呢?</p>
+<p>省的下2次</p>
+<p>于是就g,woc,反正就是不对</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

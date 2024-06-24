@@ -1,0 +1,420 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-Android-防守-基本功</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-Android-防守-基本功</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#root-检测" id="toc-root-检测">root 检测</a>
+        <ul>
+        <li><a href="#环境变量中的su"
+        id="toc-环境变量中的su">环境变量中的su</a></li>
+        <li><a href="#和root有关的apk或者可执行程序"
+        id="toc-和root有关的apk或者可执行程序">和root有关的apk或者可执行程序</a></li>
+        </ul></li>
+        <li><a href="#检测当前设备是不是-开发者模式"
+        id="toc-检测当前设备是不是-开发者模式">检测当前设备是不是
+        开发者模式</a></li>
+        <li><a href="#反调试" id="toc-反调试">反调试</a>
+        <ul>
+        <li><a href="#java-flag_debuggable"
+        id="toc-java-flag_debuggable">java: FLAG_DEBUGGABLE</a></li>
+        <li><a href="#java-检测是否被调试器连接"
+        id="toc-java-检测是否被调试器连接">java:
+        检测是否被调试器连接</a></li>
+        <li><a href="#so-子进程attach父进程"
+        id="toc-so-子进程attach父进程">so: 子进程attach父进程</a></li>
+        </ul></li>
+        <li><a href="#防篡改" id="toc-防篡改">防篡改</a></li>
+        <li><a href="#混淆" id="toc-混淆">混淆</a>
+        <ul>
+        <li><a href="#java层的混淆"
+        id="toc-java层的混淆">java层的混淆:</a></li>
+        <li><a href="#so层混淆llvm"
+        id="toc-so层混淆llvm">so层混淆:llvm</a></li>
+        <li><a href="#so层混淆-函数复杂多样化"
+        id="toc-so层混淆-函数复杂多样化">so层混淆:
+        函数复杂多样化</a></li>
+        </ul></li>
+        <li><a href="#so层-init_array-手段"
+        id="toc-so层-init_array-手段">so层: init_array 手段</a></li>
+        <li><a href="#其它" id="toc-其它">其它</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="root-检测">root 检测</h1>
+<h2 id="环境变量中的su">环境变量中的su</h2>
+<p>在 Android-UnCrackable-L1, Android-UnCrackable-L2,
+Android-UnCrackable-L3 有应用</p>
+<p>检测一些环境变量中有没有su</p>
+<p>一个root的设备是可以直接输入 su 进行提权的. 同时su存在于环境变量中.
+以此作为root的检测手段</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">checkRoot1</span><span class="op">(){</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="bu">String</span> pathDir <span class="op">:</span> <span class="bu">System</span><span class="op">.</span><span class="fu">getenv</span><span class="op">(</span><span class="st">&quot;PATH&quot;</span><span class="op">).</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot;:&quot;</span><span class="op">)){</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span><span class="op">(</span><span class="kw">new</span> <span class="bu">File</span><span class="op">(</span>pathDir<span class="op">,</span> <span class="st">&quot;su&quot;</span><span class="op">).</span><span class="fu">exists</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h2
+id="和root有关的apk或者可执行程序">和root有关的apk或者可执行程序</h2>
+<p>在 Android-UnCrackable-L1, Android-UnCrackable-L2,
+Android-UnCrackable-L3 有应用</p>
+<p>有些软件可以把手机root掉,</p>
+<p>有些软件是利用root干其它事情</p>
+<p>如果手机安装了这些软件,大概说明当前手机已经被root了</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">checkRoot3</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span><span class="op">[]</span> paths <span class="op">=</span> <span class="op">{</span> <span class="st">&quot;/system/app/Superuser.apk&quot;</span><span class="op">,</span> <span class="st">&quot;/system/xbin/daemonsu&quot;</span><span class="op">,</span>  <span class="st">&quot;/system/etc/init.d/99SuperSUDaemon&quot;</span><span class="op">,</span> <span class="st">&quot;/system/bin/.ext/.su&quot;</span><span class="op">,</span> <span class="st">&quot;/system/etc/.has_su_daemon&quot;</span><span class="op">,</span> <span class="st">&quot;/system/etc/.installed_su_daemon&quot;</span><span class="op">,</span> <span class="st">&quot;/dev/com.koushikdutta.superuser.daemon/&quot;</span> <span class="op">};</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="bu">String</span> path <span class="op">:</span> paths<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span><span class="kw">new</span> <span class="bu">File</span><span class="op">(</span>path<span class="op">).</span><span class="fu">exists</span><span class="op">())</span> <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<pre><code>&quot;/system/app/Superuser.apk&quot;,
+&quot;/system/xbin/daemonsu&quot;, 
+&quot;/system/etc/init.d/99SuperSUDaemon&quot;, 
+&quot;/system/bin/.ext/.su&quot;,
+&quot;/system/etc/.has_su_daemon&quot;,
+&quot;/system/etc/.installed_su_daemon&quot;, 
+&quot;/dev/com.koushikdutta.superuser.daemon/&quot;</code></pre>
+<h1 id="检测当前设备是不是-开发者模式">检测当前设备是不是
+开发者模式</h1>
+<p>在 Android-UnCrackable-L1, Android-UnCrackable-L2,
+Android-UnCrackable-L3 有应用</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">checkRoot2</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span> buildTags <span class="op">=</span> android<span class="op">.</span><span class="fu">os</span><span class="op">.</span><span class="fu">Build</span><span class="op">.</span><span class="fu">TAGS</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> buildTags <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> buildTags<span class="op">.</span><span class="fu">contains</span><span class="op">(</span><span class="st">&quot;test-keys&quot;</span><span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h1 id="反调试">反调试</h1>
+<h2 id="java-flag_debuggable">java: FLAG_DEBUGGABLE</h2>
+<p>在 Android-UnCrackable-L1, Android-UnCrackable-L2,
+Android-UnCrackable-L3 有应用</p>
+<p>检测标志位,这个貌似在AndroidManifest.xml中有</p>
+<p>检测当前apk是否具备可调式的属性,
+作为一个release的apk是不可调试的.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">boolean</span> <span class="fu">isDebuggable</span><span class="op">(</span><span class="bu">Context</span> context<span class="op">){</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">((</span>context<span class="op">.</span><span class="fu">getApplicationContext</span><span class="op">().</span><span class="fu">getApplicationInfo</span><span class="op">().</span><span class="fu">flags</span> <span class="op">&amp;</span> ApplicationInfo<span class="op">.</span><span class="fu">FLAG_DEBUGGABLE</span><span class="op">)</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h2 id="java-检测是否被调试器连接">java: 检测是否被调试器连接</h2>
+<p>在Android-UnCrackable-L2, Android-UnCrackable-L3,有应用</p>
+<p>开一后台线程,一直检测是否有调试器连接当前apk进程,</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Debugger detection</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">new</span> AsyncTask<span class="op">&lt;</span><span class="bu">Void</span><span class="op">,</span> <span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            <span class="kw">protected</span> <span class="bu">String</span> <span class="fu">doInBackground</span><span class="op">(</span><span class="bu">Void</span><span class="kw">...</span> params<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                <span class="cf">while</span> <span class="op">(!</span>Debug<span class="op">.</span><span class="fu">isDebuggerConnected</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                    SystemClock<span class="op">.</span><span class="fu">sleep</span><span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">onPostExecute</span><span class="op">(</span><span class="bu">String</span> msg<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                <span class="fu">showDialogAndExit</span><span class="op">(</span><span class="st">&quot;Debugger detected!&quot;</span><span class="op">);</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}.</span><span class="fu">execute</span><span class="op">(</span><span class="kw">null</span><span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="kw">null</span><span class="op">);</span></span></code></pre></div>
+<h2 id="so-子进程attach父进程">so: 子进程attach父进程</h2>
+<p>大概的效果, apk变为了2个进程</p>
+<p>父进程被子进程调试</p>
+<p>子进程一直处于debug循环,又没啥好调试的.</p>
+<h1 id="防篡改">防篡改</h1>
+<p>在 Android-UnCrackable-L3, 有应用</p>
+<p>java层, 也就是检测 class.dex , xxx.so 是否被修改过</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">void</span> <span class="fu">verifyLibs</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        crc <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Long</span><span class="op">&gt;();</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">//mips, mips64 and armeabi are no longer supported with the new buildtools</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">//        crc.put(&quot;armeabi&quot;, Long.parseLong(getResources().getString(R.string.armeabi))); //&quot;1054637268&quot;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">//        crc.put(&quot;mips&quot;, Long.parseLong(getResources().getString(R.string.mips))); //&quot;3104746423&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        crc<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;armeabi-v7a&quot;</span><span class="op">,</span> <span class="bu">Long</span><span class="op">.</span><span class="fu">parseLong</span><span class="op">(</span><span class="fu">getResources</span><span class="op">().</span><span class="fu">getString</span><span class="op">(</span>R<span class="op">.</span><span class="fu">string</span><span class="op">.</span><span class="fu">armeabi_v7a</span><span class="op">)));</span> <span class="co">//&quot;881998371&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        crc<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;arm64-v8a&quot;</span><span class="op">,</span> <span class="bu">Long</span><span class="op">.</span><span class="fu">parseLong</span><span class="op">(</span><span class="fu">getResources</span><span class="op">().</span><span class="fu">getString</span><span class="op">(</span>R<span class="op">.</span><span class="fu">string</span><span class="op">.</span><span class="fu">arm64_v8a</span><span class="op">)));</span> <span class="co">//&quot;1608485481&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">//        crc.put(&quot;mips64&quot;, Long.parseLong(getResources().getString(R.string.mips64))); //&quot;1319538057&quot;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        crc<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;x86&quot;</span><span class="op">,</span> <span class="bu">Long</span><span class="op">.</span><span class="fu">parseLong</span><span class="op">(</span><span class="fu">getResources</span><span class="op">().</span><span class="fu">getString</span><span class="op">(</span>R<span class="op">.</span><span class="fu">string</span><span class="op">.</span><span class="fu">x86</span><span class="op">)));</span> <span class="co">//&quot;1618896864&quot;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        crc<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;x86_64&quot;</span><span class="op">,</span> <span class="bu">Long</span><span class="op">.</span><span class="fu">parseLong</span><span class="op">(</span><span class="fu">getResources</span><span class="op">().</span><span class="fu">getString</span><span class="op">(</span>R<span class="op">.</span><span class="fu">string</span><span class="op">.</span><span class="fu">x86_64</span><span class="op">)));</span>  <span class="co">//&quot;2856060114&quot;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            <span class="bu">ZipFile</span> zf <span class="op">=</span> <span class="kw">new</span> <span class="bu">ZipFile</span><span class="op">(</span><span class="fu">getPackageCodePath</span><span class="op">());</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Long</span><span class="op">&gt;</span> entry <span class="op">:</span> crc<span class="op">.</span><span class="fu">entrySet</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span> filename <span class="op">=</span> <span class="st">&quot;lib/&quot;</span> <span class="op">+</span> entry<span class="op">.</span><span class="fu">getKey</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot;/libfoo.so&quot;</span><span class="op">;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                <span class="bu">ZipEntry</span> ze <span class="op">=</span> zf<span class="op">.</span><span class="fu">getEntry</span><span class="op">(</span>filename<span class="op">);</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                Log<span class="op">.</span><span class="fu">v</span><span class="op">(</span>TAG<span class="op">,</span> <span class="st">&quot;CRC[&quot;</span> <span class="op">+</span> filename <span class="op">+</span> <span class="st">&quot;] = &quot;</span> <span class="op">+</span> ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">());</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">()</span> <span class="op">!=</span> entry<span class="op">.</span><span class="fu">getValue</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                    <span class="co">//tampered = 31337;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                    Log<span class="op">.</span><span class="fu">v</span><span class="op">(</span>TAG<span class="op">,</span> filename <span class="op">+</span> <span class="st">&quot;: Invalid checksum = &quot;</span> <span class="op">+</span> ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot;, supposed to be &quot;</span> <span class="op">+</span> entry<span class="op">.</span><span class="fu">getValue</span><span class="op">());</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="bu">String</span> filename <span class="op">=</span> <span class="st">&quot;classes.dex&quot;</span><span class="op">;</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">ZipEntry</span> ze <span class="op">=</span> zf<span class="op">.</span><span class="fu">getEntry</span><span class="op">(</span>filename<span class="op">);</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            Log<span class="op">.</span><span class="fu">v</span><span class="op">(</span>TAG<span class="op">,</span> <span class="st">&quot;CRC[&quot;</span> <span class="op">+</span> filename <span class="op">+</span> <span class="st">&quot;] = &quot;</span> <span class="op">+</span> ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">());</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">()</span> <span class="op">!=</span> <span class="fu">baz</span><span class="op">())</span> <span class="op">{</span> <span class="co">// baz()=25235683LL</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>                <span class="co">//tampered = 31337;</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>                Log<span class="op">.</span><span class="fu">v</span><span class="op">(</span>TAG<span class="op">,</span> filename <span class="op">+</span> <span class="st">&quot;: crc = &quot;</span> <span class="op">+</span> ze<span class="op">.</span><span class="fu">getCrc</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot;, supposed to be &quot;</span> <span class="op">+</span> <span class="fu">baz</span><span class="op">());</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">IOException</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>            Log<span class="op">.</span><span class="fu">v</span><span class="op">(</span>TAG<span class="op">,</span> <span class="st">&quot;Exception&quot;</span><span class="op">);</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            <span class="bu">System</span><span class="op">.</span><span class="fu">exit</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h1 id="混淆">混淆</h1>
+<h2 id="java层的混淆">java层的混淆:</h2>
+<ul>
+<li>Android-UnCrackable-L1 :轻度混淆,
+只是修改一些变量,函数,类的名字.</li>
+<li>Android-UnCrackable-L2: 在L1的程度上, L2增添了很多无用的,
+乱七八糟的类. 或者并没有增加,把已有的类修改的乱七八糟</li>
+<li>Android-UnCrackable-L3: 在L1的程度上, 3增添了很多无用的,
+乱七八糟的类. 或者并没有增加,把已有的类修改的乱七八糟</li>
+</ul>
+<p>解决办法:</p>
+<p>理解相关代码, 分析并重命名</p>
+<h2 id="so层混淆llvm">so层混淆:llvm</h2>
+<p>见Android-UnCrackable-L4-0.9了</p>
+<h2 id="so层混淆-函数复杂多样化">so层混淆: 函数复杂多样化</h2>
+<p>函数复杂多样化就是把 一个很简单的东西写得很复杂复杂,
+但因为本质很简单, 只要看破就很好理解.</p>
+<blockquote>
+<p>Android-UnCrackable-L2</p>
+</blockquote>
+<p>CodeCheck.bar中, out数组赋值代码, 是一个看上去简单,
+实际上也很简单的一个数据赋值</p>
+<p>但因为高内聚,低耦合, 复杂的函数功能却比较单一, 又因为编译器的原因</p>
+<p>导致out数组的赋值变得很简单,甚至找不到复杂的痕迹</p>
+<pre><code>UnCrackable-Level2
+--lib
+----arm64-v8a
+------libfoo.so
+--------CodeCheck.bar(JNIEnv *env, jobject, jbyteArray in)</code></pre>
+<blockquote>
+<p>Android-UnCrackable-L3</p>
+</blockquote>
+<pre><code>UnCrackable-Level3
+--lib
+----arm64-v8a
+------libfoo.so
+--------CodeCheck.bar(JNIEnv *env, jobject, jbyteArray in)
+----------- sub_doit((char*)out);</code></pre>
+<p>sub_doit(char* barr)是一个看上去很复杂的函数,</p>
+<p>但是因为高内聚,低耦合的原因,功能又比较单一. 也就是一个赋值函数</p>
+<h1 id="so层-init_array-手段">so层: init_array 手段</h1>
+<p>在 Android-UnCrackable-L3, 有应用</p>
+<p>也就是在elf加载的时, 先于main函数的的一种东西</p>
+<p>类似于exe的tls.</p>
+<p>该函数的执行需要被注册.
+注册后一般存在于<code>.init_array</code>节区</p>
+<pre><code>UnCrackable-Level3
+--lib
+----arm64-v8a
+------libfoo.so
+--------_start()
+
+# 检测xposed,frida ???
+# 数据初始化</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>__attribute__<span class="op">((</span>constructor<span class="op">))</span> <span class="dt">static</span> <span class="dt">void</span> _start<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pthread_t t<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    pthread_create<span class="op">(</span> <span class="op">&amp;</span>t<span class="op">,</span> NULL<span class="op">,</span> __somonitor_loop<span class="op">,</span> NULL <span class="op">);</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">//__somonitor_loop 用于检测xposed,frida ???</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    memset<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">25</span><span class="op">);</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    initialized <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span>  __attribute__ <span class="op">((</span>visibility <span class="op">(</span><span class="st">&quot;hidden&quot;</span><span class="op">)))</span> <span class="op">*</span>__somonitor_loop<span class="op">(</span><span class="dt">void</span> <span class="op">*)</span> <span class="op">{</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> line<span class="op">[</span><span class="dv">512</span><span class="op">];</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FILE</span><span class="op">*</span> fp<span class="op">;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        fp <span class="op">=</span> fopen<span class="op">(</span><span class="st">&quot;/proc/self/maps&quot;</span><span class="op">,</span> <span class="st">&quot;r&quot;</span><span class="op">);</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>fp<span class="op">)</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> <span class="op">(</span>fgets<span class="op">(</span>line<span class="op">,</span> <span class="dv">512</span><span class="op">,</span> fp<span class="op">))</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>strstr<span class="op">(</span>line<span class="op">,</span> <span class="st">&quot;frida&quot;</span><span class="op">)</span> <span class="op">||</span> strstr<span class="op">(</span>line<span class="op">,</span> <span class="st">&quot;xposed&quot;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>                    __android_log_print<span class="op">(</span>ANDROID_LOG_VERBOSE<span class="op">,</span> APPNAME<span class="op">,</span> <span class="st">&quot;Tampering detected! Terminating...&quot;</span><span class="op">);</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                    goodbye<span class="op">();</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>            fclose<span class="op">(</span>fp<span class="op">);</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>            __android_log_print<span class="op">(</span>ANDROID_LOG_VERBOSE<span class="op">,</span> APPNAME<span class="op">,</span> <span class="st">&quot;Error opening /proc/self/maps! Terminating...&quot;</span><span class="op">);</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>            goodbye<span class="op">();</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>        usleep<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="其它">其它</h1>
+<p>通过源码,其实发现还有很多东西,很多知识点,很多反破解手法是我所不了解的,
+所以此刻并未提出</p>
+<p>日后有缘再来分析分析.</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

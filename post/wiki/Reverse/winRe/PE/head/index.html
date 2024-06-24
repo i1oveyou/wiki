@@ -1,0 +1,556 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-PE-head</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-PE-head</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#pe文件格式-pe头"
+        id="toc-pe文件格式-pe头">PE文件格式-pe头</a></li>
+        <li><a href="#links" id="toc-links">links</a></li>
+        <li><a href="#dosheader" id="toc-dosheader">DosHeader</a></li>
+        <li><a href="#dos_stub" id="toc-dos_stub">Dos_Stub</a></li>
+        <li><a href="#nt_headers" id="toc-nt_headers">NT_HEADERS</a>
+        <ul>
+        <li><a href="#签名字段-pe00" id="toc-签名字段-pe00">签名字段
+        PE/0/0</a></li>
+        <li><a href="#文件头-file_header"
+        id="toc-文件头-file_header">文件头 FILE_HEADER</a></li>
+        <li><a href="#可选头-optional_header"
+        id="toc-可选头-optional_header">可选头 OPTIONAL_HEADER</a></li>
+        </ul></li>
+        <li><a href="#节区头" id="toc-节区头">节区头</a></li>
+        <li><a href="#数据目录表"
+        id="toc-数据目录表">数据目录表</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="pe文件格式-pe头">PE文件格式-pe头</h1>
+<h1 id="links">links</h1>
+<p><a
+href="http://blog.nsfocus.net/malicious-sample-analysis-manual-file-encapsulation/">恶意样本分析手册——文件封装篇</a></p>
+<p>Windows PE 是一个操作系统,全程是Windows PreInstallation Environment:
+Windows预安装环境</p>
+<p>此文章的PE是讲可执行文件的格式</p>
+<h1 id="dosheader">DosHeader</h1>
+<p>x86和x64是一样的</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> IMAGE_DOS_HEADER DosHeader<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>PIMAGE_DOS_HEADER dos_Header<span class="op">;</span></span></code></pre></div>
+<figure>
+<img src="img/image-20230727012149548.png"
+alt="image-20230727012149548" />
+<figcaption aria-hidden="true">image-20230727012149548</figcaption>
+</figure>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _IMAGE_DOS_HEADER</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x00</span> WORD  w_magic<span class="op">;</span>         <span class="co">//value=&quot;MZ&quot;        EXE文件的标志</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x3c</span> DWORD dw_lfanew<span class="op">;</span>       <span class="co">//                  PE头偏移地址</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Dos头有4行 ps:4x16</p>
+<p>你可以修改e_lfanew来迁移NT头的位置</p>
+<p>除了2个重要的字段,其它的字段,你都可以干坏事情</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PIMAGE_DOS_HEADER idh <span class="op">=</span> <span class="op">(</span>PIMAGE_DOS_HEADER<span class="op">)</span>module<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>idh<span class="op">-&gt;</span>e_magic <span class="op">!=</span> IMAGE_DOS_SIGNATURE<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> NULL<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<h1 id="dos_stub">Dos_Stub</h1>
+<p>可以把它CC,没有用</p>
+<p>所以你可以修改dw_lfanew然后把NT头向前移动,掩盖以前的Dos存根</p>
+<figure>
+<img src="img/image-20230727012232086.png"
+alt="image-20230727012232086" />
+<figcaption aria-hidden="true">image-20230727012232086</figcaption>
+</figure>
+<h1 id="nt_headers">NT_HEADERS</h1>
+<p>NT头开始, x64和x86的结构体就发生了变化,
+变化发生于Optional_Header,前面几个成员没变</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_NT_HEADERS64 <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    DWORD Signature<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    IMAGE_FILE_HEADER FileHeader<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    IMAGE_OPTIONAL_HEADER64 OptionalHeader<span class="op">;</span><span class="co">//64位</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_NT_HEADERS64<span class="op">,</span> <span class="op">*</span>PIMAGE_NT_HEADERS64<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_NT_HEADERS <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    DWORD Signature<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    IMAGE_FILE_HEADER FileHeader<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    IMAGE_OPTIONAL_HEADER32 OptionalHeader<span class="op">;</span><span class="co">//32位</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_NT_HEADERS32<span class="op">,</span> <span class="op">*</span>PIMAGE_NT_HEADERS32<span class="op">;</span></span></code></pre></div>
+<p>一般情况下</p>
+<p>从文件开始到0x03C
+偏移处为PE的头部信息，其中记录了整个PE文件的头结构</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h2 id="签名字段-pe00">签名字段 PE/0/0</h2>
+<p>value=“PE/0/0”</p>
+<pre><code>50 45 00 00</code></pre>
+<h2 id="文件头-file_header">文件头 FILE_HEADER</h2>
+<pre><code>struct IMAGE_FILE_HEADER FileHeader</code></pre>
+<figure>
+<img src="img/image-20230727012008909.png"
+alt="image-20230727012008909" />
+<figcaption aria-hidden="true">image-20230727012008909</figcaption>
+</figure>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_FILE_HEADER</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    WORD  Machine<span class="op">;</span> <span class="co">//指定了该套机器码用于什么平台</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    WORD  NumberOfSections<span class="op">;</span> <span class="co">//表示 PE 文件中的区块（section）个数</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    DWORD TimeDateStamp<span class="op">;</span> <span class="co">//示 PE 文件的创建时间。 可以是任意值,不影响运行</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    DWORD PointerToSymbolTable<span class="op">;</span> <span class="co">//表示符号表在文件中的位置 可以是任意值,不影响运行</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    DWORD NumberOfSymbols<span class="op">;</span> <span class="co">//表示符号表中符号的数量 可以是任意值,不影响运行</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    WORD  SizeOfOptionalHeader<span class="op">;</span> <span class="co">//表示可选头的大小（以字节为单位）,可选头就在FILE_HEADER 的下面</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    WORD  Characteristics<span class="op">;</span> <span class="co">//表示 PE 文件的属性,比如 dll,exe, sys...,???</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_FILE_HEADER<span class="op">,</span> <span class="op">*</span>PIMAGE_FILE_HEADER<span class="op">;</span></span></code></pre></div>
+<p>NumberOfSection</p>
+<p>节区数一定要大于0,</p>
+<p>如果表的节区数不和实际的节区数一致就会无法执行</p>
+<p>SizeOfOptionalHeader:</p>
+<p>x86下是 默认是00E0 , x64 下是 默认00F0 ,我们可以自定义</p>
+<p>Characteristics: 16bit</p>
+<p>一些PE文件的自身属性</p>
+<p>[0]=1,表示没有基址重定位,必须加载到ImageBase,如果没有,就G啦</p>
+<p>于是你可以去精确的控制这些位,实现一个陷阱的制作等等</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled1.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h2 id="可选头-optional_header">可选头 OPTIONAL_HEADER</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>IMAGE_OPTIONAL_HEADER64 OptionalHeader<span class="op">;</span><span class="co">//64位</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>IMAGE_OPTIONAL_HEADER32 OptionalHeader<span class="op">;</span><span class="co">//32位</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">//32</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_OPTIONAL_HEADER <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Standard fields.</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    WORD    Magic<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    BYTE    MajorLinkerVersion<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    BYTE    MinorLinkerVersion<span class="op">;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfCode<span class="op">;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfInitializedData<span class="op">;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfUninitializedData<span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    DWORD   AddressOfEntryPoint<span class="op">;</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    DWORD   BaseOfCode<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    DWORD   BaseOfData<span class="op">;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// NT additional fields.</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    DWORD   ImageBase<span class="op">;</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    DWORD   SectionAlignment<span class="op">;</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    DWORD   FileAlignment<span class="op">;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    WORD    MajorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    WORD    MinorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    WORD    MajorImageVersion<span class="op">;</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    WORD    MinorImageVersion<span class="op">;</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    WORD    MajorSubsystemVersion<span class="op">;</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    WORD    MinorSubsystemVersion<span class="op">;</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    DWORD   Win32VersionValue<span class="op">;</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfImage<span class="op">;</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfHeaders<span class="op">;</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    DWORD   CheckSum<span class="op">;</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    WORD    Subsystem<span class="op">;</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    WORD    DllCharacteristics<span class="op">;</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfStackReserve<span class="op">;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfStackCommit<span class="op">;</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfHeapReserve<span class="op">;</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    DWORD   SizeOfHeapCommit<span class="op">;</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    DWORD   LoaderFlags<span class="op">;</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    DWORD   NumberOfRvaAndSizes<span class="op">;</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    IMAGE_DATA_DIRECTORY DataDirectory<span class="op">[</span>IMAGE_NUMBEROF_DIRECTORY_ENTRIES<span class="op">];</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_OPTIONAL_HEADER32<span class="op">,</span> <span class="op">*</span>PIMAGE_OPTIONAL_HEADER32<span class="op">;</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="co">//64</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_OPTIONAL_HEADER64 <span class="op">{</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    WORD        Magic<span class="op">;</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    BYTE        MajorLinkerVersion<span class="op">;</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    BYTE        MinorLinkerVersion<span class="op">;</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfCode<span class="op">;</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfInitializedData<span class="op">;</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfUninitializedData<span class="op">;</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    DWORD       AddressOfEntryPoint<span class="op">;</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    DWORD       BaseOfCode<span class="op">;</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   ImageBase<span class="op">;</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    DWORD       SectionAlignment<span class="op">;</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    DWORD       FileAlignment<span class="op">;</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    WORD        MajorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    WORD        MinorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    WORD        MajorImageVersion<span class="op">;</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    WORD        MinorImageVersion<span class="op">;</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    WORD        MajorSubsystemVersion<span class="op">;</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    WORD        MinorSubsystemVersion<span class="op">;</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>    DWORD       Win32VersionValue<span class="op">;</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfImage<span class="op">;</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfHeaders<span class="op">;</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    DWORD       CheckSum<span class="op">;</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    WORD        Subsystem<span class="op">;</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    WORD        DllCharacteristics<span class="op">;</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfStackReserve<span class="op">;</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfStackCommit<span class="op">;</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfHeapReserve<span class="op">;</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfHeapCommit<span class="op">;</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    DWORD       LoaderFlags<span class="op">;</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>    DWORD       NumberOfRvaAndSizes<span class="op">;</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    IMAGE_DATA_DIRECTORY DataDirectory<span class="op">[</span>IMAGE_NUMBEROF_DIRECTORY_ENTRIES<span class="op">];</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_OPTIONAL_HEADER64<span class="op">,</span> <span class="op">*</span>PIMAGE_OPTIONAL_HEADER64<span class="op">;</span></span></code></pre></div>
+<p>为什么是可选头?</p>
+<p>因为在obj文件中,这个是不存在的,所以是可选头</p>
+<p>x86: 从可选头寻找0x60个大小后,就是数据目录表</p>
+<p>x64: 从可选头寻找0x70个大小后,就是数据目录表</p>
+<p>x86的可选头</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_OPTIONAL_HEADER <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x00</span> WORD Magic<span class="op">;</span> <span class="co">//比如是x86,还是x64,或者其它的..</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x02</span> BYTE MajorLinkerVersion<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x03</span> BYTE MinorLinkerVersion<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//指定连接器的版本号,对运行毫无影响</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x04</span> DWORD SizeOfCode<span class="op">;</span>                 <span class="co">//磁盘文件中,data节大小-text节大小</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x08</span> DWORD SizeOfInitializedData<span class="op">;</span>      <span class="co">//已经初始化的数据节的总大小,         运行时不参考</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x0c</span> DWORD SizeOfUninitializedData<span class="op">;</span>    <span class="co">//没有初始化的数据节的总大小,         运行时不参考</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">//4个地址</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x10</span> DWORD AddressOfEntryPoint<span class="op">;</span>     <span class="co">//程序的EP,RVA</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x14</span> DWORD BaseOfCode<span class="op">;</span>              <span class="co">//.text 代码的基地址RVA 运行时不参考</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x18</span> DWORD BaseOfData<span class="op">;</span>              <span class="co">//.data 数据的基地址RVA 运行时不参考</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x1c</span> DWORD ImageBase<span class="op">;</span>               <span class="co">//程序建议装载地址,只是建议</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">//2对齐</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x20</span> DWORD SectionAlignment<span class="op">;</span>        <span class="co">//内存中节的对齐粒度</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x24</span> DWORD FileAlignment<span class="op">;</span>           <span class="co">//文件中节的对齐粒度</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x28</span> WORD MajorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x2a</span> WORD MinorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">//操作系统版本号</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x2c</span> WORD MajorImageVersion<span class="op">;</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x2e</span> WORD MinorImageVersion<span class="op">;</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">//PE的版本号</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x30</span> WORD MajorSubsystemVersion<span class="op">;</span> <span class="co">//它不可以修改,其它可以修改</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x32</span> WORD MinorSubsystemVersion<span class="op">;</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">//所需子系统版本号</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x34</span> DWORD Win32VersionValue<span class="op">;</span>   <span class="co">//win32下,该值任意,xp下,必须为0</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">//3个大小</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x38</span>  DWORD SizeOfImage<span class="op">;</span>        <span class="co">//内存中,PE文件占用的大小,是FileAlignment的倍数</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x3c</span>  DWORD SizeOfHeaders<span class="op">;</span>      <span class="co">//所有PE头的大小,PE文件严格要求他是0x200的倍数</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x40</span>  DWORD CheckSum<span class="op">;</span>           <span class="co">//校验和 和驱动文件,DLL文件有关</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">//2个属性</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x44</span> WORD Subsystem<span class="op">;</span>            <span class="co">//指定使用界面的子系统,比如GUI,DOS</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x46</span> WORD DllCharacteristics<span class="op">;</span>   <span class="co">//所有PE文件的属性,而不是针对DLL</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">//4个堆栈信息</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x48</span> DWORD SizeOfStackReserve<span class="op">;</span>  <span class="co">//初始化的栈大小</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x4c</span> DWORD SizeOfStackCommit<span class="op">;</span>   <span class="co">//初始化时,实际的准备的栈大小</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x50</span> DWORD SizeOfHeapReserve<span class="op">;</span>   <span class="co">//初始化的堆大小</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x54</span> DWORD SizeOfHeapCommit<span class="op">;</span>    <span class="co">//初始化时,实际的准备的堆大小</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x58</span> DWORD LoaderFlags<span class="op">;</span>         <span class="co">//和调试有关</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x5c</span> DWORD NumberOfRvaAndSizes<span class="op">;</span> <span class="co">//数据目录表的有效成员个数</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="bn">0x60</span> _IMAGE_DATA_DIRECTORY DataDirectory<span class="op">[</span><span class="dv">16</span><span class="op">];</span><span class="co">//数据目录表</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_OPTIONAL_HEADER32<span class="op">,</span> <span class="op">*</span>PIMAGE_OPTIONAL_HEADER32<span class="op">;</span></span></code></pre></div>
+<p>x64可选头</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_OPTIONAL_HEADER64 <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    WORD        Magic<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    BYTE        MajorLinkerVersion<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    BYTE        MinorLinkerVersion<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfCode<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfInitializedData<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfUninitializedData<span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    DWORD       AddressOfEntryPoint<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    DWORD       BaseOfCode<span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//无DWORD BaseOfData;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   ImageBase<span class="op">;</span> <span class="co">//变为了8字节</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    DWORD       SectionAlignment<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    DWORD       FileAlignment<span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    WORD        MajorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    WORD        MinorOperatingSystemVersion<span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    WORD        MajorImageVersion<span class="op">;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    WORD        MinorImageVersion<span class="op">;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    WORD        MajorSubsystemVersion<span class="op">;</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    WORD        MinorSubsystemVersion<span class="op">;</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    DWORD       Win32VersionValue<span class="op">;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfImage<span class="op">;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    DWORD       SizeOfHeaders<span class="op">;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    DWORD       CheckSum<span class="op">;</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    WORD        Subsystem<span class="op">;</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    WORD        DllCharacteristics<span class="op">;</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfStackReserve<span class="op">;</span><span class="co">//变为了8字节</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfStackCommit<span class="op">;</span><span class="co">//变为了8字节</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfHeapReserve<span class="op">;</span><span class="co">//变为了8字节</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    ULONGLONG   SizeOfHeapCommit<span class="op">;</span><span class="co">//变为了8字节</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    DWORD       LoaderFlags<span class="op">;</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    DWORD       NumberOfRvaAndSizes<span class="op">;</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    IMAGE_DATA_DIRECTORY DataDirectory<span class="op">[</span>IMAGE_NUMBEROF_DIRECTORY_ENTRIES<span class="op">];</span><span class="co">//内部的 VirtualAddress 和 Size 大小没变</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_OPTIONAL_HEADER64<span class="op">,</span> <span class="op">*</span>PIMAGE_OPTIONAL_HEADER64<span class="op">;</span></span></code></pre></div>
+<p>从地址上来说,x64的多了4x5的字节,就是20字节</p>
+<p>但是x64的结构少了一个<code>DWORD BaseOfData;</code>
+所以总体来说,会比x86的大小多16字节</p>
+<p>ps: IMAGE_DATA_DIRECTORY,数据目录表也涉及地址,但是长度没有发生变化,
+也就是说他的VA和Size没变,还是4字节</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_DATA_DIRECTORY <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    DWORD   VirtualAddress<span class="op">;</span><span class="co">//还是4字节</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    DWORD   Size<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_DATA_DIRECTORY<span class="op">,</span> <span class="op">*</span>PIMAGE_DATA_DIRECTORY<span class="op">;</span></span></code></pre></div>
+<p>AddressOfEntryPoint:</p>
+<p>对于DLL,它的EP是可选的,没有的话,就为0</p>
+<p>许多病毒程序、加密程序、补丁程序都会劫持这里的值，使其指向其他用途的代码地址。</p>
+<p>ImageBase:</p>
+<p>该值是exe应该首先载入的地址,可以自定义它</p>
+<p>要求它的大小是0x10000的倍数</p>
+<p>File/Section Alignment</p>
+<p>文件对齐指出了节区在磁盘的最小对齐单位</p>
+<p>节区对齐指出了节区在内存中对齐的最小单位</p>
+<p>win10的FileAlignment好像只能200对齐以上</p>
+<p>SectionAlignment必须大于或等于FileAlignment。</p>
+<p>当它小于系统页面大小时，必须保证SectionAlignment和
+FileAlignment相等</p>
+<p>ps:</p>
+<p>我们的地址只能是对齐值得整数倍</p>
+<p>如果对齐值不是整数倍就会被强制类型转化</p>
+<p>比如R2PD=10,那么会被转化为0</p>
+<p>Subsystem</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled2.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>DllCharacteristics</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled3.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>所有PE文件的属性,而不是针对DLL</p>
+<p>数据目录表在另外一个章节</p>
+<h1 id="节区头">节区头</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> IMAGE_SECTION_HEADER SectionHeaders<span class="op">[</span>n<span class="op">]</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     BYTE Name<span class="op">[</span><span class="dv">8</span><span class="op">];</span><span class="co">//8字节的字符串名字,说明性信息,不一定以0结尾</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="kw">union</span> Misc</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         DWORD PhysicalAddress<span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         DWORD VirtualSize<span class="op">;</span>  <span class="co">//该节区数据大小,未对齐</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>     <span class="op">}</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>     <span class="co">//内存描述</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>     DWORD VirtualAddress<span class="op">;</span>   <span class="co">//数据去向des,RVA</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>     DWORD SizeOfRawData<span class="op">;</span>    <span class="co">//数据大小,对齐后</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>     DWORD PointerToRawData<span class="op">;</span> <span class="co">//数据来源src,FA</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>     <span class="co">//文件描述,运行时不依赖,可以CC它</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>     DWORD PointerToRelocations<span class="op">;</span>  <span class="co">//obj文件使用,</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>     DWORD PointerToLinenumbers<span class="op">;</span>  <span class="co">//行号表的位置,供调试使用</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>     WORD NumberOfRelocations<span class="op">;</span>    <span class="co">//obj文件使用,</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>     WORD NumberOfLinenumbers<span class="op">;</span>   <span class="co">//行号表的中行的数量</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>     <span class="co">//内存属性 ☆☆☆☆☆☆</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>     DWORD Characteristics<span class="op">;</span>      <span class="co">//节的属性☆☆☆☆☆☆</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a> <span class="op">}</span> PIMAGE_SECTION_HEADER sec_Header<span class="op">;</span></span></code></pre></div>
+<p>不同的节有不同的性质,不同的访问权限</p>
+<p>节区之间是挨在一起的,不能重叠或者间隔</p>
+<p>而且节区最后是空，也就是有个空的节区表示结束。。。很不理解。</p>
+<p>ps: 后来发现也不是那样,节的介绍并不是zero区域</p>
+<figure>
+<img src="img/image-20230727022419938.png"
+alt="image-20230727022419938" />
+<figcaption aria-hidden="true">image-20230727022419938</figcaption>
+</figure>
+<p>我发现节区表的顺序必须和节区的顺序对应要一一对应</p>
+<p>也就是说第一个节区如果是text,</p>
+<p>那么第一个节区表就必须是text的</p>
+<p>…或者是因为其它地原因</p>
+<p>在文件头结束那里,+可选头的大小</p>
+<p>结果就是节区头地址</p>
+<p>节的属性</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled4.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>判断某个节有没有代码的依据是根据节的属性中</p>
+<p>是否含有IMAGE_SCN_CNT_CODE标志</p>
+<p>而不是可执行IMAGE_SCN_MEM_EXECUTE标志</p>
+<figure>
+<img src="./img/c16b95873e2e4d7981c50e401d6f6270Untitled5.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h1 id="数据目录表">数据目录表</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _IMAGE_DATA_DIRECTORY <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    DWORD   VirtualAddress<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    DWORD   Size<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> IMAGE_DATA_DIRECTORY<span class="op">,</span> <span class="op">*</span>PIMAGE_DATA_DIRECTORY<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_EXPORT          </span><span class="dv">0</span><span class="pp">   </span><span class="co">// Export Directory</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_IMPORT          </span><span class="dv">1</span><span class="pp">   </span><span class="co">// Import Directory</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_RESOURCE        </span><span class="dv">2</span><span class="pp">   </span><span class="co">// Resource Directory</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_EXCEPTION       </span><span class="dv">3</span><span class="pp">   </span><span class="co">// Exception Directory</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_SECURITY        </span><span class="dv">4</span><span class="pp">   </span><span class="co">// Security Directory</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_BASERELOC       </span><span class="dv">5</span><span class="pp">   </span><span class="co">// Base Relocation Table</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_DEBUG           </span><span class="dv">6</span><span class="pp">   </span><span class="co">// Debug Directory</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">//      IMAGE_DIRECTORY_ENTRY_COPYRIGHT       7   // (X86 usage)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_ARCHITECTURE    </span><span class="dv">7</span><span class="pp">   </span><span class="co">// Architecture Specific Data</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_GLOBALPTR       </span><span class="dv">8</span><span class="pp">   </span><span class="co">// RVA of GP</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_TLS             </span><span class="dv">9</span><span class="pp">   </span><span class="co">// TLS Directory</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG    </span><span class="dv">10</span><span class="pp">   </span><span class="co">// Load Configuration Directory</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT   </span><span class="dv">11</span><span class="pp">   </span><span class="co">// Bound Import Directory in headers</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_IAT            </span><span class="dv">12</span><span class="pp">   </span><span class="co">// Import Address Table</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT   </span><span class="dv">13</span><span class="pp">   </span><span class="co">// Delay Load Import Descriptors</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#define IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR </span><span class="dv">14</span><span class="pp">   </span><span class="co">// COM Runtime descriptor</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>PIMAGE_DOS_HEADER dos_Header<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>PIMAGE_NT_HEADERS32 nt_Header<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>PIMAGE_EXPORT_DIRECTORY     g0_Expor<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>PIMAGE_IMPORT_DESCRIPTOR    g1_Import<span class="op">;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>PIMAGE_RESOURCE_DIRECTORY   g2_Resource<span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>PIMAGE_BASE_RELOCATION      g5_BaseRelocationTable<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>PIMAGE_TLS_DIRECTORY        g9_TLS<span class="op">;</span></span></code></pre></div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-Exception-常规的异常处理</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-Exception-常规的异常处理</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#常规的异常处理"
+        id="toc-常规的异常处理">常规的异常处理</a></li>
+        <li><a href="#links" id="toc-links">links</a></li>
+        <li><a href="#常见的的异常编写"
+        id="toc-常见的的异常编写">常见的的异常编写</a></li>
+        <li><a href="#运行机制" id="toc-运行机制">运行机制</a></li>
+        <li><a href="#seh介绍" id="toc-seh介绍">SEH介绍</a>
+        <ul>
+        <li><a href="#简单介绍" id="toc-简单介绍">简单介绍</a></li>
+        <li><a href="#处理函数" id="toc-处理函数">处理函数</a></li>
+        </ul></li>
+        <li><a href="#except_handler3"
+        id="toc-except_handler3">_except_handler3</a></li>
+        <li><a href="#except_handler4_common"
+        id="toc-except_handler4_common">_except_handler4_common</a>
+        <ul>
+        <li><a href="#except_handler4"
+        id="toc-except_handler4">except_handler4</a>
+        <ul>
+        <li><a href="#try-except" id="toc-try-except">try,
+        except</a></li>
+        <li><a href="#finally-leave" id="toc-finally-leave">finally ,
+        leave</a></li>
+        </ul></li>
+        <li><a href="#handler-手动注册"
+        id="toc-handler-手动注册">Handler 手动注册</a></li>
+        </ul></li>
+        <li><a href="#回调问题" id="toc-回调问题">回调问题?</a></li>
+        <li><a href="#eg" id="toc-eg">eg</a>
+        <ul>
+        <li><a href="#section" id="toc-section">1</a></li>
+        <li><a href="#section-1" id="toc-section-1">2</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="常规的异常处理">常规的异常处理</h1>
+<h1 id="links">links</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>https<span class="op">:</span><span class="co">//blog.csdn.net/hustd10/article/details/51167902](https://blog.csdn.net/hustd10/article/details/51167902)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>https<span class="op">:</span><span class="co">//www.securitysift.com/windows-exploit-development-part-6-seh-exploits/</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>没认真看<span class="op">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>https<span class="op">:</span><span class="co">//cloud.tencent.com/developer/article/1471316</span></span></code></pre></div>
+<h1 id="常见的的异常编写">常见的的异常编写</h1>
+<p><strong><code>__try__except</code></strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> exception_filter<span class="op">(</span><span class="dt">unsigned</span> <span class="dt">long</span> exceptionCode<span class="op">,</span> <span class="kw">struct</span> _EXCEPTION_POINTERS <span class="op">*</span>exceptionInfo<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 在这里进行异常过滤和处理逻辑</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 返回相应的值来指示如何处理异常</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>exceptionCode <span class="op">==</span> EXCEPTION_ACCESS_VIOLATION<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 处理访问冲突异常</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXCEPTION_EXECUTE_HANDLER<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 其他异常，继续搜索其他的异常处理程序</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXCEPTION_CONTINUE_SEARCH<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>__try <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 受保护的代码区域</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>__except <span class="op">(</span>exception_filter<span class="op">(</span>GetExceptionCode<span class="op">(),</span> GetExceptionInformation<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 异常处理代码</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">__try{}、</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">__finally{}、</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">__except{}、</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">__leave</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">无论 __try 块中的指令以何种方式退出，都必然会执行 __finally 块</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
+<p><strong><code>try-catch</code></strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdexcept&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyException <span class="op">:</span> <span class="kw">public</span> <span class="bu">std::</span>exception <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">char</span><span class="op">*</span> what<span class="op">()</span> <span class="at">const</span> <span class="kw">noexcept</span> <span class="kw">override</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">&quot;My custom exception occurred!&quot;</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> numerator<span class="op">,</span> denominator<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Enter the numerator: &quot;</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin <span class="op">&gt;&gt;</span> numerator<span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Enter the denominator: &quot;</span><span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cin <span class="op">&gt;&gt;</span> denominator<span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>denominator <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>           <span class="co">// 代码块，可能引发自定义异常</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">throw</span> MyException<span class="op">();</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> result <span class="op">=</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>numerator<span class="op">)</span> <span class="op">/</span> denominator<span class="op">;</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Result: &quot;</span> <span class="op">&lt;&lt;</span> result <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span><span class="cf">catch</span> <span class="op">(</span><span class="at">const</span> MyException<span class="op">&amp;</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 捕获并处理自定义异常</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cerr <span class="op">&lt;&lt;</span> <span class="st">&quot;Caught exception: &quot;</span> <span class="op">&lt;&lt;</span> e<span class="op">.</span>what<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">catch</span> <span class="op">(...)</span> <span class="op">{</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 默认处理其他类型的异常</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Unknown exception caught.&quot;</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>try_catch</strong>和**__try__except区别**</p>
+<p>C/C++中的
+<strong><code>try-catch</code></strong>和<strong><code>__try-__except</code></strong>是用于异常处理的两种不同的机制。</p>
+<p>它们有一些关键的区别</p>
+<p><strong><code>__try__except</code></strong> 是 Microsoft/Windows/VC
+特定的语法,不能用在Linux上</p>
+<figure>
+<img src="./img/Untitled.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p><strong><code>try-catch</code></strong> 是 C++
+标准中引入的异常处理机制，只要是C++就都可以使用</p>
+<p><strong><code>try-catch</code></strong> 适用于 C++
+中的异常处理，可以捕获各种类型的异常，包括用户自定义异常。</p>
+<p><strong><code>__try__except</code></strong> 更为底层，可以用于处理
+SEH 中定义的异常，通常用于处理系统级别的异常，</p>
+<p>如访问冲突、硬件异常等。不太适合用于 C++ 中的高级异常处理。</p>
+<h1 id="运行机制">运行机制</h1>
+<p><strong>当某函数触发异常时，系统首先会通过调用 KiDispatchException
+来给内核调试器</strong></p>
+<p><strong>一个机会，如果内核调试器没有处理该异常，则该机会被转给
+RtlDispatchException，</strong></p>
+<p><strong>这个函数就开始分发该异常。分发过程为：</strong></p>
+<p><strong>从当前线程的异常链表头开始遍历，</strong></p>
+<p>**对于每一个 SEH 注册信息（即
+EXCEPTION_REGISTRATION(_RECORD)），**</p>
+<p><strong>调用其 Handler。根据 Handler
+的返回值做相应的后续处理：</strong></p>
+<p><strong>1. 返回 ExceptionContinueExecution，表示 Handler
+已经修复了异常触发点，从异常触发点继续执行。</strong></p>
+<p><strong>2. 返回 ExceptionContinueSearch，表示该 Handler
+没有处理该异常，继续遍历异常链表。</strong></p>
+<p>**3. Handler 没有修复异常触发点，但是却能处理该异常（某个 __except
+过滤代码返回 EXCEPTION_EXECUTE_HANDLER）。这种情况下，**</p>
+<p>**处理完该异常后就从异常解决代码（__except 代码块）继续执行，Handler
+不会返回。**</p>
+<p><strong>以上是简略的 x86 SEH 流程，其中省略了很多细节，</strong></p>
+<p><strong>比如展开、错误处理、ExceptionNestedException 和
+ExceptionCollidedUnwind 等等</strong></p>
+<p>x64 中 SEH 的流程总体思路也是如此，只是细节上做了一些修改。</p>
+<p>但这并不表示熟悉 x86 SEH 就能很轻松的掌握 x64 SEH。</p>
+<h1 id="seh介绍">SEH介绍</h1>
+<h2 id="简单介绍">简单介绍</h2>
+<p>SEH（ Structured Exception Handling ， 结构化异常处理 ）</p>
+<p>小名: SEH 和线程相关</p>
+<p>异常处理的回调存在于堆栈中</p>
+<p>当一个异常发生的时候，操作系统从SEH链头部开始，检查第一个</p>
+<p>_EXCEPTION_REGISTRATION_RECORD（即异常处理器）的异常处理函数，</p>
+<p>看它能否处理该异常（通过ExceptionRecord 和ContextRecord参数）。</p>
+<p>如果不能，则移动到下一个_EXCEPTION_REGISTRATION_RECORD，</p>
+<p>继续检查，直到找到合适的异常处理器。</p>
+<p>Windows在SEH链的末尾放置了一个默认的通用异常处理器，保证异常肯定能被处理。</p>
+<p>如果使用默认的异常处理器处理，你通常会看到“程序遇到了一个问题，需要关闭…”之类的信息。</p>
+<figure>
+<img src="./img/Untitled%201.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _EXCEPTION_REGISTRATION_RECORD</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _EXCEPTION_REGISTRATION_RECORD <span class="op">*</span>Next<span class="op">;</span> <span class="co">//下一个节点</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    PEXCEPTION_ROUTINE Handler<span class="op">;</span>             <span class="co">//异常处理函数的地址</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> EXCEPTION_REGISTRATION_RECORD<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">//Next 为指向下一个链表的指针,直到遇到 0xFFFFFFFF 结束</span></span></code></pre></div>
+<figure>
+<img src="./img/Untitled%202.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h2 id="处理函数">处理函数</h2>
+<p>SEH默认使用的是</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">//异常处理函数类型</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>NTAPI</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>EXCEPTION_ROUTINE <span class="op">(</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    _Inout_ <span class="kw">struct</span> _EXCEPTION_RECORD <span class="op">*</span>ExceptionRecord<span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    _In_ PVOID EstablisherFrame<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    _Inout_ <span class="kw">struct</span> _CONTEXT <span class="op">*</span>ContextRecord<span class="op">,</span> <span class="co">//上下文结构体</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    _In_ PVOID DispatcherContext</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> EXCEPTION_ROUTINE <span class="op">*</span>PEXCEPTION_ROUTINE<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">//返回值类型 包括异常码，异常发生的地址，参数的个数</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Exception disposition return values</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">enum</span> _EXCEPTION_DISPOSITION</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    ExceptionContinueExecution<span class="op">,</span><span class="co">//0 表示 Handler 已经修复了异常触发点，从异常触发点继续执行</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        ExceptionContinueSearch<span class="op">,</span><span class="co">//1 表示该 Handler 没有处理该异常，继续遍历异常链表。</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ExceptionNestedException<span class="op">,</span><span class="co">//2</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    ExceptionCollidedUnwind<span class="co">//3</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> EXCEPTION_DISPOSITION<span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">//异常记录结构体</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _EXCEPTION_RECORD <span class="op">{</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    DWORD    ExceptionCode<span class="op">;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    DWORD ExceptionFlags<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _EXCEPTION_RECORD <span class="op">*</span>ExceptionRecord<span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    PVOID ExceptionAddress<span class="op">;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    DWORD NumberParameters<span class="op">;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    ULONG_PTR ExceptionInformation<span class="op">[</span>EXCEPTION_MAXIMUM_PARAMETERS<span class="op">];</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> EXCEPTION_RECORD<span class="op">;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> EXCEPTION_RECORD <span class="op">*</span>PEXCEPTION_RECORD<span class="op">;</span></span></code></pre></div>
+<p>SEH处理函数返回的数值 和try_except返回的数值是不一样的</p>
+<p>SEH返回如下</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Exception disposition return values</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">enum</span> _EXCEPTION_DISPOSITION</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ExceptionContinueExecution<span class="op">,</span><span class="co">//0 表示 Handler 已经修复了异常触发点，从异常触发点继续执行</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        ExceptionContinueSearch<span class="op">,</span><span class="co">//1 表示该 Handler 没有处理该异常，继续遍历异常链表。</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ExceptionNestedException<span class="op">,</span><span class="co">//2</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ExceptionCollidedUnwind<span class="co">//3</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> EXCEPTION_DISPOSITION<span class="op">;</span></span></code></pre></div>
+<p>try_except返回如下</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Defined values for the exception filter expression</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">// 注意和_EXCEPTION_DISPOSITION不同的</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define EXCEPTION_EXECUTE_HANDLER      </span><span class="dv">1</span><span class="pp">  </span><span class="co">//执行**Handler且不会返回**</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define EXCEPTION_CONTINUE_SEARCH      </span><span class="dv">0</span><span class="pp">  </span><span class="co">//丢个下一个</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define EXCEPTION_CONTINUE_EXECUTION </span><span class="op">(-</span><span class="dv">1</span><span class="op">)</span><span class="pp"> </span></span></code></pre></div>
+<h1 id="except_handler3">_except_handler3</h1>
+<h1 id="except_handler4_common">_except_handler4_common</h1>
+<h2 id="except_handler4">except_handler4</h2>
+<p>其实我们的try catch 就是通过except_handler4注册的</p>
+<p>而汇编手动注册的东西
+是基于FS(x86),GS(x64)的SEH链注册的,而且采用的是头插法</p>
+<p>那么手动汇编注册的异常处理会先于except_handler4</p>
+<p>如果你的代码中长得像这样</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">ebp</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span>     <span class="kw">ebp</span><span class="op">,</span> <span class="kw">esp</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="dv">0</span><span class="er">FFFFFFFEh</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    offset stru_419230<span class="co">;这里是特征</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    offset __except_handler4<span class="co">;这里是特征</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> large <span class="kw">fs</span><span class="op">:</span><span class="dv">0</span> <span class="co">;这里是特征</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">eax</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">add</span>     <span class="kw">esp</span><span class="op">,</span> <span class="dv">0</span><span class="er">FFFFFF38h</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">ebx</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">esi</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">edi</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">lea</span>     <span class="kw">edi</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>ms_exc<span class="op">]</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">xor</span>     <span class="kw">ecx</span><span class="op">,</span> <span class="kw">ecx</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> <span class="dv">0</span><span class="er">CCCCCCCCh</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="kw">rep</span> stosd</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span>     <span class="kw">eax</span><span class="op">,</span> ___security_cookie</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">xor</span>     <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>ms_exc<span class="op">.</span>registration<span class="op">.</span>ScopeTable<span class="op">],</span> <span class="kw">eax</span><span class="co">;这里是特征</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="kw">xor</span>     <span class="kw">eax</span><span class="op">,</span> <span class="kw">ebp</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span>    <span class="kw">eax</span>             <span class="co">; char</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">lea</span>     <span class="kw">eax</span><span class="op">,</span> <span class="op">[</span><span class="kw">ebp</span><span class="op">+</span>ms_exc<span class="op">.</span>registration<span class="op">]</span><span class="co">;这里是特征</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span>     large <span class="kw">fs</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span> <span class="kw">eax</span><span class="co">;这里是特征</span></span></code></pre></div>
+<p>说明,差不多就用了try except了</p>
+<p>SEH 函数返回值</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>__except 后的括号中会存在一个异常过滤表达式表达式的返回值必定是一下说明的几个之一</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>EXCEPTION_EXECUTE_HANDLER<span class="op">(</span><span class="dv">1</span><span class="op">):</span>   <span class="co">//自己处理,EIP不会返回,直接去父级的__except{}</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>EXCEPTION_CONTINUE_SEARCH<span class="op">(</span><span class="dv">0</span><span class="op">):</span>   <span class="co">//把异常丢给下一位嘉宾</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>EXCEPTION_CONTINUE_EXECUTION<span class="op">(-</span><span class="dv">1</span><span class="op">):</span> <span class="co">//自己处理,EIP会根据CONTEXT做一个返回 ,EIP原理是异常发生的地方</span></span></code></pre></div>
+<h3 id="try-except">try, except</h3>
+<p>在 VS 的同一个函数中无论编写了多少个 SEH，
+编译器实际上只会安装一个叫做 except_handler4 的函数</p>
+<p>然后的话,一个try只能匹配一个except(我这里不是指的嵌套)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 带有异常处理函数的函数</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test1<span class="op">()</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    __try</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;__try - { ... }</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        __try</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">&quot;__try -- { ... }</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> x <span class="op">/</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        __except <span class="op">(</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">&quot;__except (1) --{ ... }</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    __except <span class="op">(</span><span class="dv">1</span><span class="op">)</span><span class="co">//如果返回-1.会陷入exit的结果,返回1就是不再去往异常处</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;__except (1) - { ... }</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">// 没有异常处理函数的函数</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test2<span class="op">()</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">// 遍历当前程序中已经存在的异常处理函数</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ShowSEH<span class="op">()</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 定义一个结构体指针，用于保存 SEH 链表的头节点</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    PEXCEPTION_REGISTRATION_RECORD header <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 通过 FS:[0] 找到 ExceptionList 的头节点</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    __asm push fs <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    __asm pop header</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 遍历异常处理链表，链表以 -1 结尾</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>header <span class="op">!=</span> <span class="op">(</span>EXCEPTION_REGISTRATION_RECORD<span class="op">*)-</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;function: </span><span class="sc">%08X\\</span><span class="st">n&quot;</span><span class="op">,</span> header<span class="op">-&gt;</span>Handler<span class="op">);</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        header <span class="op">=</span> header<span class="op">-&gt;</span>Next<span class="op">;</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    test1<span class="op">();</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    test2<span class="op">();</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>    ShowSEH<span class="op">();</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>    ShowSEH<span class="op">();</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>一单try后面出现异常,他不是往回运行,而是去except处理函数</p>
+<h3 id="finally-leave">finally , leave</h3>
+<p>另外就是这个finally块为什么except块不是共存的呀</p>
+<p>无论 __try 以何种方式退出，都会执行finally这里</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    __try</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;异常代码可能发生部分</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        __leave<span class="op">;</span> <span class="co">// 使用 __leave 跳出当前的 __try ,这是正常退出的方式之一</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">//goto flag; //异常退出方式</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    __finally</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 无论 __try 以何种方式退出，都会执行这里的指令</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;退出</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>AbnormalTermination<span class="op">())</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">&quot;异常退出</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">&quot;正常退出</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    flag<span class="op">:</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="handler-手动注册">Handler 手动注册</h2>
+<p>是的注册的东西,它是位于SEH大链的</p>
+<p>关于汇编手动注册的返回值,</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Exception disposition return values</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> _EXCEPTION_DISPOSITION</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ExceptionContinueExecution<span class="op">,</span>         <span class="co">// 0 继续执行异常代码 (可以视为已经处理)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    ExceptionContinueSearch<span class="op">,</span>            <span class="co">// 1 丢给下一个异常处理器</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ExceptionNestedException<span class="op">,</span>           <span class="co">//在OS内部使用</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    ExceptionCollidedUnwind             <span class="co">//在OS内部使用</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> EXCEPTION_DISPOSITION<span class="op">;</span></span></code></pre></div>
+<p>返回EXCEPTION_EXECUTE_HANDLER时则表示异常被处理，</p>
+<p>会先把内部的__finally块执行完，</p>
+<p>再跳到自身的__except块中执行。</p>
+<p>反正不会在以前绊脚摔跟头的地方那里继续执行</p>
+<p>返回EXCEPTION_CONTINUE_EXECUTION时表示该异常被忽略，继续在异常发生的地方开始执行</p>
+<p>ps: 说的好像有点问题,以后实践在解决吧</p>
+<p>下面的处理函数</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// SEH handler</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION __cdecl _except_handler<span class="op">(</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    _In_ <span class="kw">struct</span> _EXCEPTION_RECORD<span class="op">*</span> _ExceptionRecord<span class="op">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    _In_ <span class="dt">void</span><span class="op">*</span>                     _EstablisherFrame<span class="op">,</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    _Inout_ <span class="kw">struct</span> _CONTEXT<span class="op">*</span>       _ContextRecord<span class="op">,</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    _Inout_ <span class="dt">void</span><span class="op">*</span>                  _DispatcherContext</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<p>注册</p>
+<p>手动直接注册</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span> @_except_handler    <span class="co">;异常处理器</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">push</span> <span class="dt">dword</span> <span class="dt">ptr</span> <span class="kw">fs</span><span class="op">:[</span><span class="dv">0</span><span class="op">]</span>     <span class="co">;取出 SEH链表头</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">mov</span> <span class="dt">dword</span> <span class="dt">ptr</span> <span class="kw">fs</span><span class="op">:[</span><span class="dv">0</span><span class="op">],</span><span class="kw">esp</span>  <span class="co">;添加链表</span></span></code></pre></div>
+<p>卸载</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">pop</span> <span class="dt">dword</span> <span class="dt">ptr</span> <span class="kw">fs</span><span class="op">:[</span><span class="dv">0</span><span class="op">]</span>    <span class="co">;还原链表头</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">add</span> <span class="kw">esp</span><span class="op">,</span><span class="dv">4</span>    <span class="co">;删除 异常处理器</span></span></code></pre></div>
+<p>参数1(lp)</p>
+<p>一个指向EXCEPTION_RECORD结构的指针</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _EXCEPTION_RECORD <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    DWORD ExceptionCode<span class="op">;</span> <span class="co">//异常的类型</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    DWORD ExceptionFlags<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _EXCEPTION_RECORD <span class="op">*</span>ExceptionRecord<span class="op">;</span> <span class="co">//这个类型和自己是一样的 ?</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    PVOID ExceptionAddress<span class="op">;</span> <span class="co">//异常发生的地址 !!!!!!</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    DWORD NumberParameters<span class="op">;</span><span class="co">//含有的元素个数</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    DWORD ExceptionInformation<span class="op">[</span>EXCEPTION_MAXIMUM_PARAMETERS<span class="op">];</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> EXCEPTION_RECORD<span class="op">;</span></span></code></pre></div>
+<p>参数2(lp)</p>
+<p>是一个指向establisher帧结构的指针。它是SEH中一个至关重要的参数，但是现在你可以忽略它。</p>
+<p>参数3(lp)</p>
+<p>一个指向CONTEXT结 构的指针</p>
+<p>这个CONTEXT结构就是GetThreadContext和SetThreadContext这两个API中使用
+的那个CONTEXT结构</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _CONTEXT</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    DWORD ContextFlags<span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    DWORD Dr0<span class="op">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    DWORD Dr1<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    DWORD Dr2<span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    DWORD Dr3<span class="op">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    DWORD Dr6<span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    DWORD Dr7<span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    FLOATING_SAVE_AREA FloatSave<span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    DWORD SegGs<span class="op">;</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    DWORD SegFs<span class="op">;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    DWORD SegEs<span class="op">;</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    DWORD SegDs<span class="op">;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    DWORD Edi<span class="op">;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    DWORD Esi<span class="op">;</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    DWORD Ebx<span class="op">;</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    DWORD Edx<span class="op">;</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    DWORD Ecx<span class="op">;</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    DWORD Eax<span class="op">;</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    DWORD Ebp<span class="op">;</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    DWORD Eip<span class="op">;</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    DWORD SegCs<span class="op">;</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    DWORD EFlags<span class="op">;</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    DWORD Esp<span class="op">;</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    DWORD SegSs<span class="op">;</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> CONTEXT<span class="op">;</span></span></code></pre></div>
+<p>参数4</p>
+<p>被称为DispatcherContext。它暂时也可以被忽略。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WIN32_LEAN_AND_MEAN</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>DWORD scratch<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION _cdecl _except_handler<span class="op">(</span><span class="kw">struct</span> _EXCEPTION_RECORD<span class="op">*</span> ExceptionRecord<span class="op">,</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> EstablisherFrame<span class="op">,</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CONTEXT<span class="op">*</span> ContextRecord<span class="op">,</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> DispatcherContext<span class="op">)</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> i<span class="op">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 指明是我们让流程转到我们的异常处理程序的</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello from an exception handler</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 改变CONTEXT结构中EAX的值，以便它指向可以成功进写操作的位置</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    ContextRecord<span class="op">-&gt;</span>Eax <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)&amp;</span>scratch<span class="op">;</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 告诉操作系统重新执行出错的指令</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ExceptionContinueExecution<span class="op">;</span> <span class="co">//ExceptionContinueSearch;// ExceptionContinueExecution; //基于异常表达式的返回值, 基于SEH函数的返回值?</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    DWORD handler <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)</span>_except_handler<span class="op">;</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 创建EXCEPTION_REGISTRATION结构：</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        push handler<span class="op">;</span> <span class="co">// handler函数的地址</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        push FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">;</span> <span class="co">// 前一个handler函数的地址</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> ESP<span class="op">;</span> <span class="co">// 安装新的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="dv">0</span><span class="op">;</span>     <span class="co">// 将EAX清零</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        mov<span class="op">[</span>eax<span class="op">],</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 写EAX指向的内存从而故意引发一个错误</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;After writing!</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 移去我们的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="op">[</span>ESP<span class="op">];</span>    <span class="co">// 获取前一个结构</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>        mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> EAX<span class="op">;</span> <span class="co">// 安装前一个结构</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>        add esp<span class="op">,</span> <span class="dv">8</span><span class="op">;</span>      <span class="co">// 将我们的EXECEPTION_REGISTRATION弹出堆栈</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="回调问题">回调问题?</h1>
+<p>我暂时没看懂</p>
+<p>但是发现</p>
+<p>如果返回异常处理是下面这句话,就不会再次回调那个异常处理函数,并且不会进入except</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ContextRecord<span class="op">-&gt;</span>Eip<span class="op">+=</span><span class="bn">0xA</span><span class="op">;</span><span class="co">//指向下一个汇编语句,0xA是我看汇编找到的</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ExceptionContinueExecution<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WIN32_LEAN_AND_MEAN</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>__cdecl _except_handler<span class="op">(</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _EXCEPTION_RECORD<span class="op">*</span> ExceptionRecord<span class="op">,</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> EstablisherFrame<span class="op">,</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CONTEXT<span class="op">*</span> ContextRecord<span class="op">,</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> DispatcherContext<span class="op">)</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Home Grown handler: Exception Code: </span><span class="sc">%08X</span><span class="st"> Exception Flags </span><span class="sc">%X</span><span class="st">&quot;</span><span class="op">,</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>           ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">,</span> ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags<span class="op">);</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags <span class="op">&amp;</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot; EH_NONCONTINUABLE&quot;</span><span class="op">);</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags <span class="op">&amp;</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot; EH_UNWINDING&quot;</span><span class="op">);</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags <span class="op">&amp;</span> <span class="dv">4</span><span class="op">)</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot; EH_EXIT_UNWIND&quot;</span><span class="op">);</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags <span class="op">&amp;</span> <span class="dv">8</span><span class="op">)</span>        <span class="co">// 注意这个标志</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot; EH_STACK_INVALID&quot;</span><span class="op">);</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionFlags <span class="op">&amp;</span> <span class="bn">0x10</span><span class="op">)</span>     <span class="co">// 注意这个标志</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot; EH_NESTED_CALL&quot;</span><span class="op">);</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 我们不想处理这个异常，让其它函数处理吧</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ExceptionContinueSearch<span class="op">;</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> HomeGrownFrame<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    DWORD handler <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)</span>_except_handler<span class="op">;</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 创建EXCEPTION_REGISTRATION结构：</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>        push handler       <span class="co">// handler函数的地址</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>            push FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span>        <span class="co">// 前一个handler函数的地址</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>        mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> ESP     <span class="co">// 安装新的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">*(</span>PDWORD<span class="op">)</span><span class="dv">0</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// 写入地址0，从而引发一个错误</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;I should never get here!</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 移去我们的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="op">[</span>ESP<span class="op">]</span>     <span class="co">// 获取前一个结构</span></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>            mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> EAX <span class="co">// 安装前一个结构</span></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>            add esp<span class="op">,</span> <span class="dv">8</span>        <span class="co">// 把我们EXECEPTION_REGISTRATION结构弹出堆栈</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>    __try</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>        HomeGrownFrame<span class="op">();</span></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    __except <span class="op">(</span>EXCEPTION_EXECUTE_HANDLER<span class="op">)</span></span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;Caught the exception in main()</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="eg">eg</h1>
+<h2 id="section">1</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">//==================================================</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">// MYSEH - Matt Pietrek 1997</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Microsoft Systems Journal, January 1997</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">// FILE: MYSEH.CPP</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">// 用命令行CL MYSEH.CPP编译</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">//==================================================</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define WIN32_LEAN_AND_MEAN</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>DWORD scratch<span class="op">;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>LONG WINAPI VectoredExceptionHandler<span class="op">(</span>PEXCEPTION_POINTERS ExceptionInfo<span class="op">)</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;ExceptionCode: </span><span class="sc">%X\\</span><span class="st">n&quot;</span><span class="op">,</span> ExceptionInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode <span class="op">==</span> <span class="bn">0xc0000005</span><span class="op">)</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        ExceptionInfo<span class="op">-&gt;</span>ContextRecord<span class="op">-&gt;</span>Eax <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        ExceptionInfo<span class="op">-&gt;</span>ContextRecord<span class="op">-&gt;</span>Ecx <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXCEPTION_CONTINUE_SEARCH<span class="op">;</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXCEPTION_EXECUTE_HANDLER<span class="op">;</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION _cdecl _except_handler<span class="op">(</span><span class="kw">struct</span> _EXCEPTION_RECORD<span class="op">*</span> ExceptionRecord<span class="op">,</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> EstablisherFrame<span class="op">,</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CONTEXT<span class="op">*</span> ContextRecord<span class="op">,</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> DispatcherContext<span class="op">)</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> i<span class="op">;</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%08x\\</span><span class="st">n&quot;</span><span class="op">,</span> ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    ContextRecord<span class="op">-&gt;</span>Eax <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)&amp;</span>scratch<span class="op">;</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ExceptionContinueSearch<span class="op">;</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">//ExceptionContinueSearch;</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ExceptionContinueExecution;</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">//基于异常表达式的返回值, 基于SEH函数的返回值?</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="co">    typedef enum _EXCEPTION_DISPOSITION</span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="co">{</span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="co">    ExceptionContinueExecution,0 &lt;- 1</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a><span class="co">    ExceptionContinueSearch,1 &lt;- 0</span></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="co">    ExceptionNestedException,2</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="co">    ExceptionCollidedUnwind3</span></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a><span class="co">} EXCEPTION_DISPOSITION;*/</span></span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>LONG FirstSEHer<span class="op">(</span>PEXCEPTION_POINTERS pExcepInfo<span class="op">)</span></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%08x\\</span><span class="st">n&quot;</span><span class="op">,</span> pExcepInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXCEPTION_CONTINUE_SEARCH<span class="op">;</span></span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>LONG SecondSEHer<span class="op">(</span>PEXCEPTION_POINTERS pExcepInfo<span class="op">)</span></span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%08x\\</span><span class="st">n&quot;</span><span class="op">,</span> pExcepInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXCEPTION_CONTINUE_EXECUTION<span class="op">;</span></span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>    <span class="co">//return EXCEPTION_EXECUTE_HANDLER;</span></span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ExceptTest<span class="op">()</span></span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>    DWORD handler <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)</span>_except_handler<span class="op">;</span></span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>    DWORD<span class="op">*</span> lp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 创建EXCEPTION_REGISTRATION结构：</span></span>
+<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a>        push handler <span class="co">// handler函数的地址</span></span>
+<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a>        push FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="co">// 前一个handler函数的地址</span></span>
+<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a>        mov  FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> ESP <span class="co">// 安装新的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;After writing!</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a>    __try</span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a>        __try</span>
+<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>            __try</span>
+<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a>                <span class="op">*</span>lp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a>                printf<span class="op">(</span><span class="st">&quot;Find Me?</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a>            __finally</span>
+<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a>                printf<span class="op">(</span><span class="st">&quot;[[SEH][0] finally </span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb21-87"><a href="#cb21-87" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a>        __except <span class="op">(</span>FirstSEHer<span class="op">(</span>GetExceptionInformation<span class="op">()))</span></span>
+<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>            printf<span class="op">(</span><span class="st">&quot;[EH.Exe] [SEH][1] 被俺处理了 SEH1 返回 EXCEPTION_EXECUTE_HANDLER</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb21-93"><a href="#cb21-93" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-94"><a href="#cb21-94" aria-hidden="true" tabindex="-1"></a>    __except <span class="op">(</span>SecondSEHer<span class="op">(</span>GetExceptionInformation<span class="op">()))</span></span>
+<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">&quot;[EH.Exe] [SEH][2] 被俺处理了 SEH2 返回 EXCEPTION_EXECUTE_HANDLER</span><span class="sc">\\</span><span class="st">n&quot;</span><span class="op">);</span></span>
+<span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 移去我们的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="op">[</span>ESP<span class="op">]</span>    <span class="co">// 获取前一个结构</span></span>
+<span id="cb21-102"><a href="#cb21-102" aria-hidden="true" tabindex="-1"></a>        mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> EAX <span class="co">// 安装前一个结构</span></span>
+<span id="cb21-103"><a href="#cb21-103" aria-hidden="true" tabindex="-1"></a>        add esp<span class="op">,</span> <span class="dv">8</span>       <span class="co">// 将我们的EXECEPTION_REGISTRATION弹出堆栈</span></span>
+<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a>    AddVectoredExceptionHandler<span class="op">(</span>TRUE<span class="op">,</span> VectoredExceptionHandler<span class="op">);</span></span>
+<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a>    ExceptTest<span class="op">();</span></span>
+<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="section-1">2</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">//==================================================</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">//#define WIN32_LEAN_AND_MEAN</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>DWORD scratch<span class="op">;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>LONG WINAPI VectoredExceptionHandler<span class="op">(</span>PEXCEPTION_POINTERS ExceptionInfo<span class="op">)</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;VEH:</span><span class="sc">%08X\\</span><span class="st">n&quot;</span><span class="op">,</span> ExceptionInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ExceptionInfo<span class="op">-&gt;</span>ExceptionRecord<span class="op">-&gt;</span>ExceptionCode <span class="op">==</span> <span class="bn">0xc0000005</span><span class="op">)</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> EXCEPTION_CONTINUE_SEARCH<span class="op">;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> EXCEPTION_EXECUTE_HANDLER<span class="op">;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>EXCEPTION_DISPOSITION  SEH1<span class="op">(</span><span class="kw">struct</span> _EXCEPTION_RECORD<span class="op">*</span> ExceptionRecord<span class="op">,</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> EstablisherFrame<span class="op">,</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CONTEXT<span class="op">*</span> ContextRecord<span class="op">,</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span><span class="op">*</span> DispatcherContext<span class="op">)</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> i<span class="op">;</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;SEH:</span><span class="sc">%08X\\</span><span class="st">n&quot;</span><span class="op">,</span> ExceptionRecord<span class="op">-&gt;</span>ExceptionCode<span class="op">);</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    ContextRecord<span class="op">-&gt;</span>Eax <span class="op">=</span> <span class="op">(</span>DWORD<span class="op">)&amp;</span>scratch<span class="op">;</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ExceptionContinueExecution<span class="op">;</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ExceptTest<span class="op">()</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    DWORD<span class="op">*</span> lp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 创建EXCEPTION_REGISTRATION结构：</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        push SEH1 <span class="co">// handler函数的地址</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>        push FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="co">// 前一个handler函数的地址</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>        mov  FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> ESP <span class="co">// 安装新的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>lp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    __asm</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 移去我们的EXECEPTION_REGISTRATION结构</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="op">[</span>ESP<span class="op">]</span>    <span class="co">// 获取前一个结构</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>        mov FS <span class="op">:</span> <span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">,</span> EAX <span class="co">// 安装前一个结构</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>        add esp<span class="op">,</span> <span class="dv">8</span>       <span class="co">// 将我们的EXECEPTION_REGISTRATION弹出堆栈</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>    AddVectoredExceptionHandler<span class="op">(</span>TRUE<span class="op">,</span> VectoredExceptionHandler<span class="op">);</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>    ExceptTest<span class="op">();</span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

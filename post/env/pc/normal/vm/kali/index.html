@@ -1,0 +1,150 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>env-pc-normal-vm-kali</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">env-pc-normal-vm-kali</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#grub开启启动时间"
+        id="toc-grub开启启动时间">grub开启启动时间</a></li>
+        <li><a href="#ssh" id="toc-ssh">ssh</a></li>
+        <li><a href="#软件" id="toc-软件">软件</a>
+        <ul>
+        <li><a href="#卸载" id="toc-卸载">卸载</a></li>
+        <li><a href="#环境变量" id="toc-环境变量">环境变量</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="grub开启启动时间">grub开启启动时间</h1>
+<pre><code>su
+mousepad  /etc/default/grub</code></pre>
+<p>会看到如下内容</p>
+<pre><code>GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2&gt; /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet&quot;
+GRUB_CMDLINE_LINUX=&quot;&quot;</code></pre>
+<p>把GRUB_TIMEOUT设置为你需要的时间即可</p>
+<p>然后输入 <code>update-grub</code></p>
+<h1 id="ssh">ssh</h1>
+<p>https://www.cnblogs.com/wlanjsfx/p/15150196.html</p>
+<pre><code>┌──(kali㉿G16-7620)-[~]
+└─$ sudo vim /etc/ssh/sshd_config
+
+
+passworAuthentication yes</code></pre>
+<p>,</p>
+<pre><code>
+┌──(kali㉿G16-7620)-[~]
+└─$ sudo service ssh start
+Starting OpenBSD Secure Shell server: sshd.
+
+┌──(kali㉿G16-7620)-[~]
+└─$ sudo update-rc.d ssh enable
+
+┌──(kali㉿G16-7620)-[~]
+└─$ sudo service ssh status
+sshd is running.</code></pre>
+<h1 id="软件">软件</h1>
+<p>查看已安装的软件</p>
+<pre><code>1), dpkg -l 
+2), sudo apt list --installed
+3), 分页查看 sudo apt list --installed | less</code></pre>
+<h2 id="卸载">卸载</h2>
+<pre><code># 删除软件及其配置文件
+apt --purge remove &lt;package&gt;
+
+
+# 删除没用的依赖包
+apt autoremove &lt;package&gt;
+
+# 此时dpkg的列表中有“rc”状态的软件包，可以执行如下命令做最后清理：
+dpkg -l |grep ^rc|awk &#39;{print $2}&#39; |sudo xargs dpkg -P</code></pre>
+<h2 id="环境变量">环境变量</h2>
+<p>输出环境变量</p>
+<pre><code>echo $PATH    </code></pre>
+<p>临时修改环境变量</p>
+<pre><code> export PATH=/usr/local/webserver/mysql/bin:$PATH</code></pre>
+<p>永久修改环境变量（比如当前用户是dqx）<code>.profile</code>和<code>.bashrc</code>都可以,但喜欢用<code>.profile</code></p>
+<pre><code>┌──(dqx㉿D0g3)-[~]
+└─$ vim ~/.profile</code></pre>
+<p>然后在文本最后一行添加你要的环境变量</p>
+<p>比如添加 /home/dqx/.local/bin</p>
+<p>写入的内容是</p>
+<pre><code>export PATH=&quot;/home/dqx/.local/bin:$PATH&quot;</code></pre>
+<p>之后保存，然后</p>
+<pre><code>┌──(dqx㉿D0g3)-[~]
+└─$ source ~/.profile</code></pre>
+<p>输出一下是否成功修改</p>
+<pre><code>echo $PATH </code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

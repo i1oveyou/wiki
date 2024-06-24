@@ -1,0 +1,531 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-tool-开发工具-vs2019</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-tool-开发工具-vs2019</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#异常处理" id="toc-异常处理">异常处理</a></li>
+        <li><a href="#搭配x64的内联汇编环境"
+        id="toc-搭配x64的内联汇编环境">搭配x64的内联汇编环境</a>
+        <ul>
+        <li><a href="#way1" id="toc-way1">way1</a></li>
+        <li><a href="#way2" id="toc-way2">way2</a></li>
+        <li><a href="#way3" id="toc-way3">way3</a></li>
+        </ul></li>
+        <li><a href="#编译设置" id="toc-编译设置">编译设置</a>
+        <ul>
+        <li><a href="#一些基于源代码的编译指令"
+        id="toc-一些基于源代码的编译指令">一些基于源代码的编译指令</a>
+        <ul>
+        <li><a href="#设置节区的属性"
+        id="toc-设置节区的属性">设置节区的属性</a></li>
+        <li><a href="#自定义一个节"
+        id="toc-自定义一个节">自定义一个节</a></li>
+        <li><a href="#设置入口点"
+        id="toc-设置入口点">设置入口点</a></li>
+        </ul></li>
+        <li><a href="#关闭-checkfordebuggerjustmycode"
+        id="toc-关闭-checkfordebuggerjustmycode">关闭
+        CheckForDebuggerJustMyCode</a></li>
+        <li><a href="#关闭-rtc_checkesp" id="toc-关闭-rtc_checkesp">关闭
+        RTC_CheckEsp</a></li>
+        <li><a href="#关闭-数据段不可执行"
+        id="toc-关闭-数据段不可执行">关闭 数据段不可执行</a></li>
+        <li><a href="#如何让程序变得更小-像汇编那样"
+        id="toc-如何让程序变得更小-像汇编那样">如何让程序变得更小？
+        像汇编那样</a></li>
+        <li><a href="#关闭-__security_checks_cookie"
+        id="toc-关闭-__security_checks_cookie">关闭
+        __security_checks_cookie</a></li>
+        <li><a href="#关于-mtmtdmdmdd" id="toc-关于-mtmtdmdmdd">关于
+        (/MT),(/MTd),(/MD),(/MDd）</a></li>
+        </ul></li>
+        <li><a href="#如何脱离vs运行环境"
+        id="toc-如何脱离vs运行环境">如何脱离VS运行环境</a></li>
+        <li><a href="#忽略特定的警告"
+        id="toc-忽略特定的警告">忽略特定的警告</a></li>
+        <li><a href="#ml.exe-ml64exe" id="toc-ml.exe-ml64exe">ml.exe /
+        ml64exe</a></li>
+        <li><a href="#cl.exe" id="toc-cl.exe">cl.exe</a></li>
+        <li><a href="#vs2019-linux-远程开发"
+        id="toc-vs2019-linux-远程开发">vs2019 Linux 远程开发</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="异常处理">异常处理</h1>
+<p>在没有配置的情况下&amp;&amp;在调试的情况下</p>
+<p>如果程序遇到异常,,,就会一直卡住,不会交付给用户写的异常处理程序</p>
+<p>如果出现异常,并且把异常交付给用户的处理程序,需要做一些过程的配置</p>
+<figure>
+<img src="./img/image-20230728171404213.png"
+alt="image-20230728171404213" />
+<figcaption aria-hidden="true">image-20230728171404213</figcaption>
+</figure>
+<p>然后逐个浏览</p>
+<p>于是取消勾选对应的异常</p>
+<p>vs的调试器在遇到异常的时候,就把异常交付给用户自定义的处理程序
+而不是报错</p>
+<h1 id="搭配x64的内联汇编环境">搭配x64的内联汇编环境</h1>
+<p>有时候,TMD就是配置失败</p>
+<p>有时候又成功</p>
+<h2 id="way1">way1</h2>
+<p>比如写了写了下面的汇编</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.CODE</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Int_3 PROC</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">MOV</span> <span class="kw">EAX</span><span class="op">,</span> <span class="dv">1234</span>  <span class="co">;返回1234</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">RET</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Int_3 ENDP</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MY_TEST PROC</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">MOV</span> <span class="kw">EAX</span><span class="op">,</span> <span class="dv">23</span> <span class="co">;返回23</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">RET</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>MY_TEST ENDP</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>END</span></code></pre></div>
+<p>写入头文件</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma once</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef __ASMCODE_H</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define __ASMCODE_H</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> _stdcall Int_3<span class="op">();</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> _stdcall MY_TEST<span class="op">();</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>main函数文件(是main.c)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define  _CRT_SECURE_NO_WARNINGS</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;head.h&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span>   </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> Int_3<span class="op">();</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y<span class="op">=</span> MY_TEST<span class="op">();</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> x <span class="op">+</span> y<span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>然后做一些配置</p>
+<p>右键asm文件</p>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled1.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>然后</p>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled2.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>然后</p>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled3.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ml64 <span class="op">/</span>c <span class="op">%(</span>fileName<span class="op">).</span>asm</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">%(</span>fileName<span class="op">).</span>obj<span class="op">;%(</span>Outpus<span class="op">)</span></span></code></pre></div>
+<p>然后就愉快的生成文件</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>已启动重新生成<span class="op">...</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;------</span> 已启动全部重新生成<span class="op">:</span> 项目<span class="op">:</span> C1<span class="op">,</span> 配置<span class="op">:</span> Debug x64 <span class="op">------</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span>Microsoft <span class="op">(</span>R<span class="op">)</span> Macro Assembler <span class="op">(</span>x64<span class="op">)</span> Version <span class="fl">14.36</span><span class="er">.32535.0</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span>Copyright <span class="op">(</span>C<span class="op">)</span> Microsoft Corporation<span class="op">.</span>  All rights reserved<span class="op">.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span> Assembling<span class="op">:</span> asm1<span class="op">.</span>asm</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span>C1<span class="op">.</span>c</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">&gt;</span>C1<span class="op">.</span>vcxproj <span class="op">-&gt;</span> E<span class="op">:</span>\Code\normal\C\VisualStdio\Often\x64\Debug\C1<span class="op">.</span>exe</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">==========</span> “全部重新生成”<span class="op">:</span> <span class="dv">1</span> 成功，<span class="dv">0</span> 失败，<span class="dv">0</span>已跳过 <span class="op">==========</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="op">=========</span> 重新生成 开始于 <span class="dv">12</span><span class="op">:</span><span class="dv">42</span> PM，并花费了 <span class="fl">01.394</span> 秒 <span class="op">==========</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">+++</span>                 Please consider donating to VSColorOutput                    <span class="op">+++</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">+++</span>                       https<span class="op">:</span><span class="co">//mike-ward.net/donate/                          +++</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">+++</span>            <span class="op">(</span>this message can be turned off in the settings panel<span class="op">)</span>            <span class="op">+++</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="op">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span></code></pre></div>
+<h2 id="way2">way2</h2>
+<p>https://zhuanlan.zhihu.com/p/270397861</p>
+<figure>
+<img src="./img/image-20230721163350068.png"
+alt="image-20230721163350068" />
+<figcaption aria-hidden="true">image-20230721163350068</figcaption>
+</figure>
+<p>然后选择并确定</p>
+<figure>
+<img src="./img/image-20230721163414169.png"
+alt="image-20230721163414169" />
+<figcaption aria-hidden="true">image-20230721163414169</figcaption>
+</figure>
+<p>右键asm文件属性</p>
+<figure>
+<img src="./img/image-20230721163446906.png"
+alt="image-20230721163446906" />
+<figcaption aria-hidden="true">image-20230721163446906</figcaption>
+</figure>
+<p>选择</p>
+<figure>
+<img src="./img/image-20230721163512503.png"
+alt="image-20230721163512503" />
+<figcaption aria-hidden="true">image-20230721163512503</figcaption>
+</figure>
+<p>然后就差不多了</p>
+<p>asm文件</p>
+<pre class="assembly"><code>.CODE
+ 
+Int_3 PROC
+        MOV EAX, 1234  ;返回1234
+        RET
+Int_3 ENDP
+ 
+ 
+MY_TEST PROC
+        MOV EAX, 23 ;返回23
+        RET
+MY_TEST ENDP
+ 
+END</code></pre>
+<p>c文件</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define  _CRT_SECURE_NO_WARNINGS</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">//#include &quot;head.h&quot; 不用加</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span>   <span class="dt">int</span> _stdcall Int_3<span class="op">();</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="st">&quot;C&quot;</span>   <span class="dt">int</span> _stdcall MY_TEST<span class="op">();</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> x <span class="op">=</span> Int_3<span class="op">();</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> y <span class="op">=</span> MY_TEST<span class="op">();</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> x <span class="op">+</span> y<span class="op">);</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="way3">way3</h2>
+<p>https://www.cnblogs.com/jszyx/p/12808085.html</p>
+<p>https://www.cnblogs.com/VxerLee/p/15185403.html</p>
+<h1 id="编译设置">编译设置</h1>
+<h2 id="一些基于源代码的编译指令">一些基于源代码的编译指令</h2>
+<h3 id="设置节区的属性">设置节区的属性</h3>
+<pre><code>#pragma comment(linker, &quot;/SECTION:.text,ERW&quot;)</code></pre>
+<h3 id="自定义一个节">自定义一个节</h3>
+<pre><code>#pragma data_seg(&quot;mydata&quot;)
+HHOOK g_hHook = NULL;
+#pragma data_seg()
+#pragma comment(linker, &quot;/SECTION:mydata,RWS&quot;)</code></pre>
+<h3 id="设置入口点">设置入口点</h3>
+<pre><code>#pragma comment(linker,&quot;/entry:MyMain&quot;)</code></pre>
+<p>其实通过上面这2个例子,,,</p>
+<p>我们就知道,,这些东西都是linker的特性….</p>
+<p>所以以后我们在想到某一个功能的时候</p>
+<p>应该搜</p>
+<pre><code>链接器选项,设置节区属性为rwx之类的</code></pre>
+<h2 id="关闭-checkfordebuggerjustmycode">关闭
+CheckForDebuggerJustMyCode</h2>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled4.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<figure>
+<img src="./img/image-20230926215703196.png"
+alt="image-20230926215703196" />
+<figcaption aria-hidden="true">image-20230926215703196</figcaption>
+</figure>
+<h2 id="关闭-rtc_checkesp">关闭 RTC_CheckEsp</h2>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled6.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h2 id="关闭-数据段不可执行">关闭 数据段不可执行</h2>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled7.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>“ <strong>pch”预编译头文件来自编译器的其他版本，或者预编译头为 C++
+而在 C 中使用它(或相反) and vs找不到路径</strong></p>
+<figure>
+<img src="./img/27d33af6ca5244a095cb96384bc21234Untitled8.png"
+alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<h2 id="如何让程序变得更小-像汇编那样">如何让程序变得更小？
+像汇编那样</h2>
+<p>比如，导入表就只有一个导入函数</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include</span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> my_main<span class="op">()</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    MessageBoxA<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">&quot;small&quot;</span><span class="op">,</span> <span class="st">&quot;(:&quot;</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>通过一些配置后，我们可以让程序只有2-3个函数</p>
+<p>而且导入表只有2个API</p>
+<figure>
+<img src="./img/image-20230730143359558.png"
+alt="image-20230730143359558" />
+<figcaption aria-hidden="true">image-20230730143359558</figcaption>
+</figure>
+<p>然后</p>
+<figure>
+<img src="./img/image-20230730143502395.png"
+alt="image-20230730143502395" />
+<figcaption aria-hidden="true">image-20230730143502395</figcaption>
+</figure>
+<p>于是就可以正常编译了（我并不知道原理）</p>
+<p>如果程序加入一些stdio.h标准库的调用，就会g</p>
+<p>但是MessageBox不会</p>
+<p>同时还要关闭GS检查</p>
+<p>关闭支持仅我的代码调试</p>
+<h2 id="关闭-__security_checks_cookie">关闭
+__security_checks_cookie</h2>
+<figure>
+<img src="./img/image-20231213221422471.png"
+alt="image-20231213221422471" />
+<figcaption aria-hidden="true">image-20231213221422471</figcaption>
+</figure>
+<h2 id="关于-mtmtdmdmdd">关于 (/MT),(/MTd),(/MD),(/MDd）</h2>
+<p>配置属性-&gt;C/C++-&gt;代码生成-&gt;运行库-&gt;MT或者MTD</p>
+<p>其实就是一个分为2模式</p>
+<p>和多线程啥的没关系</p>
+<p>分为dbg和release</p>
+<p>在每个分支之后,有分为静态和动态的</p>
+<p>动态的就是API加载呗</p>
+<p>静态的就是把多数代码写入到exe中</p>
+<h1 id="如何脱离vs运行环境">如何脱离VS运行环境</h1>
+<p>这个就是基于vs运行库下静态编译和动态编译的一些东西了</p>
+<p>也就输说如果你用的是静态编译,那么就可以脱离vs的运行环境</p>
+<p>但是对于这些kernel32,user32我暂时还不知道如脱离</p>
+<p>如何脱离?</p>
+<p>那就多线程MD/MTD啦</p>
+<p>配置属性-&gt;C/C++-&gt;代码生成-&gt;运行库-&gt;MT或者MTD</p>
+<p>如果说连启动函数都不要的话,,那就直接修改入口点</p>
+<h1 id="忽略特定的警告">忽略特定的警告</h1>
+<p>假如某个警告是C4133</p>
+<p>于是就下面这么操作,就可以忽略这个警告</p>
+<figure>
+<img src="./img/image-20231001002040835.png"
+alt="image-20231001002040835" />
+<figcaption aria-hidden="true">image-20231001002040835</figcaption>
+</figure>
+<p>或者在代码中实现?</p>
+<pre><code>#pragma warning(disable:4996)</code></pre>
+<h1 id="ml.exe-ml64exe">ml.exe / ml64exe</h1>
+<p>用于汇编语言的编译链接的</p>
+<p>使用VS自带的ml.exe和link.exe进行编译和链接</p>
+<pre class="assembly"><code>.386
+.model flat
+
+extern _MessageBoxA@16:near
+extern _ExitProcess@4:near
+
+.data
+msg_title db &quot;Demo!&quot;, 0
+msg_content db &quot;Hello World!&quot;, 0
+
+.code
+main proc
+    push 0
+    push 0
+    push offset msg_title
+    push offset msg_content
+    push 0
+    call _MessageBoxA@16
+    push 0
+    call _ExitProcess@4
+main endp
+end</code></pre>
+<p>使用VS自带的ml.exe和link.exe进行编译和链接，首先要使用 vcvars32.bat
+初始化环境变量</p>
+<p>编译：</p>
+<pre><code>ml.exe /c demo.asm</code></pre>
+<p>链接：</p>
+<pre><code>link.exe demo.obj /subsystem:console /defaultlib:kernel32.lib /defaultlib:user32.lib /entry:main /out:demo32_masm.exe</code></pre>
+<h1 id="cl.exe">cl.exe</h1>
+<p>用于c语言的编译链接的</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span> msg_title<span class="op">[]</span> <span class="op">=</span> <span class="st">&quot;Demo!&quot;</span><span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">const</span> <span class="dt">char</span> msg_content<span class="op">[]</span> <span class="op">=</span> <span class="st">&quot;Hello World!&quot;</span><span class="op">;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    MessageBoxA<span class="op">(</span><span class="dv">0</span><span class="op">,</span> msg_title<span class="op">,</span> msg_content<span class="op">,</span> MB_OK<span class="op">);</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    ExitProcess<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>下面我们通过命令行的方式来生成exe，进行之前需要先运行<code>vcvars32.bat</code>，</p>
+<p>如果你想要生成64位的exe文件，那么就要先运行<code>vcvars64.bat</code></p>
+<pre><code>cl /c demo.cpp                                         
+
+link demo.obj /defaultlib:user32.lib /out:demo_cpp.exe</code></pre>
+<p>如果在编译的时候加上一个<code>/FA</code>选项，那么编译器会在当前目录生成一个同名的asm文件（MASM语法），</p>
+<p>然后你可以再使用该asm文件编译出obj文件</p>
+<p>这样我们就拥有了修改汇编代码的机会，而不是从0开始全部用汇编语言编写代码</p>
+<p>使用C编译器生成汇编代码：<code>cl /c /FA /GS- &lt;file_name&gt;.cpp</code></p>
+<p>将汇编代码进行编译：<code>cl /c file.asm</code></p>
+<p>一般我们都是调试虚拟机,除非你有真机,,,,</p>
+<h1 id="vs2019-linux-远程开发">vs2019 Linux 远程开发</h1>
+<p>这个不同于vscode</p>
+<p>vscode只是远程连接,然后编辑文件和调试文件方便点</p>
+<p>但是,,,,还是基于cmake和gdb,,,,调试和编写无法像vs2019
+windwos开发那样,,</p>
+<p>我本以为vs2019的远程开发也会像vscode那样</p>
+<p>但是,,,,他并没有把编译过程交给用户,,,而是自己编译完,,</p>
+<p>然后把东西给用户</p>
+<p>比如</p>
+<figure>
+<img src="./img/image-20231225010513369.png"
+alt="image-20231225010513369" />
+<figcaption aria-hidden="true">image-20231225010513369</figcaption>
+</figure>
+<p>ps:</p>
+<p>项目创建和windows是一样的</p>
+<p>但是head和src文件是我自己单独创建的</p>
+<p>但是并不影响真个编译过程</p>
+<p>关于c文件,,不能正确引用头文件</p>
+<p>https://blog.csdn.net/qq_62147567/article/details/131393829</p>
+<p>也就是把头文件文件夹放到Windows中,,然后让Windows引用</p>
+<pre><code>zip -r usr_include.zip /usr/include
+zip -r usr_local_include.zip /usr/local/include</code></pre>
+<figure>
+<img src="./img/image-20231225011743252.png"
+alt="image-20231225011743252" />
+<figcaption aria-hidden="true">image-20231225011743252</figcaption>
+</figure>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

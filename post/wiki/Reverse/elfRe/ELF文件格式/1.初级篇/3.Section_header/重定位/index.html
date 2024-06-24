@@ -1,0 +1,263 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-elfRe-ELF文件格式-1.初级篇-3.Section_header-重定位</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-elfRe-ELF文件格式-1.初级篇-3.Section_header-重定位</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#rela.dyn-.rela.plt"
+        id="toc-rela.dyn-.rela.plt">.rel(a).dyn | .rel(a).plt</a></li>
+        <li><a href="#如何重定位"
+        id="toc-如何重定位">如何重定位</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="rela.dyn-.rela.plt">.rel(a).dyn | .rel(a).plt</h1>
+<p>不管是<code>.rel(a).dyn</code>还是<code>.rel(a).plt</code>他们的数据结构都是一样的</p>
+<p>只是针对不同的功能类型进行的一个区分和新的名字</p>
+<p>.rel.dyn 包含了动态链接的二进制文件中需要重定位的变量的信息，</p>
+<p>而 .rel.plt
+包含了需要重定位的函数的信息。这两类重定位节都使用如下的结构</p>
+<p>重定位项结构</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">//x86</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  Elf32_Addr    r_offset<span class="op">;</span>       <span class="co">/* Address */</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Elf32_Word    r_info<span class="op">;</span>         <span class="co">/* Relocation type and symbol index */</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf32_Rel<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  Elf32_Addr    r_offset<span class="op">;</span>       <span class="co">/* Address */</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  Elf32_Word    r_info<span class="op">;</span>         <span class="co">/* Relocation type and symbol index */</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  Elf32_Sword   r_addend<span class="op">;</span>       <span class="co">/* Addend */</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf32_Rela<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">//x64</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  Elf64_Addr    r_offset<span class="op">;</span>       <span class="co">/* Address */</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  Elf64_Xword   r_info<span class="op">;</span>         <span class="co">/* Relocation type and symbol index */</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Rel<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  Elf64_Addr    r_offset<span class="op">;</span>       <span class="co">/* Address */</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  Elf64_Xword   r_info<span class="op">;</span>         <span class="co">/* Relocation type and symbol index */</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  Elf64_Sxword  r_addend<span class="op">;</span>       <span class="co">/* Addend */</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Rela<span class="op">;</span></span></code></pre></div>
+<p>r_offset</p>
+<p>本数据成员给出重定位所作用的位置。</p>
+<blockquote>
+<p>r_info:</p>
+</blockquote>
+<p>本数据成员既给出了重定位所作用的符号表索引，也给出了重定位的类型。</p>
+<p>比如，如果是一个函数的重定位，本数据成员将要持有被调用函数所对应的符号表索引。</p>
+<p>如果索引值为 STN_UNDEF，即未定义索引，那么重定位过程中将使用 0
+作为符号值。</p>
+<p>重定位类型依处理器不同而不同，各种处理器将分别定义自己的类型。</p>
+<p>如果一种处理器规定自己引用了一个重定位项的类型或者符号表索引，</p>
+<p>表明这种处理器应用了 ELF32_R_TYPE 或 ELF32_R_SYM 到其重定位项的
+r_info 成员</p>
+<p>ps: 听不懂</p>
+<p>以下是应用于 r_info 的宏定义。</p>
+<pre><code>#define ELF32_R_SYM(i) ((i)&gt;&gt;8)
+#define ELF32_R_TYPE(i) ((unsigned char)(i))
+#define ELF32_R_INFO(s,t) (((s)&lt;&lt;8)+(unsigned char)(t))</code></pre>
+<blockquote>
+<p>r_addend</p>
+</blockquote>
+<p>本成员指定了一个加数，这个加数用于计算需要重定位的域的值</p>
+<p>Elf32_Rela 与 Elf32_Rel 在结构上只有一处不同，就是前者有
+r_addend。</p>
+<p>Elf32_Rela 中是用 r_addend 显式地指出加数；而对 Elf32_Rel
+来说，加数是隐含在被修改的位置里的</p>
+<p>Elf32_Rel
+中加数的形式这里并不定义，它可以依处理器架构的不同而自行决定。</p>
+<p>在特定处理器上如何实现，可以指定一种固定的格式，也可以不指定格式而依据上下文来解析</p>
+<p>一个“重定位节(relocation section)”需要引用另外两个节：</p>
+<p>一个是符号表节,一个是被修改节。</p>
+<p>在重定位节中，节头的 sh_info 和 sh_link 成员分别指明了引用关系。</p>
+<p>不同的目标文件中，重定位项的 r_offset 成员的含义略有不同。</p>
+<p>比如有些重定位没有加数,同时也不是API导入</p>
+<p>那么他的加数可能在符号表的sym-&gt;value中</p>
+<blockquote>
+<p>DT_PLTREL：</p>
+</blockquote>
+<p>指明PLT重定位的类型，这一项的value就高级了，value的值是DT_REL（17）或DT_RELA（7）宏的值</p>
+<blockquote>
+<p>RALA</p>
+</blockquote>
+<p>ELF RELA Relocation Table</p>
+<pre><code>LOAD:0000000000000470                               ; ELF RELA Relocation Table
+LOAD:0000000000000470 Elf64_Rela &lt;3DF8h, 8, 1120h&gt;  ; R_X86_64_RELATIVE +1120h
+LOAD:0000000000000488 Elf64_Rela &lt;3E00h, 8, 10E0h&gt;  ; R_X86_64_RELATIVE +10E0h
+LOAD:00000000000004A0 Elf64_Rela &lt;4030h, 8, 4030h&gt;  ; R_X86_64_RELATIVE +4030h
+LOAD:00000000000004B8 Elf64_Rela &lt;3FD8h, 200000006h, 0&gt; ; R_X86_64_GLOB_DAT _ITM_deregisterTMCloneTable
+LOAD:00000000000004D0 Elf64_Rela &lt;3FE0h, 900000006h, 0&gt; ; R_X86_64_GLOB_DAT worker
+LOAD:00000000000004E8 Elf64_Rela &lt;3FE8h, 400000006h, 0&gt; ; R_X86_64_GLOB_DAT __gmon_start__</code></pre>
+<blockquote>
+<p>JMPREL</p>
+</blockquote>
+<p>ELF JMPREL Relocation Table</p>
+<pre><code>LOAD:0000000000000530                               ; ELF JMPREL Relocation Table
+LOAD:0000000000000530  Elf64_Rela &lt;4018h, 100000007h, 0&gt; ; R_X86_64_JUMP_SLOT pthread_create
+LOAD:0000000000000548  Elf64_Rela &lt;4020h, 300000007h, 0&gt; ; R_X86_64_JUMP_SLOT printf
+LOAD:0000000000000560  Elf64_Rela &lt;4028h, 600000007h, 0&gt; ; R_X86_64_JUMP_SLOT sleep</code></pre>
+<p>重定位的过程中,,其实就包含了一些API的导入</p>
+<p>X86_64_GLOB_DAT,X86_64_JMP_SLOT, 这东西好像是API的地址,是要load的</p>
+<p>X86_64_RELATIVE 这个东西就当前模块的一些重定位</p>
+<p>SYM=0,说明是本地的?</p>
+<h1 id="如何重定位">如何重定位</h1>
+<p>他的重定位类型有点多</p>
+<p>在win10中,,我们去重定位,,虽然类型也很多,,,但是基本上就用到了一个类型</p>
+<p>对于elf的话,,,我感觉,,他也是只用到了一种重定位类型<code>R_X86_64_RELATIVE</code></p>
+<p>elf的重定位也是有点小离谱</p>
+<p>它基本上用的都是通过RVA+newImageBase来进行一个重定位</p>
+<p>少了很多计算,,直接加上新的ImageBase</p>
+<p>重定位的数据来自哪里?</p>
+<pre><code>m-&gt;plt_rela
+m-&gt;rela</code></pre>
+<p>是的,,重定位就来自这2个地方</p>
+<pre><code>#define ELF32_R_SYM(i) ((i)&gt;&gt;8)
+#define ELF32_R_TYPE(i) ((unsigned char)(i))
+#define ELF32_R_INFO(s,t) (((s)&lt;&lt;8)+(unsigned char)(t))</code></pre>
+<p>当<code>ELF32_R_SYM(i) =0</code>并且<code>ELF32_R_TYPE(i)!=0</code>的时候,就是我们最常规的重定位</p>
+<p>大多数都是newBase+RVA</p>
+<p>当<code>ELF32_R_SYM(i)!=0</code>的时候,就涉及一些API导入了</p>
+<p>比如说,涉及一个</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>常见算法的特征</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">常见算法的特征</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#哈希算法数据特征"
+        id="toc-哈希算法数据特征">哈希算法数据特征</a></li>
+        <li><a href="#对称加密算法特征"
+        id="toc-对称加密算法特征">对称加密算法特征</a>
+        <ul>
+        <li><a href="#aes" id="toc-aes">AES</a></li>
+        <li><a href="#des-3des" id="toc-des-3des">DES |3DES</a></li>
+        </ul></li>
+        <li><a href="#数据块填充方式-padding"
+        id="toc-数据块填充方式-padding">数据块填充方式 padding</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="哈希算法数据特征">哈希算法数据特征</h1>
+<blockquote>
+<p>MD5</p>
+</blockquote>
+<p>加密结果是16字节,,输出的是32字节的字符串</p>
+<blockquote>
+<p>SHA-1也叫SHA算法</p>
+</blockquote>
+<p>单一的哈希函数</p>
+<p>加密结果是20字节,,输出是40字节的字符串</p>
+<blockquote>
+<p>SHA-2</p>
+</blockquote>
+<p>一组哈希函数,有SHA-256,SHA-256,SHA-256</p>
+<pre><code>SHA-224： 输出长度为224位。加密结果是28字节,输出56字节的字符串
+SHA-256： 输出长度为256位。加密结果是32字节,输出是64字节的字符串
+SHA-384： 输出长度为384位。加密结果是48字节,输出96字节的字符串,
+SHA-512： 输出长度为512位。加密结果是64字节,输出128字节的字符串</code></pre>
+<blockquote>
+<p>SHA-3</p>
+</blockquote>
+<pre><code>SHA3-224： 输出长度为224位。
+SHA3-256： 输出长度为256位。
+SHA3-384： 输出长度为384位。
+SHA3-512： 输出长度为512位。
+SHAKE128： 可变输出长度，可以生成任意长度的哈希值。
+SHAKE256： 可变输出长度，同样可以生成任意长度的哈希值。</code></pre>
+<h1 id="对称加密算法特征">对称加密算法特征</h1>
+<h2 id="aes">AES</h2>
+<p>AES分组加密的明文都是16字节的倍数,,,不足16就按照某种填充方式对齐</p>
+<p>AES解密结果,,在长度上的特征也是16字节的倍数</p>
+<p>但是在密钥和加密轮数上有一些区别</p>
+<pre><code>AES-128 加密10轮,密钥长度128bit(16字节)
+AES-192 加密12轮,密钥长度128bit(24字节)
+AES-256 加密14轮,密钥长度128bit(32字节)</code></pre>
+<h2 id="des-3des">DES |3DES</h2>
+<p>先说DES</p>
+<p>DES需要8字节的密钥,据说是56bit(有效密钥)+8bit(奇偶校验)</p>
+<p>然后一次性加密8字节,也就是加密的数据必须是8字节的倍数</p>
+<p>3DES使用3组个8字节的密钥。</p>
+<p>3DES是就是进行了3次DES的操作,,,但是这3个过程,,,并不都都是利用密钥去加密</p>
+<p>而是<code>加密-&gt;解密-&gt;再加密</code></p>
+<p>这3个过程,,使用的密钥分别是不同的,,,于是就达到了高强度的加密</p>
+<h1 id="数据块填充方式-padding">数据块填充方式 padding</h1>
+<p>我们以AES为例</p>
+<figure>
+<img src="./img/image-20231124145928705.png"
+alt="image-20231124145928705" />
+<figcaption aria-hidden="true">image-20231124145928705</figcaption>
+</figure>
+<blockquote>
+<p>PKCS7Padding</p>
+</blockquote>
+<p>PKCS7Padding的填充方式为当数据长度不足数据块长度时,缺几位补几个几,</p>
+<p>AES128算法其数据块为16Byte（数据长度需要为16Byte的倍数）,如果数据为”00112233445566778899AA”一共11个Byte,缺了5位,</p>
+<p>采用PKCS7Padding方式填充之后的数据为“00112233445566778899AA0505050505”</p>
+<p>特别注意的一点是</p>
+<p>如果是数据刚好满足数据块长度也要在元数据后在按PKCS7规则填充一个数据块数据，这样做的目的是为了区分有效数据和补齐数据。</p>
+<p>仍以AES128为例：如果数据为”00112233445566778899AABBCCDDEEFF”一共16个符合数据块规则</p>
+<p>采用PKCS7Padding方式填充之后的数据为“00112233445566778899AABBCCDDEEFF10101010101010101010101010101010”</p>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

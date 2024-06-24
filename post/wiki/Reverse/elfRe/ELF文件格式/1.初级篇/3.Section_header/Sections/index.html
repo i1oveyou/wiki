@@ -1,0 +1,951 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-elfRe-ELF文件格式-1.初级篇-3.Section_header-Sections</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-elfRe-ELF文件格式-1.初级篇-3.Section_header-Sections</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#预定义的的节"
+        id="toc-预定义的的节">预定义的的节</a></li>
+        <li><a href="#shstrtab" id="toc-shstrtab">.shstrtab</a></li>
+        <li><a href="#strtab-.symtab" id="toc-strtab-.symtab">.strtab |
+        .symtab</a>
+        <ul>
+        <li><a href="#strtab" id="toc-strtab">.strtab</a></li>
+        <li><a href="#symtab" id="toc-symtab">.symtab</a></li>
+        </ul></li>
+        <li><a href="#interp" id="toc-interp">.interp</a></li>
+        <li><a href="#dynamic" id="toc-dynamic">.dynamic</a>
+        <ul>
+        <li><a href="#前言" id="toc-前言">前言</a></li>
+        <li><a href="#d_tag说明" id="toc-d_tag说明">d_tag说明</a></li>
+        </ul></li>
+        <li><a href="#got-.got.plt" id="toc-got-.got.plt">.got |
+        .got.plt</a></li>
+        <li><a href="#plt-.plt.got" id="toc-plt-.plt.got">.plt |
+        .plt.got</a></li>
+        <li><a href="#section" id="toc-section"></a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="预定义的的节">预定义的的节</h1>
+<p>有些节包含调试信息，比如.debug 和.line 节</p>
+<p>有些节包含程序控制信息，比如.bss，.data，.data1，.rodata 和.rodata1
+这些节</p>
+<p>动态连接过程所需要的信息由.dynsym、.dynstr、.interp、.hash、.dynamic、.rel、.rela、.got、.plt
+等节提供</p>
+<p>比如 .init 和.fini 节用于进程的初始化和终止过程</p>
+<figure>
+<img src="img/image-20231003183416728.png"
+alt="image-20231003183416728" />
+<figcaption aria-hidden="true">image-20231003183416728</figcaption>
+</figure>
+<p>接下来,简单介绍一些节</p>
+<p>有些可能还没有遇到,有些介绍了可能还是不懂,慢慢来</p>
+<blockquote>
+<p>.text</p>
+</blockquote>
+<p>本节包含程序指令代码。</p>
+<blockquote>
+<p>.init</p>
+</blockquote>
+<p>初始化代码，先于main执行</p>
+<p>此节包含进程初始化时要执行的程序指令。当程序开始运行时，系统会在进入main之前执行这一节中的代码。</p>
+<blockquote>
+<p>.fini</p>
+</blockquote>
+<p>结束代码，在最后执行</p>
+<p>此节包含进程终止时要执行的程序指令。当程序正常退出时，系统会执行这一节中的代码。</p>
+<blockquote>
+<p>.rodata/.rodata1</p>
+</blockquote>
+<p>本节包含程序中的只读数据，一般是字符串常量（代码中直接使用的字符串也算）</p>
+<p>在程序装载时，它们一般会被装入进程空间中那些只读的段中去。</p>
+<blockquote>
+<p>.bss</p>
+</blockquote>
+<p>未初始化（零初始化）的全局变量和静态局部变量保存在bss段</p>
+<p>一般情况下，可执行程序在开始运行的时候，系统会把这一段内容清零。</p>
+<p>但是，在运行期间的 bss 段是由系统初始化而成的，</p>
+<p>在目标文件中.bss 节并不包含任何内容，其长度为 0，所以它的节类型为
+SHT_NOBITS, 也就是空节区</p>
+<blockquote>
+<p>.data/.data1</p>
+</blockquote>
+<p>保存已经初始化（非零初始化）的全局变量和静态局部变量</p>
+<p>在目标文件中，它们是占用实际的存储空间的，与.bss 节不同</p>
+<blockquote>
+<p>.got</p>
+<p>类型: SHT_PROGBITS</p>
+</blockquote>
+<p>类似于PE的导入表,存放API的地址</p>
+<p>比如在没有运行的时候</p>
+<pre><code>.got:000055F9E83D3FC8 28 40 3D E8 F9 55 00 00       puts_ptr dq offset puts       ; DATA XREF: _puts+4↑r</code></pre>
+<blockquote>
+<p>.plt</p>
+<p>属性: SHT_PROGBITS</p>
+</blockquote>
+<pre><code>.plt:000055F8128C9030                               sub_55F8128C9030 proc near
+.plt:000055F8128C9030 F3 0F 1E FA                   endbr64
+.plt:000055F8128C9034 68 00 00 00 00                push    0
+.plt:000055F8128C9039 F2 E9 E1 FF FF FF             bnd jmp sub_55F8128C9020
+.plt:000055F8128C9039                               sub_55F8128C9030 endp</code></pre>
+<blockquote>
+<p>.plt.got</p>
+</blockquote>
+<p>这个就像是PE那个 jmp xxx的东西, 最后jmp到导入表</p>
+<pre><code>.plt.got:000055F8128C9050                               ; int __fastcall _cxa_finalize(void *)
+.plt.got:000055F8128C9050                               __cxa_finalize proc near      ; CODE XREF: __do_global_dtors_aux+22↓p
+.plt.got:000055F8128C9050                               ; __unwind { // 55F8128C8000
+.plt.got:000055F8128C9050 F3 0F 1E FA                   endbr64
+.plt.got:000055F8128C9054 F2 FF 25 9D 2F 00 00          bnd jmp cs:__cxa_finalize_ptr
+.plt.got:000055F8128C9054                               __cxa_finalize endp</code></pre>
+<blockquote>
+<p>.plt.sec</p>
+</blockquote>
+<p>这个就像是PE那个 jmp xxx的东西, 最后jmp到导入表</p>
+<pre><code>.plt.sec:000055F9E83D1060                               ; int puts(const char *s)
+.plt.sec:000055F9E83D1060                               _puts proc near               ; CODE XREF: main+37↓p
+.plt.sec:000055F9E83D1060                               ; __unwind { // 55F9E83D0000
+.plt.sec:000055F9E83D1060 F3 0F 1E FA                   endbr64
+.plt.sec:000055F9E83D1064 F2 FF 25 5D 2F 00 00          bnd jmp cs:puts_ptr
+.plt.sec:000055F9E83D1064                               _puts endp</code></pre>
+<blockquote>
+<p>.got.plt</p>
+</blockquote>
+<blockquote>
+<p>.comment</p>
+<p>类型: SHT_PROGBITS</p>
+<p>属性:</p>
+</blockquote>
+<p>存放编译器版本信息，如字符串 “GCC:(GNU)4.2.0”</p>
+<blockquote>
+<p>.debug</p>
+<p>类似: SHT_PROGBITS</p>
+</blockquote>
+<p>本节中含有调试信息，内容格式没有统一规定。所有以”.debug”为前缀的节名字都是保留的</p>
+<blockquote>
+<p>.dynamic</p>
+<p>类型: SHT_DYNAMIC</p>
+<p>属性: SHF_ALLOC , SHF_WRITE</p>
+</blockquote>
+<p>本节包含动态连接信息</p>
+<blockquote>
+<p>.dynstr</p>
+<p>类似: SHT_STRTAB</p>
+<p>属性: SHF_ALLOC</p>
+</blockquote>
+<p>此节含有用于动态连接的字符串，一般是那些与符号表相关的名字。更多信息参见第
+2 章。</p>
+<blockquote>
+<p>.dynsym</p>
+<p>类型: SHT_DYNSYM</p>
+<p>属性: SHF_ALLOC</p>
+</blockquote>
+<p>此节含有动态连接符号表。</p>
+<blockquote>
+<p>.hash</p>
+</blockquote>
+<p>本节包含一张符号哈希表。</p>
+<blockquote>
+<p>.line</p>
+</blockquote>
+<p>本节也是一个用于调试的节，它包含那些调试符号的行号，为程序指令码与源文件的行号建立起联系。</p>
+<p>其内容格式没有统一规定</p>
+<blockquote>
+<p>.note</p>
+</blockquote>
+<p>本节所包含的信息在第 2 章”注释节(note section)”部分描述。</p>
+<blockquote>
+<p>.relname</p>
+<p>属性:SHT_REL</p>
+<p>.relaname</p>
+<p>属性: SHT_RELA</p>
+</blockquote>
+<p>这两个节含有重定位信息。</p>
+<p>如果此节被包含在某个可装载的段中，那么本节的属性中应置 SHF_ALLOC
+标志位，否则不置此标志。</p>
+<p>注意，这两个节的名字中”name”是可替换的部分，执照惯例，</p>
+<p>对哪一节做重定位就把”name”换成哪一节的名字。</p>
+<p>比如，.text 节的重定位节的名字将是.rel.text 或.rela.text。</p>
+<blockquote>
+<p>.shstrtab</p>
+</blockquote>
+<p>本节是“节名字表”，含有所有节的名字</p>
+<p>也就是section_name</p>
+<blockquote>
+<p>.strtab</p>
+</blockquote>
+<p>本节用于存放字符串，主要是那些符号表项的名字。</p>
+<p>如果一个目标文件有一个可装载的段，并且其中含有符号表，</p>
+<p>那么本节的属性中应该有 SHF_ALLOC。</p>
+<blockquote>
+<p>.symtab</p>
+</blockquote>
+<p>本节用于存放符号表。如果一个目标文件有一个可载入的段，并且其中含有符号表，那么本节的属性中应该有
+SHF_ALLOC。</p>
+<p>什么是符号表? 他有具体代指定了哪些符号呢?</p>
+<h1 id="shstrtab">.shstrtab</h1>
+<p>所有节区的名字都在这</p>
+<p>节里面全是字符串</p>
+<p>字符串的以0结尾</p>
+<p>节区的sh_name的数值是基于这个节区的偏移</p>
+<figure>
+<img src="img/image-20231005213150238.png"
+alt="image-20231005213150238" />
+<figcaption aria-hidden="true">image-20231005213150238</figcaption>
+</figure>
+<h1 id="strtab-.symtab">.strtab | .symtab</h1>
+<p>在编译程序时，必须有相应的结构来管理程序中的符号以便于对函数和变量进行重定位。</p>
+<p>于是每个目标文件都会有一个符号表</p>
+<p>链接本质就是把多个不同的目标文件相互 “粘” 在一起,
+那通过什么链接?链接器</p>
+<p>实际上，目标文件相互粘合是目标文件之间对地址的引用，即函数和变量的地址的相互引用。</p>
+<p>而在粘合的过程中，符号就是其中的粘合剂。</p>
+<p>目标文件中的符号表包含了<strong>一些通用的符号</strong>，这部分信息在进行了
+<code>strip</code> 操作后就会消失。</p>
+<p>这些符号信息可能包括变量名、函数名</p>
+<p>为什么我会一次性介绍2个节区?因为这2个节区是相互关联的</p>
+<p>我们现介绍<code>.strtab</code>然后说<code>.symtab</code></p>
+<h2 id="strtab">.strtab</h2>
+<p>这东西的名字好像叫字符串表,,str是字符串的意思,tab就是表的意思</p>
+<p>如果细分的话,有节区的字符串表,,xxx的字符串表</p>
+<p><code>.strtab</code>的结构类型和<code>.shstrtab</code>是一样的</p>
+<p>但是<code>.shstrtab</code> 是专门用于存放节区名的</p>
+<p>而<code>.strtab</code>是用于存放什么呢???</p>
+<pre><code>一些函数的名字,比如 main,_start,</code></pre>
+<h2 id="symtab">.symtab</h2>
+<p>这东西叫符号表, sym就是符号的意思,tab就是表的意思</p>
+<p><code>.symtab</code>的结构类似于 struct Elf64_Sym demo[xx] 或者
+struct Elf32_Sym demo[xx] ;</p>
+<p>首先第[0]项仍然是空的</p>
+<p>关于这个结构体类型</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  Elf32_Word    st_name<span class="op">;</span>        <span class="co">/* 基于STRTAB节区的偏移,指向了一个字符串内容*/</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  Elf32_Addr    st_value<span class="op">;</span>       <span class="co">/* 它可能代表一个数值，也可以是一个地址,具体看上下文 */</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  Elf32_Word    st_size<span class="op">;</span>        <span class="co">/* Symbol size */</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> st_info<span class="op">;</span>        <span class="co">/* Symbol type and binding */</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> st_other<span class="op">;</span>       <span class="co">/* Symbol visibility */</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  Elf32_Section st_shndx<span class="op">;</span>       <span class="co">/* Section index */</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf32_Sym<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  Elf64_Word    st_name<span class="op">;</span>        <span class="co">/* Symbol name (string tbl index) */</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> st_info<span class="op">;</span>        <span class="co">/* Symbol type and binding */</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">unsigned</span> <span class="dt">char</span> st_other<span class="op">;</span>       <span class="co">/* Symbol visibility */</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  Elf64_Section st_shndx<span class="op">;</span>       <span class="co">/* Section index */</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  Elf64_Addr    st_value<span class="op">;</span>       <span class="co">/* Symbol value */</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  Elf64_Xword   st_size<span class="op">;</span>        <span class="co">/* Symbol size */</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Sym<span class="op">;</span></span></code></pre></div>
+<p style="color:#00FF7F;font-size:48px;">
+st_value
+</p>
+<p>这个值其实没有固定的类型，它可能代表一个数值，也可以是一个地址，</p>
+<p>具体是什么要看上下文。</p>
+<p>对于不同的目标文件类型，符号表项的 st_value 的含义略有不同</p>
+<p>如果该符号对应着一个变量，那么表明该变量在内存中的偏移。我们可由这个值获取其文件偏移</p>
+<ol type="1">
+<li>获取该符号对应的 <code>st_shndx</code>，进而获取到相关的节区。</li>
+<li>根据节区头元素可以获取节区的虚拟基地址和文件基地址。</li>
+<li>value - 内存基虚拟地址 = 文件偏移 - 文件基地址</li>
+</ol>
+<p>如果该符号对应着一个函数，那么表明该函数在文件中的起始地址。</p>
+<p>不同的目标文件类型对符号表项中 st_value 成员的解释不同：</p>
+<ul>
+<li>在可重定位文件中，st_value 保存了节区索引为 SHN_COMMON
+的符号的对齐约束。</li>
+<li>在可重定位文件中，st_value
+保存了已定义符号的节区偏移。也就是说，st_value 保留了 st_shndx
+所标识的节区的头部到符号位置的偏移。</li>
+<li>在可执行和共享目标文件中，st_value
+包含一个虚地址。为了使得这些文件的符号对动态链接器更有用，节区偏移（针对文件的解释）给出了与节区号无关的虚拟地址（针对内存的解释）。</li>
+</ul>
+<p style="color:#00FF7F;font-size:48px;">
+st_info
+</p>
+<p>st_info 由一系列的比特位构成，</p>
+<p>同时这个成员是对符号信息的阐述吧</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF32_ST_BIND</span><span class="op">(</span>val<span class="op">)</span><span class="pp">      </span><span class="op">(((</span><span class="dt">unsigned</span><span class="pp"> </span><span class="dt">char</span><span class="op">)</span><span class="pp"> </span><span class="op">(</span>val<span class="op">))</span><span class="pp"> </span><span class="op">&gt;&gt;</span><span class="pp"> </span><span class="dv">4</span><span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF32_ST_TYPE</span><span class="op">(</span>val<span class="op">)</span><span class="pp">      </span><span class="op">((</span>val<span class="op">)</span><span class="pp"> </span><span class="op">&amp;</span><span class="pp"> </span><span class="bn">0xf</span><span class="op">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF32_ST_INFO</span><span class="op">(</span>bind<span class="op">,</span><span class="pp"> </span>type<span class="op">)</span><span class="pp">   </span><span class="op">(((</span>bind<span class="op">)</span><span class="pp"> </span><span class="op">&lt;&lt;</span><span class="pp"> </span><span class="dv">4</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="op">((</span>type<span class="op">)</span><span class="pp"> </span><span class="op">&amp;</span><span class="pp"> </span><span class="bn">0xf</span><span class="op">))</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* Both Elf32_Sym and Elf64_Sym use the same one-byte st_info field.  */</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF64_ST_BIND</span><span class="op">(</span>val<span class="op">)</span><span class="pp">      </span>ELF32_ST_BIND<span class="pp"> </span><span class="op">(</span>val<span class="op">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF64_ST_TYPE</span><span class="op">(</span>val<span class="op">)</span><span class="pp">      </span>ELF32_ST_TYPE<span class="pp"> </span><span class="op">(</span>val<span class="op">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define ELF64_ST_INFO</span><span class="op">(</span>bind<span class="op">,</span><span class="pp"> </span>type<span class="op">)</span><span class="pp">   </span>ELF32_ST_INFO<span class="pp"> </span><span class="op">((</span>bind<span class="op">),</span><span class="pp"> </span><span class="op">(</span>type<span class="op">))</span></span></code></pre></div>
+<p>它标识了“符号绑定(symbol binding)”、“符号类型(symbol
+type)”和“符号信息(symbol infomation)”三种属性。</p>
+<p>比如</p>
+<figure>
+<img src="img/image-20231005223630003.png"
+alt="image-20231005223630003" />
+<figcaption aria-hidden="true">image-20231005223630003</figcaption>
+</figure>
+<p>STB_LOCAL说明了他是一个局部符号,</p>
+<p>然后STT_FILE说明这个符号是文件名</p>
+<p>符号类型可以通过 ELF_ST_TYPE(st_info) 获取，</p>
+<p>符号类型的定义如下：</p>
+<p style="color:#98F5FF;font-size:24px;">
+ELF_ST_TYPE
+</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Legal values for ST_TYPE subfield of st_info (symbol type).  */</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_NOTYPE  </span><span class="dv">0</span><span class="pp">       </span><span class="co">/* Symbol type is unspecified */</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_OBJECT  </span><span class="dv">1</span><span class="pp">       </span><span class="co">/* Symbol is a data object */</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_FUNC    </span><span class="dv">2</span><span class="pp">       </span><span class="co">/* Symbol is a code object */</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_SECTION </span><span class="dv">3</span><span class="pp">       </span><span class="co">/* Symbol associated with a section */</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_FILE    </span><span class="dv">4</span><span class="pp">       </span><span class="co">/* Symbol&#39;s name is file name */</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_COMMON  </span><span class="dv">5</span><span class="pp">       </span><span class="co">/* Symbol is a common data object */</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_TLS     </span><span class="dv">6</span><span class="pp">       </span><span class="co">/* Symbol is thread-local data object*/</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_NUM     </span><span class="dv">7</span><span class="pp">       </span><span class="co">/* Number of defined types.  */</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_LOOS    </span><span class="dv">10</span><span class="pp">      </span><span class="co">/* Start of OS-specific */</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_GNU_IFUNC   </span><span class="dv">10</span><span class="pp">      </span><span class="co">/* Symbol is indirect code object */</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_HIOS    </span><span class="dv">12</span><span class="pp">      </span><span class="co">/* End of OS-specific */</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_LOPROC  </span><span class="dv">13</span><span class="pp">      </span><span class="co">/* Start of processor-specific */</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STT_HIPROC  </span><span class="dv">15</span><span class="pp">      </span><span class="co">/* End of processor-specific */</span></span></code></pre></div>
+<p>符号类型可以通过 ELF_ST_TYPE(st_info) 获取，符号类型的定义如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>符号类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>STT_NOTYPE</td>
+<td>未定义符号</td>
+</tr>
+<tr class="even">
+<td>STT_OBJECT</td>
+<td>符号是数据</td>
+</tr>
+<tr class="odd">
+<td>STT_FUNC</td>
+<td>符号是函数</td>
+</tr>
+<tr class="even">
+<td>STT_SECTION</td>
+<td>节符号，每个节都会有一个节符号</td>
+</tr>
+<tr class="odd">
+<td>STT_FILE</td>
+<td>符号名是源文件的文件名，如 ./../../test.c</td>
+</tr>
+<tr class="even">
+<td>STT_COMMON</td>
+<td>符号是公共数据</td>
+</tr>
+<tr class="odd">
+<td>STT_TLS</td>
+<td>符号是 TLS 数据</td>
+</tr>
+</tbody>
+</table>
+<p>STT_FUNC:
+当另一个目标文件从共享目标文件中引用一个函数时，链接器自动为被引用符号创建过程链接表项</p>
+<p>如果一个符号的值指向节内的特定位置，则它的节索引号
+<code>st_shndx</code>，包含了它在节头表中的索引。</p>
+<p>当一个节在重定位过程中移动时，该符号值也做相应改变，对该符号的引用继续指向程序中的相同位置。</p>
+<p>有些特定节索引值具有其他语义。</p>
+<p style="color:#98F5FF;font-size:24px;">
+ELF_ST_BIND
+</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_LOCAL   </span><span class="dv">0</span><span class="pp">       </span><span class="co">/* Local symbol */</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_GLOBAL  </span><span class="dv">1</span><span class="pp">       </span><span class="co">/* Global symbol */</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_WEAK    </span><span class="dv">2</span><span class="pp">       </span><span class="co">/* Weak symbol */</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_NUM     </span><span class="dv">3</span><span class="pp">       </span><span class="co">/* Number of defined types.  */</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_LOOS    </span><span class="dv">10</span><span class="pp">      </span><span class="co">/* Start of OS-specific */</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_GNU_UNIQUE  </span><span class="dv">10</span><span class="pp">      </span><span class="co">/* Unique symbol.  */</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_HIOS    </span><span class="dv">12</span><span class="pp">      </span><span class="co">/* End of OS-specific */</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_LOPROC  </span><span class="dv">13</span><span class="pp">      </span><span class="co">/* Start of processor-specific */</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#define STB_HIPROC  </span><span class="dv">15</span><span class="pp">      </span><span class="co">/* End of processor-specific */</span></span></code></pre></div>
+<p>符号绑定可以通过 ELF_ST_BIND(st_info) 获取，符号绑定的定义如下：</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 76%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>绑定类型</th>
+<th>描述</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>STB_LOCAL</td>
+<td>局部符号，对其它文件不可见（如被static修饰的函数）</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>STB_GLOBAL</td>
+<td>全局符号</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>STB_WEAK</td>
+<td>弱符号（允许符号找不到）,类似于允许API导入失败</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>STB_LOPROC</td>
+<td></td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>STB_HIPROC</td>
+<td></td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>STB_LOCAL</p>
+</blockquote>
+<p>表明本符号是一个本地符号。它只出现在本文件中，在本文件外该符号无效。</p>
+<p>所以在不同的文件中可以定义相同的符号名，它们之间不会互相影响。</p>
+<blockquote>
+<p>STB_GLOBAL</p>
+</blockquote>
+<p>表明本符号是一个全局符号。当有多个文件被连接在一起时，在所有文件中该符号都是可见的。</p>
+<p>正常情况下，在一个文件中定义的全局符号，一定是在其它文件中需要被引用，否则无须定义为全局。</p>
+<blockquote>
+<p>STB_WEAK</p>
+</blockquote>
+<p>类似于全局符号，但是相对于 STB_GLOBAL，它们的优先级更低</p>
+<p>全局符号(global symbol)和弱符号(weak symbol)
+有什么区别,遇到再说吧</p>
+<blockquote>
+<p>STB_LOPROC ~ STB_HIPROC</p>
+</blockquote>
+<p>为特殊处理器保留的属性区间。</p>
+<p>在符号表中，不同属性的符号所在位置也有不同，</p>
+<p>本地符号(STB_LOCAL)排在前面，</p>
+<p>全局符号(STB_GLOBAL/STB_WEAK)排在后面。</p>
+<p style="color:#98F5FF;font-size:24px;">
+ELF_ST_INFO
+</p>
+<p style="color:#00FF7F;font-size:48px;">
+st_shndx
+</p>
+<p>符号所在节的节索引，还有一些特殊定义：</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>节索引</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SHN_UNDEF</td>
+<td>未定义符号，可能存在其它文件或模块中</td>
+</tr>
+<tr class="even">
+<td>SHN_LORESERVE</td>
+<td>小于该值且不为SHN_UNDEF，则代表真正的节索引，否则均为特殊索引</td>
+</tr>
+<tr class="odd">
+<td>SHN_ABS</td>
+<td>绝对符号，只是描述一些信息，如对于STT_FILE 类型的符号</td>
+</tr>
+</tbody>
+</table>
+<h1 id="interp">.interp</h1>
+<p>此节含有 ELF
+程序解析器的路径名。如果此节被包含在某个可装载的段中，</p>
+<figure>
+<img src="img/image-20231005212357492.png"
+alt="image-20231005212357492" />
+<figcaption aria-hidden="true">image-20231005212357492</figcaption>
+</figure>
+<p>有些时候解释器就像一个elf_loader, 然后加载并执行我们的elf文件</p>
+<p>有时候,elf文件是直接映射到内存,然后得以执行</p>
+<h1 id="dynamic">.dynamic</h1>
+<h2 id="前言">前言</h2>
+<p>这个段太特殊了，程序执行离不开他，简单来说，程序启动后，文件中的数据映射到内存</p>
+<p>也就是PT_LOAD这个类型的段加载到了内存中去了，ELF
+header中有了入口点的地址，</p>
+<p>但是只有这些程序是不可能运行成功的,
+依赖的动态库还没有加载，重定位还没有处理，执行前的初始化代码还没有执行</p>
+<p>如果是动态库，动态库是有导出符号的，但是连符号表在内存中哪个位置都不知道，也就无法导出
+等等…..</p>
+<p>所以这个节包含了很多很多的信息啦</p>
+<p>所以这个就单独拿出来说一下</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  Elf32_Sword   d_tag<span class="op">;</span>          <span class="co">/* Dynamic entry type */</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">union</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      Elf32_Word d_val<span class="op">;</span>         <span class="co">/* Integer value */</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      Elf32_Addr d_ptr<span class="op">;</span>         <span class="co">/* Address value */</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> d_un<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf32_Dyn<span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  Elf64_Sxword  d_tag<span class="op">;</span>          <span class="co">/* Dynamic entry type */</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">union</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      Elf64_Xword d_val<span class="op">;</span>        <span class="co">/* Integer value */</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      Elf64_Addr d_ptr<span class="op">;</span>     <span class="co">/* Address value */</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> d_un<span class="op">;</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> Elf64_Dyn<span class="op">;</span></span></code></pre></div>
+<p>d_tag, 的取值决定了该如何解释 d_un</p>
+<p>d_val, 这个字段表示一个整数值，可以有多种意思</p>
+<p>d_ptr, 这个字段表示程序的虚拟地址</p>
+<h2 id="d_tag说明">d_tag说明</h2>
+<p><strong>下表总结了可执行文件以及共享目标文件中的 d_tag
+的需求</strong>。</p>
+<p>ps: 我只能说看不懂,不想看,等遇到了再查喽</p>
+<blockquote>
+<p>DT_NEEDED</p>
+</blockquote>
+<p>一个基于xxx的字符串偏移,,指向了要被加载的so文件</p>
+<p>比如加载了</p>
+<pre><code>libpthread.so.0
+libc.so.6</code></pre>
+<blockquote>
+<p>DT_INIT</p>
+</blockquote>
+<p>指出了init函数的RVA</p>
+<blockquote>
+<p>DT_INIT_ARRAY</p>
+</blockquote>
+<p>那个初始化数组的位置</p>
+<blockquote>
+<p>DT_INIT_ARRAYSZ</p>
+</blockquote>
+<p>那个初始化数组的总大小</p>
+<blockquote>
+<p>DT_FINI</p>
+</blockquote>
+<p>指出fini函数的RVA</p>
+<blockquote>
+<p>DT_FINI_ARRAY</p>
+</blockquote>
+<p>程序结束的数组的RVA</p>
+<blockquote>
+<p>DT_FINI_ARRAYSZ</p>
+</blockquote>
+<p>程序结束的数组的大小</p>
+<blockquote>
+<p>DT_STRTAB</p>
+</blockquote>
+<p>指出了<code>.dynsym</code>的地址</p>
+<p>这里面全是字符串内容</p>
+<p>符号名、库名、和其它字符串都包含在此表中。</p>
+<blockquote>
+<p>DT_STRSZ</p>
+</blockquote>
+<p>给出了<code>DT_STRTAB</code>相关结构体的大小</p>
+<blockquote>
+<p>DT_SYMTAB</p>
+</blockquote>
+<p>当然就是那些结构了</p>
+<blockquote>
+<p>DT_SYMENT</p>
+</blockquote>
+<p>和DT_SYMTAB有关系,,但是没看懂</p>
+<p>但是又看了一下,,,和<code>.dynamic</code>的成员个数有关系</p>
+<p>就是下面这个东西</p>
+<figure>
+<img src="img/image-20231010183729000.png"
+alt="image-20231010183729000" />
+<figcaption aria-hidden="true">image-20231010183729000</figcaption>
+</figure>
+<blockquote>
+<p>DT_PLTGOT</p>
+</blockquote>
+<p>类似于FirstThunk[]那种</p>
+<blockquote>
+<p>DT_VERSYM：</p>
+</blockquote>
+<p>.gnu.version节的地址</p>
+<blockquote>
+<p>DT_VERNEED</p>
+</blockquote>
+<p>.gnu.version_r节的地址</p>
+<blockquote>
+<p>DT_VERNEEDNUM：</p>
+</blockquote>
+<p>”Number of needed versions“</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 17%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 7%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">数值</th>
+<th style="text-align: left;">d_un</th>
+<th style="text-align: left;">可执行</th>
+<th style="text-align: left;">共享 目标</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DT_PLTRELSZ</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">可选</td>
+<td
+style="text-align: left;">给出与过程链接表相关的重定位项的总的大小。如果存在
+DT_JMPREL 类型的项，那么 DT_PLTRELSZ 也必须存在。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_HASH</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">d_ptr</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">必需</td>
+<td
+style="text-align: left;">此类型表项包含符号哈希表的地址。此哈希表指的是被
+DT_SYMTAB 引用的符号表。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_RELA</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">d_ptr</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td
+style="text-align: left;">此类型表项包含重定位表的地址。此表中的元素包含显式的补齐，例如
+32 位文件中的
+Elf32_Rela。目标文件可能有多个重定位节区。在为可执行文件或者共享目标文件创建重定位表时，链接编辑器将这些节区连接起来，形成一个表。尽管在目标文件中这些节区相互独立，但是动态链接器把它们视为一个表。在动态链接器为可执行文件创建进程映像或者向一个进程映像中添加某个共享目标时，要读取重定位表并执行相关的动作。如果此元素存在，动态结构体中也必须包含
+DT_RELASZ 和 DT_RELAENT
+元素。如果对于某个文件来说，重定位是必需的话，那么 DT_RELA 或者 DT_REL
+都可能存在。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_RELASZ</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项包含 DT_RELA
+重定位表的总字节大小。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_RELAENT</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项包含 DT_RELA
+重定位项的字节大小。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_SONAME</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项给出一个以 NULL
+结尾的字符串的字符串表偏移，对应的字符串是某个共享目标的名称。该偏移实际上是
+DT_STRTAB 中的索引。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_RPATH</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">此类型表项包含以 NULL
+结尾的字符串的字符串表偏移，对应的字符串是搜索库时使用的搜索路径。该偏移实际上是
+DT_STRTAB 中的索引。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_SYMBOLIC</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">可选</td>
+<td
+style="text-align: left;">如果这种类型表项出现在共享目标库中，那么这将会改变动态链接器的符号解析算法。动态连接器将首先选择从共享目标文件本身开始搜索符号，只有在搜索失败时，才会选择从可执行文件中搜索相应的符号。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_REL</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">d_ptr</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项与 DT_RELA
+类型的表项类似，只是其表格中包含隐式的补齐，对 32 位文件而言，就是
+Elf32_Rel。如果 ELF 文件中包含此元素，那么动态结构中也必须包含 DT_RELSZ
+和 DT_RELENT 类型的元素。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_RELSZ</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项包含 DT_REL
+重定位表的总字节大小。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_RELENT</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">d_val</td>
+<td style="text-align: left;">必需</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">此类型表项包含 DT_REL
+重定位项的字节大小。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_DEBUG</td>
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">d_ptr</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">此类型表项用于调试。ABI
+未规定其内容，访问这些条目的程序可能与 ABI 不兼容。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_TEXTREL</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">可选</td>
+<td
+style="text-align: left;">如果文件中不包含此类型的表项，则表示没有任何重定位表项能够造成对不可写段的修改。如果存在的话，则可能存在若干重定位项请求对不可写段进行修改，因此，动态链接器可以做相应的准备。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_JMPREL</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">d_ptr</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">该类型的条目的 d_ptr
+成员包含了过程链接表的地址，并且索引时应该会把该地址强制转换为对应的重定位表项类型的指针。把重定位表项分开有利于让动态链接器在进程初始化时忽略它们（开启了延迟绑定）。如果存在此成员，相关的
+DT_PLTRELSZ 和 DT_PLTREL 必须也存在。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT_BIND_NOW</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">忽略</td>
+<td style="text-align: left;">可选</td>
+<td style="text-align: left;">可选</td>
+<td
+style="text-align: left;">如果可执行文件或者共享目标文件中存在此类型的表项的话，动态链接器在将控制权转交给程序前，应该将该文件的所有需要重定位的地址都进行重定位。这个表项的优先权高于延迟绑定，可以通过环境变量或者
+dlopen(BA_LIB) 来设置。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT_LOPROC ~DT_HIPROC</td>
+<td style="text-align: left;">0x70000000 ~0x7fffffff</td>
+<td style="text-align: left;">未指定</td>
+<td style="text-align: left;">未指定</td>
+<td style="text-align: left;">未指定</td>
+<td
+style="text-align: left;">这个范围的表项是保留给处理器特定的语义的。</td>
+</tr>
+</tbody>
+</table>
+<p>没有出现在此表中的标记值是保留的。</p>
+<p>此外，除了数组末尾的 DT_NULL 元素以及 DT_NEEDED
+元素的相对顺序约束以外， 其他表项可以以任意顺序出现。</p>
+<h1 id="got-.got.plt">.got | .got.plt</h1>
+<ul>
+<li>.got，存储导入变量的地址。</li>
+<li>.got.plt，存储导入函数的地址。</li>
+</ul>
+<p>在 Linux 的实现中，.plt.got 的前三项的具体的含义如下</p>
+<ul>
+<li>GOT[0]，.dynamic 的地址。</li>
+<li>GOT[1]，指向 link_map
+的指针，只会在动态装载器中使用，包含了进行符号解析需要的当前 ELF
+对象的信息。每个 link_map
+都是一条双向链表的一个节点，而这个链表保存了所有加载的 ELF
+对象的信息。</li>
+<li>GOT[2]，指向动态装载器中 _dl_runtime_resolve 函数的指针。</li>
+</ul>
+<p>got.plt 后面的项则是程序中不同 .so 中函数的引用地址。</p>
+<p>下面给出一个相应的关系。</p>
+<figure>
+<img src="img/image-20231006155244571.png"
+alt="image-20231006155244571" />
+<figcaption aria-hidden="true">image-20231006155244571</figcaption>
+</figure>
+<h1 id="plt-.plt.got">.plt | .plt.got</h1>
+<ul>
+<li><strong>.plt</strong>，与常见导入的函数有关，如 read 等函数。</li>
+<li><strong>.plt.got</strong>，与动态链接有关系。</li>
+</ul>
+<p>准确的说，plt
+表不是查询表，而是一块代码。这一块内容是与代码相关的。</p>
+<p>在一个程序运行过程中，可能很多函数在程序执行完时都不会用到，因此一开始就把所有函数都链接好可能会浪费大量资源，</p>
+<p>所以 ELF
+采用了一种延迟绑定的做法，其基本思想是函数第一次被用到时才进行绑定（符号查找，重定位等），</p>
+<p>如果没有用则不进行绑定。</p>
+<p>所以程序开始执行前，模块间的函数调用都没有进行绑定，而是需要用到时才由动态链接器负责绑定。</p>
+<figure>
+<img src="img/image-20231006155552715.png"
+alt="image-20231006155552715" />
+<figcaption aria-hidden="true">image-20231006155552715</figcaption>
+</figure>
+<h1 id="section"></h1>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

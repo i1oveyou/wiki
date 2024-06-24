@@ -1,0 +1,757 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-Android-武功-Hook大法-Xposed</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-Android-武功-Hook大法-Xposed</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#xposed原理分析"
+        id="toc-xposed原理分析">Xposed原理分析</a></li>
+        <li><a href="#hello-world" id="toc-hello-world">hello
+        world</a></li>
+        <li><a href="#hook构造函数"
+        id="toc-hook构造函数">hook构造函数</a></li>
+        <li><a href="#修改class成员"
+        id="toc-修改class成员">修改class成员</a></li>
+        <li><a href="#修改class-函数" id="toc-修改class-函数">修改class
+        函数</a>
+        <ul>
+        <li><a href="#修改函数的参数和返回值"
+        id="toc-修改函数的参数和返回值">修改函数的参数和返回值</a></li>
+        <li><a href="#替换函数" id="toc-替换函数">替换函数</a></li>
+        </ul></li>
+        <li><a href="#调用函数" id="toc-调用函数">调用函数</a></li>
+        <li><a href="#so-hook" id="toc-so-hook">so hook</a></li>
+        <li><a href="#xposedbridge"
+        id="toc-xposedbridge">XposedBridge</a></li>
+        <li><a href="#hook函数" id="toc-hook函数">Hook函数</a>
+        <ul>
+        <li><a href="#复杂的函数"
+        id="toc-复杂的函数">复杂的函数</a></li>
+        <li><a href="#内部类中的函数"
+        id="toc-内部类中的函数">内部类中的函数</a></li>
+        </ul></li>
+        <li><a href="#附录" id="toc-附录">附录</a>
+        <ul>
+        <li><a href="#demo" id="toc-demo">demo</a></li>
+        </ul></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <p><a
+href="https://blog.ketal.icu/cn/Xposed%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/#%E4%BB%8B%E7%BB%8D">1</a></p>
+<p><a href="https://zwc365.com/2020/06/09/xposed-hook">2</a></p>
+<p><a href="https://blog.51cto.com/u_16213702/8681813">3</a></p>
+<p><a
+href="https://blog.51cto.com/u_16213702/8681813">4,不错的文章</a></p>
+<p><a href="https://www.eet-china.com/mp/a161045.html">5</a></p>
+<p><a
+href="http://nunu03.github.io/2019/07/02/xposed/">6,不错的文章</a></p>
+<h1 id="xposed原理分析">Xposed原理分析</h1>
+<p>Xposed框架的原理是修改系统文件，替换了<code>/system/bin/app_process</code>可执行文件，</p>
+<p>Zygote=<code>/system/bin/app_process</code>,
+zygote进程是由init进程启动起来,</p>
+<ul>
+<li>Zygote 是 Android
+系统启动时最先启动的进程之一,它是系统中所有应用程序进程的父进程。</li>
+<li>Zygote 进程的可执行文件位于
+<code>/system/bin/app_process</code>。这个文件包含了 Zygote
+的实现代码。</li>
+<li>当 Android 系统需要启动一个新的应用程序进程时,会通过 fork
+出一个新的进程,并由这个新进程加载应用程序的代码和资源。这个新进程就是从
+Zygote 进程 fork 出来的。</li>
+<li>Zygote 进程在启动时会预加载大量的系统库和资源,包括 Java
+虚拟机、Android
+系统库等,这些内容会被所有后续启动的应用程序进程共享,从而减少内存占用。</li>
+</ul>
+<p>安装了Xposed的手机,
+在启动Zygote时加载额外的jar文件（<code>/data/data/de.robv.android.xposed.installer/bin/XposedBridge.jar</code>）</p>
+<p>并执行一些初始化操作(执行XposedBridge的main方法),
+然后开发人员就可以在这个Zygote上下文中进行某些Hook操作。</p>
+<p>Xposed 提供了几个接口类供 Xposed 模块继承,不同的接口类对应不同的 hook
+时机:</p>
+<ol type="1">
+<li><code>IXposedHookZygoteInit</code>: Zygote 初始化前就执行挂钩,即
+<code>loadModule()</code> 执行时就挂钩了。</li>
+<li><code>IXposedHookLoadPackage</code>: 当 APK
+包加载时执行挂钩。它会先将挂钩函数保存起来,等加载 APK 函数执行后触发回调
+(这里的回调是 Xposed 框架自己挂钩的函数),再执行模块注册的挂钩函数。</li>
+<li><code>IXposedHookInitPackageResources</code>: 当 APK
+资源实例化时执行挂钩,同上</li>
+</ol>
+<h1 id="hello-world">hello world</h1>
+<p>从本质上来讲，Xposed 模块也是一个 Android 程序</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Override</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> lpparam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">example</span><span class="op">.</span><span class="im">x01</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">android</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Log</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">IXposedHookLoadPackage</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">callbacks</span><span class="op">.</span><span class="im">XC_LoadPackage</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> MainHook <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> lpparam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 过滤不必要的应用</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>lpparam<span class="op">.</span><span class="fu">packageName</span><span class="op">.</span><span class="fu">equals</span><span class="op">(</span><span class="st">&quot;com.example.helloworld&quot;</span><span class="op">))</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="co">//不是com.example.helloworld就返回</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>             <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 执行Hook</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hook</span><span class="op">(</span>lpparam<span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">void</span> <span class="fu">hook</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> lpparam<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 具体流程</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        Log<span class="op">.</span><span class="fu">d</span><span class="op">(</span><span class="st">&quot;echo_xposed&quot;</span><span class="op">,</span><span class="st">&quot;Hello,Xposed!&quot;</span><span class="op">);</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>IXposedHookLoadPackage.java</p>
+<p>handleLoadPackage(称之为A)回调函数会在apk加载时,
+由xposed的在XposedInit函数调用</p>
+<p>handlebindapplication(称之为B) 被Xposed Hook了</p>
+<p>A: handleLoadPackage</p>
+<p>B: handlebindapplication</p>
+<p>A函数会先于B函数执行</p>
+<p>B函数会进行一些初始化并调用Application的attachBaseContext函数。</p>
+<p>IXposedHookLoadPackage 实现 A:</p>
+<blockquote>
+<p>IXposedHookLoadPackage.java</p>
+</blockquote>
+<p>加载回调接口，在xposed入口类继承，实现handleLoadPackage方法,
+这个方法在Android系统每次加载一个包的时候都会被调用</p>
+<pre><code>
+//handleLoadPackage, 用于在加载应用程序的包的时候执行用户的操作
+@Override
+public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
+    //XC_LoadPackage.LoadPackageParam loadPackageParam 包含了加载的应用程序的一些基本信息
+}</code></pre>
+<blockquote>
+<p>IXposedHookInitPackageResources.java</p>
+</blockquote>
+<p>加载回调接口，用于修改app的资源文件，在xposed入口类继承，实现handleInitPackageResources方法</p>
+<blockquote>
+<p>XposedHelpers.java</p>
+</blockquote>
+<pre><code>findAndHookMethod
+callMethod
+findClass</code></pre>
+<p>一些辅助方法，简化连接和调用方法/构造函数,获取和设置字段</p>
+<blockquote>
+<p>IXposedHookLoadPackage.handleLoadPackage</p>
+</blockquote>
+<p>此方法主要用于加载应用程序包时执行用户的操作。</p>
+<p>findAndHookMethod</p>
+<h1 id="hook构造函数">hook构造函数</h1>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">example</span><span class="op">.</span><span class="im">x01</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">android</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Log</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">andro    id</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">IXposedHookLoadPackage</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XC_MethodHook</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XposedHelpers</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">callbacks</span><span class="op">.</span><span class="im">XC_LoadPackage</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> MainHook <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span>  <span class="bu">String</span> strTag<span class="op">=</span><span class="st">&quot;echo_Xposed&quot;</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> loadPackageParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span><span class="co">//这个是具体的class类的路径</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;无参构造 hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;有参构造 hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="修改class成员">修改class成员</h1>
+<p>我们在构造函数之中修改class成员为例, 不一定是在构造函数</p>
+<pre><code>final Class&lt;?&gt; clazz = XposedHelpers.findClass(“全路径类名”, loadPackageParam.classLoader);
+
+// XposedHelpers.setStaticObjectField( clazz, )
+// XposedHelpers.setStaticObjectField( param.thisObject.getClass(), )</code></pre>
+<p>XposedHelpers.setObjectField( param.thisObject)</p>
+<p>貌似他们 都是这么用的</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">example</span><span class="op">.</span><span class="im">x01</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">android</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Log</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">IXposedHookLoadPackage</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XC_MethodHook</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XposedHelpers</span><span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">callbacks</span><span class="op">.</span><span class="im">XC_LoadPackage</span><span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">reflect</span><span class="op">.*;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> MainHook <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span>  <span class="bu">String</span> strTag<span class="op">=</span><span class="st">&quot;echo_Xposed&quot;</span><span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> loadPackageParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;无参构造hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//通过反射设置static属性</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">Field</span> school_id_Field <span class="op">=</span> param<span class="op">.</span><span class="fu">thisObject</span><span class="op">.</span><span class="fu">getClass</span><span class="op">().</span><span class="fu">getDeclaredField</span><span class="op">(</span><span class="st">&quot;school_id&quot;</span><span class="op">);</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                        school_id_Field<span class="op">.</span><span class="fu">setAccessible</span><span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                        school_id_Field<span class="op">.</span><span class="fu">setInt</span><span class="op">(</span><span class="kw">null</span><span class="op">,</span> <span class="dv">8</span><span class="op">);</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                        </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//通过反射设置对象属性</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">Field</span> student_name_Field <span class="op">=</span> param<span class="op">.</span><span class="fu">thisObject</span><span class="op">.</span><span class="fu">getClass</span><span class="op">().</span><span class="fu">getDeclaredField</span><span class="op">(</span><span class="st">&quot;student_name&quot;</span><span class="op">);</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                        student_name_Field<span class="op">.</span><span class="fu">setAccessible</span><span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                        student_name_Field<span class="op">.</span><span class="fu">set</span><span class="op">(</span>param<span class="op">.</span><span class="fu">thisObject</span><span class="op">,</span> <span class="st">&quot;hacker-01&quot;</span><span class="op">);</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;有参构造hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//通过xposed接口设置static属性</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>                        XposedHelpers<span class="op">.</span><span class="fu">setStaticObjectField</span><span class="op">(</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>                            param<span class="op">.</span><span class="fu">thisObject</span><span class="op">.</span><span class="fu">getClass</span><span class="op">(),</span><span class="co">//class类,它的获取方式有很多</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;school_id&quot;</span><span class="op">,</span> </span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>                            <span class="dv">12</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>                        <span class="op">);</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                        </span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>                        </span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//通过xposed接口设置对象属性</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>                        XposedHelpers<span class="op">.</span><span class="fu">setObjectField</span><span class="op">(</span>param<span class="op">.</span><span class="fu">thisObject</span><span class="op">,</span> <span class="st">&quot;student_name&quot;</span><span class="op">,</span> <span class="kw">new</span> <span class="bu">String</span><span class="op">(</span><span class="st">&quot;hacker-02&quot;</span><span class="op">));</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<pre><code>lpparam.packageName.equals(&quot;com.example.xposed&quot;)</code></pre>
+<p>函数执行前</p>
+<pre><code>beforeHookedMethod</code></pre>
+<p>函数执行后的调用</p>
+<pre><code>afterHookedMethod</code></pre>
+<pre><code>XposedHelpers.findField()</code></pre>
+<h1 id="修改class-函数">修改class 函数</h1>
+<p>XposedHelpers.findAndHookMethod()函数一般四个参数，分别为完整类名、ClassLoader对象、函数名以及一个回调接口</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;com.example.demo.MortgageActivity&quot;</span><span class="op">,</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;showLoan&quot;</span><span class="op">,</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">//有参数就写,没就不写</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="co">//……</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<p>new
+XC_MethodHook()有两个重要的内部函数beforeHookedMethod()和afterHookedMethod()，</p>
+<p>通过重写它们可以实现对任意方法的挂钩，它们的区别在于Hook前调用还是后调用</p>
+<pre><code>beforeHookedMethod 该方法在hook目标方法执行前调用，
+其中，参数param指的是目标方法的相关参数、回调、方法等信息
+
+afterHookedMethod 该方法在hook目标方法执行后调用，
+其中，参数param指的是目标方法的相关参数、回调、方法等信息。
+
+Xposed运行多个模块对同一个方法进行hook时，
+框架就会根据Xposed模块的优先级来排序</code></pre>
+<h2 id="修改函数的参数和返回值">修改函数的参数和返回值</h2>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">example</span><span class="op">.</span><span class="im">x01</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">IXposedHookLoadPackage</span><span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XC_MethodHook</span><span class="op">;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XposedHelpers</span><span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">callbacks</span><span class="op">.</span><span class="im">XC_LoadPackage</span><span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> MainHook <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span>  <span class="bu">String</span> strTag<span class="op">=</span><span class="st">&quot;echo_Xposed&quot;</span><span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> loadPackageParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Class</span> StudentClass <span class="op">=</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">.</span><span class="fu">loadClass</span><span class="op">(</span><span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">);</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                StudentClass<span class="op">,</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;getinfo&quot;</span><span class="op">,</span><span class="co">//函数名字</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span><span class="co">//参数列表</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//修改参数</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">Object</span><span class="op">[]</span> objectArray <span class="op">=</span> param<span class="op">.</span><span class="fu">args</span><span class="op">;</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>                        objectArray<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;{XXXX:&quot;</span><span class="op">;</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">afterHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">afterHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//设置返回值</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>                        param<span class="op">.</span><span class="fu">setResult</span><span class="op">(</span>param<span class="op">.</span><span class="fu">getResult</span><span class="op">()+</span><span class="st">&quot;:YYYY}&quot;</span><span class="op">);</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>这个参数 Object[] objectArray = param.args; 有点意思</p>
+<h2 id="替换函数">替换函数</h2>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">//hook私有函数 sg.vantagepoint.uncrackable1.MainActivity.a</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;sg.vantagepoint.uncrackable1.MainActivity&quot;</span><span class="op">,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;a&quot;</span><span class="op">,</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">new</span> <span class="fu">XC_MethodReplacement</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">protected</span> <span class="bu">Object</span> <span class="fu">replaceHookedMethod</span><span class="op">(</span>MethodHookParam methodHookParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                <span class="co">// 直接替换原来要执行的逻辑代码,目标方法就不在执行了</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                            <span class="co">// 直接替换原来要执行的逻辑代码,目标方法就不在执行了</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">Throwable</span> t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                    XposedBridge<span class="op">.</span><span class="fu">log</span><span class="op">(</span>t<span class="op">);</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span>  </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<h1 id="调用函数">调用函数</h1>
+<pre><code>1),
+Object object = XposedHelpers.callStaticMethod(clazz, &quot;staticPrivateMethod&quot;, &quot;callStaticMethod 静态函数调用&quot;);
+
+2),
+XposedHelpers.callMethod(param.thisObject, &quot;getinfo&quot;, &quot;{XXXX: &quot;);
+
+3),
+Method SetSchoolIDAndGetNameMethod = param.thisObject.getClass().getDeclaredMethod(
+    &quot;getinfo&quot;,
+    String.class
+);
+SetSchoolIDAndGetNameMethod.setAccessible(true);
+String result=(String) SetSchoolIDAndGetNameMethod.invoke(param.thisObject, &quot;{XXXX: &quot;);</code></pre>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> com</span><span class="op">.</span><span class="im">example</span><span class="op">.</span><span class="im">x01</span><span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">android</span><span class="op">.</span><span class="im">util</span><span class="op">.</span><span class="im">Log</span><span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">reflect</span><span class="op">.</span><span class="im">Method</span><span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">IXposedHookLoadPackage</span><span class="op">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XC_MethodHook</span><span class="op">;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">XposedHelpers</span><span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">de</span><span class="op">.</span><span class="im">robv</span><span class="op">.</span><span class="im">android</span><span class="op">.</span><span class="im">xposed</span><span class="op">.</span><span class="im">callbacks</span><span class="op">.</span><span class="im">XC_LoadPackage</span><span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> MainHook <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span>  <span class="bu">String</span> strTag<span class="op">=</span><span class="st">&quot;echo_Xposed&quot;</span><span class="op">;</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> loadPackageParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span><span class="co">//这个是具体的class类的路径</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;无参构造 hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//反射调用函数</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">Method</span> SetSchoolIDAndGetNameMethod <span class="op">=</span> param<span class="op">.</span><span class="fu">thisObject</span><span class="op">.</span><span class="fu">getClass</span><span class="op">().</span><span class="fu">getDeclaredMethod</span><span class="op">(</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;getinfo&quot;</span><span class="op">,</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>                                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>                        <span class="op">);</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>                        SetSchoolIDAndGetNameMethod<span class="op">.</span><span class="fu">setAccessible</span><span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">String</span> result<span class="op">=(</span><span class="bu">String</span><span class="op">)</span> SetSchoolIDAndGetNameMethod<span class="op">.</span><span class="fu">invoke</span><span class="op">(</span>param<span class="op">.</span><span class="fu">thisObject</span><span class="op">,</span> <span class="st">&quot;{XXXX: &quot;</span><span class="op">);</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> result<span class="op">+</span><span class="st">&quot;:YYYY}&quot;</span><span class="op">);</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookConstructor</span><span class="op">(</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;com.example.helloworld.test.Student&quot;</span><span class="op">,</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> <span class="st">&quot;有参构造 hook success!&quot;</span><span class="op">);</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">String</span> result<span class="op">=(</span><span class="bu">String</span><span class="op">)</span>  XposedHelpers<span class="op">.</span><span class="fu">callMethod</span><span class="op">(</span>param<span class="op">.</span><span class="fu">thisObject</span><span class="op">,</span> <span class="st">&quot;getinfo&quot;</span><span class="op">,</span> <span class="st">&quot;{XXXX: &quot;</span><span class="op">);</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>                        Log<span class="op">.</span><span class="fu">i</span><span class="op">(</span>strTag<span class="op">,</span> result<span class="op">+</span><span class="st">&quot;:YYYY}&quot;</span><span class="op">);</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="so-hook">so hook</h1>
+<p>xposed本身是一个java层的hook框架，因此使用xposed的接口只能实现对apk的java层代码的hook。</p>
+<p>要想进行native层（so文件）的hook需要结合其他hook
+框架，例如android-inline-hook。</p>
+<p>apk一般通过System.LoadLibrary加载自己的so库，要想在so库中函数没有执行前就进行hook的话需要在利用xposed对System.LoadLibrary函数设置hook，</p>
+<p>并在此函数调用之后调用自己的回调函数并对native层的代码进行hook。</p>
+<p>但hook时,我们是对<code>java.lang.Runtime.LoadLibrary0</code></p>
+<p>为什么不<code>java.lang.System.LoadLibrary</code>,
+而是<code>java.lang.Runtime.LoadLibrary0</code>?</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">loadLibrary</span><span class="op">(</span><span class="bu">String</span> libname<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Runtime</span><span class="op">.</span><span class="fu">getRuntime</span><span class="op">().</span><span class="fu">loadLibrary0</span><span class="op">(</span>Reflection<span class="op">.</span><span class="fu">getCallerClass</span><span class="op">(),</span> libname<span class="op">);</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">loadLibrary0</span><span class="op">(</span><span class="bu">Class</span><span class="op">&lt;?&gt;</span> fromClass<span class="op">,</span> <span class="bu">String</span> libname<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">ClassLoader</span> classLoader <span class="op">=</span> <span class="bu">ClassLoader</span><span class="op">.</span><span class="fu">getClassLoader</span><span class="op">(</span>fromClass<span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">loadLibrary0</span><span class="op">(</span>classLoader<span class="op">,</span> fromClass<span class="op">,</span> libname<span class="op">);</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> </span></code></pre></div>
+<p>因为<code>java.lang.System.LoadLibrary</code>的原理是获取调用者当前函数所归属的类和so的名字,然后作为参数传递给<code>java.lang.Runtime.LoadLibrary0</code></p>
+<p>如果Xposed
+Hook了java.lang.System.LoadLibrary,那么Reflection.getCallerClass()返回值就是Xposed,
+这样就会导致找不到so的文件</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> XposedHookTest <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span>XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> loadPackageParam<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        XposedBridge<span class="op">.</span><span class="fu">log</span><span class="op">(</span><span class="st">&quot;load apk: &quot;</span> <span class="op">+</span> loadPackageParam<span class="op">.</span><span class="fu">packageName</span><span class="op">);</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;java.lang.Runtime&quot;</span><span class="op">,</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;loadLibrary0&quot;</span><span class="op">,</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                <span class="bu">Class</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">@Override</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">super</span><span class="op">.</span><span class="fu">beforeHookedMethod</span><span class="op">(</span>param<span class="op">);</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>                        <span class="co">//to native hook</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>                    <span class="op">}</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">);</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="xposedbridge">XposedBridge</h1>
+<p>XposedBridge类中hookAllMethods和log方法主要用于一次hook每个类的所有方法或够造函数</p>
+<pre><code>hookAllMethods(
+    Class hookClass,//需要进行hook的类
+    String methodName,//需要进行hook的方法名
+    XC_MethodHook callback//回调函数
+)</code></pre>
+<h1 id="hook函数">Hook函数</h1>
+<h2 id="复杂的函数">复杂的函数</h2>
+<p>???</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">paramsClass</span><span class="op">(</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    ClasName cn<span class="op">,</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> value<span class="op">,</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    Intent intent<span class="op">,</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> key<span class="op">,</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Map</span> map<span class="op">,</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span> list<span class="op">){</span>  </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="op">-------------------------------------------------------------------</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="dt">final</span> <span class="bu">Class</span><span class="op">&lt;?&gt;</span> clazz <span class="op">=</span> XposedHelpers<span class="op">.</span><span class="fu">findClass</span><span class="op">(</span><span class="st">&quot;全路径类名&quot;</span><span class="op">,</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">);</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="bu">Class</span> cnClazz  <span class="op">=</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">.</span><span class="fu">loadClass</span><span class="op">(</span><span class="st">&quot;com.xxxx. ClasName&quot;</span><span class="op">);</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">Class</span> cnMap <span class="op">=</span> XposedHelpers<span class="op">.</span><span class="fu">findClass</span><span class="op">(</span><span class="st">&quot;java.util.Map&quot;</span><span class="op">,</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">);</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="bu">Class</span> cnArrayList <span class="op">=</span> XposedHelpers<span class="op">.</span><span class="fu">findClass</span><span class="op">(</span><span class="st">&quot;java.util.ArrayList&quot;</span><span class="op">,</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">);</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    clazz<span class="op">,</span> </span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;paramsClass&quot;</span><span class="op">,</span> </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    cnClazz<span class="op">,</span> </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span> </span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    Intent<span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Map</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">ArrayList</span><span class="op">.</span><span class="fu">class</span> </span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">@Override</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>            <span class="co">//...</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<h2 id="内部类中的函数">内部类中的函数</h2>
+<p>???</p>
+<p><strong>注：hook内部类中的函数和变量，跟以上的hook方式没有区别，唯一的区别是，XposedHelpers.findClass中的路径名不同。</strong></p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> HookDemo <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> Tag <span class="op">=</span> <span class="st">&quot;HookDemo&quot;</span><span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> InnerClass<span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">int</span> innerPublicInt <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">int</span> innerPrivateInt <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="fu">InnerClass</span><span class="op">(){</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">InnerFunc</span><span class="op">(</span><span class="bu">String</span> value<span class="op">){</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="op">-------------------------------------------------------------------</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="dt">final</span> <span class="bu">Class</span><span class="op">&lt;?&gt;</span> clazz1 <span class="op">=</span> XposedHelpers<span class="op">.</span><span class="fu">findClass</span><span class="op">(</span><span class="st">&quot;com.xxxxxx.HookDemo$InnerClass&quot;</span><span class="op">,</span> loadPackageParam<span class="op">.</span><span class="fu">classLoader</span><span class="op">);</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    clazz1<span class="op">,</span> </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;InnerMethod&quot;</span><span class="op">,</span> </span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span><span class="op">.</span><span class="fu">class</span><span class="op">,</span> </span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">@Override</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">beforeHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>     <span class="op">});</span></span></code></pre></div>
+<h1 id="附录">附录</h1>
+<pre><code>byte[].class
+int.class</code></pre>
+<pre><code>XposedHelpers.findAndHookConstructor
+arg1: string的类目
+arg2: loadPackageParam.classLoader,
+arg3: new XC_MethodHook()
+    -- beforeHookedMethod(MethodHookParam param) throws Throwable
+    -- protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+
+
+XposedHelpers.findAndHookMethod
+arg1: class
+arg2: String.函数名
+argX: new XC_MethodHook()
+    -- protected void beforeHookedMethod(MethodHookParam param) throws Throwable
+    -- protected void afterHookedMethod(MethodHookParam param) throws Throwable 
+    
+XposedHelpers.findAndHookMethod
+arg1: String.类名
+arg2: loadPackageParam.classLoader
+arg3: String.函数名
+argX: new XC_MethodHook()
+    -- ...</code></pre>
+<p>获取classs</p>
+<pre><code>final Class&lt;?&gt; clazz = XposedHelpers.findClass(&quot;全路径类名&quot;, loadPackageParam.classLoader);
+Class c=loadPackageParam.classLoader.loadClass(&quot;com.wrbug.xposeddemo.MainActivity&quot;);
+
+protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+        //...
+        param.thisObject.getClass();
+        param.thisObject;
+ }
+ 
+ 
+import android.app.Application;
+Application.class;
+
+
+//不好用
+Class.forName()来获取Class ，在跨应用时会失效</code></pre>
+<p>貌似我们在Hook static的内容时, class要单独获取</p>
+<pre><code>final Class&lt;?&gt; clazz = XposedHelpers.findClass(&quot;全路径类名&quot;, loadPackageParam.classLoader);</code></pre>
+<h2 id="demo">demo</h2>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> XposedInit <span class="kw">implements</span> IXposedHookLoadPackage <span class="op">{</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="at">@Override</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">handleLoadPackage</span><span class="op">(</span><span class="dt">final</span> XC_LoadPackage<span class="op">.</span><span class="fu">LoadPackageParam</span> lpparam<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lpparam<span class="op">.</span><span class="fu">packageName</span><span class="op">.</span><span class="fu">equals</span><span class="op">(</span><span class="st">&quot;com.wrbug.xposeddemo&quot;</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        XposedHelpers<span class="op">.</span><span class="fu">findAndHookMethod</span><span class="op">(</span><span class="st">&quot;com.wrbug.xposeddemo.MainActivity&quot;</span><span class="op">,</span> lpparam<span class="op">.</span><span class="fu">classLoader</span><span class="op">,</span> <span class="st">&quot;onCreate&quot;</span><span class="op">,</span> Bundle<span class="op">.</span><span class="fu">class</span><span class="op">,</span> <span class="kw">new</span> <span class="fu">XC_MethodHook</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>            <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">afterHookedMethod</span><span class="op">(</span>MethodHookParam param<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Throwable</span> <span class="op">{</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                <span class="co">//不能通过Class.forName()来获取Class ，在跨应用时会失效</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                <span class="bu">Class</span> c<span class="op">=</span>lpparam<span class="op">.</span><span class="fu">classLoader</span><span class="op">.</span><span class="fu">loadClass</span><span class="op">(</span><span class="st">&quot;com.wrbug.xposeddemo.MainActivity&quot;</span><span class="op">);</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                <span class="bu">Field</span> field<span class="op">=</span>c<span class="op">.</span><span class="fu">getDeclaredField</span><span class="op">(</span><span class="st">&quot;textView&quot;</span><span class="op">);</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                field<span class="op">.</span><span class="fu">setAccessible</span><span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                <span class="co">//param.thisObject 为执行该方法的对象，在这里指MainActivity</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>                TextView textView<span class="op">=</span> <span class="op">(</span>TextView<span class="op">)</span> field<span class="op">.</span><span class="fu">get</span><span class="op">(</span>param<span class="op">.</span><span class="fu">thisObject</span><span class="op">);</span><span class="co">//这里比较有意思</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>                textView<span class="op">.</span><span class="fu">setText</span><span class="op">(</span><span class="st">&quot;Hello Xposed&quot;</span><span class="op">);</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">});</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

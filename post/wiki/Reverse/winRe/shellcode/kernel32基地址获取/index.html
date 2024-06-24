@@ -1,0 +1,1241 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-shellcode-kernel32基地址获取</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-shellcode-kernel32基地址获取</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#shellcode之kernel32基地址获取"
+        id="toc-shellcode之kernel32基地址获取">shellcode之kernel32基地址获取</a></li>
+        <li><a href="#peb信息遍历" id="toc-peb信息遍历">PEB信息遍历</a>
+        <ul>
+        <li><a href="#inloadordermodulelist"
+        id="toc-inloadordermodulelist">InLoadOrderModuleList</a>
+        <ul>
+        <li><a href="#x86x64-c代码" id="toc-x86x64-c代码">x86,x64
+        C代码</a></li>
+        <li><a href="#x86内联汇编"
+        id="toc-x86内联汇编">x86内联汇编</a></li>
+        <li><a href="#x64汇编引用"
+        id="toc-x64汇编引用">x64汇编引用</a></li>
+        </ul></li>
+        <li><a href="#inmemoryordermodulelist"
+        id="toc-inmemoryordermodulelist">InMemoryOrderModuleList</a>
+        <ul>
+        <li><a href="#x86x64-c代码-1" id="toc-x86x64-c代码-1">x86,x64
+        C代码</a></li>
+        <li><a href="#x86内联汇编-1"
+        id="toc-x86内联汇编-1">x86内联汇编</a></li>
+        <li><a href="#x64汇编引用-1"
+        id="toc-x64汇编引用-1">x64汇编引用</a></li>
+        </ul></li>
+        <li><a href="#ininitializationordermodulelist"
+        id="toc-ininitializationordermodulelist">InInitializationOrderModuleList</a>
+        <ul>
+        <li><a href="#x86x64通用代码"
+        id="toc-x86x64通用代码">x86,x64通用代码</a></li>
+        <li><a href="#x86内联汇编-2"
+        id="toc-x86内联汇编-2">x86内联汇编</a></li>
+        <li><a href="#x64汇编引用-2"
+        id="toc-x64汇编引用-2">x64汇编引用</a></li>
+        </ul></li>
+        <li><a href="#优化问题" id="toc-优化问题">优化问题</a></li>
+        </ul></li>
+        <li><a href="#基于暴力搜索法"
+        id="toc-基于暴力搜索法">基于暴力搜索法</a>
+        <ul>
+        <li><a href="#特征1" id="toc-特征1">特征1</a></li>
+        <li><a href="#特征2" id="toc-特征2">特征2</a></li>
+        </ul></li>
+        <li><a href="#其它" id="toc-其它">其它</a></li>
+        <li><a href="#关于start入口点的stack情况"
+        id="toc-关于start入口点的stack情况">关于start入口点的stack情况</a></li>
+        <li><a href="#后来的发现"
+        id="toc-后来的发现">后来的发现</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1
+id="shellcode之kernel32基地址获取">shellcode之kernel32基地址获取</h1>
+<h1 id="peb信息遍历">PEB信息遍历</h1>
+<pre><code>.CODE
+  GetPeb PROC
+    mov rax,gs:[60h]
+  ret
+  GetPeb ENDP
+ END</code></pre>
+<p>原理: PEB结构体信息遍历</p>
+<p>使用前提: 好像没什么过分的环境要求</p>
+<p>遍历的链子如下</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TEB<span class="op">-&gt;-</span>PEB<span class="op">-&gt;</span>Ldr<span class="op">-&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        InLoadOrderModuleList<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        InMemoryOrderModuleList<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        InInitializationOrderModuleList<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}-&gt;</span>DllBase</span></code></pre></div>
+<p>我们通过结构体遍历,,,可以获取目标的imagebase</p>
+<p>另外还涉及其它结构体</p>
+<pre><code>_PEB_LDR_DATA
+_LDR_DATA_TABLE_ENTRY</code></pre>
+<p>总涉及的结构体</p>
+<pre><code>TEB
+PEB
+Ldr
+_PEB_LDR_DATA
+_LDR_DATA_TABLE_ENTRY</code></pre>
+<p>我们可以直接获取PEB的地址,
+然后通过结构体去找到PEB-&gt;Ldr-&gt;{1,2,3}-&gt;dllbase</p>
+<p>PEB的寻找是通过汇编,,,汇编会写死,,所以就有了x86和x64区分</p>
+<p>其余结构体会自动结构体编译时的架构,,自动的修改结构体的大小</p>
+<p>然后这个方法和电脑的系统有关系,,因为和内核信息打交道</p>
+<p>系统内核版本更新可能会导致方法失败</p>
+<figure>
+<img src="./img/image-20231213200956177.png"
+alt="image-20231213200956177" />
+<figcaption aria-hidden="true">image-20231213200956177</figcaption>
+</figure>
+<p>32位进程使用FS段寄存器指向TEB，64位进程使用GS段寄存器指向TEB</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">进程位数</th>
+<th style="text-align: left;">32bit</th>
+<th style="text-align: left;">64bit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>指向TEB的指针</strong></td>
+<td style="text-align: left;">FS段寄存器</td>
+<td style="text-align: left;">GS段寄存器</td>
+</tr>
+<tr class="even">
+<td
+style="text-align: left;"><strong>PEB在TEB结构体中的偏移量</strong></td>
+<td style="text-align: left;">0x30</td>
+<td style="text-align: left;">0x60</td>
+</tr>
+</tbody>
+</table>
+<p>LDR结构体记录了用户模块列表的
+<code>加载顺序、内存顺序、初始化顺序</code> 也就是</p>
+<pre><code>    struct _LIST_ENTRY InLoadOrderModuleList;                               //0xc
+    struct _LIST_ENTRY InMemoryOrderModuleList;                             //0x14
+    struct _LIST_ENTRY InInitializationOrderModuleList;                     //0x1c</code></pre>
+<p>通过这3种顺序,,我们都可以找到kernel32.dll的加载信息的</p>
+<p>TEB32结构体</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _TEB32</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _NT_TIB32 NtTib<span class="op">;</span>                                                 <span class="co">//0x0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ULONG EnvironmentPointer<span class="op">;</span>                                               <span class="co">//0x1c</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CLIENT_ID32 ClientId<span class="op">;</span>                                           <span class="co">//0x20</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ULONG ActiveRpcHandle<span class="op">;</span>                                                  <span class="co">//0x28</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ULONG ThreadLocalStoragePointer<span class="op">;</span>                                        <span class="co">//0x2c</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ULONG ProcessEnvironmentBlock<span class="op">;</span>                                          <span class="co">//0x30</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ULONG LastErrorValue<span class="op">;</span>                                                   <span class="co">//0x34</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>TEB64结构体</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">//0x1838 bytes (sizeof)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _TEB64</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _NT_TIB64 NtTib<span class="op">;</span>                                                 <span class="co">//0x0</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    ULONGLONG EnvironmentPointer<span class="op">;</span>                                           <span class="co">//0x38</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _CLIENT_ID64 ClientId<span class="op">;</span>                                           <span class="co">//0x40</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    ULONGLONG ActiveRpcHandle<span class="op">;</span>                                              <span class="co">//0x50</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ULONGLONG ThreadLocalStoragePointer<span class="op">;</span>                                    <span class="co">//0x58</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ULONGLONG ProcessEnvironmentBlock<span class="op">;</span>                                      <span class="co">//0x60</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ULONG LastErrorValue<span class="op">;</span>                                                   <span class="co">//0x68</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>   <span class="op">...</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="op">};</span> </span></code></pre></div>
+<p>PEB结构体</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">//0x480 bytes (sizeof)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _PEB</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    UCHAR InheritedAddressSpace<span class="op">;</span>                                            <span class="co">//0x0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    UCHAR ReadImageFileExecOptions<span class="op">;</span>                                         <span class="co">//0x1</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    UCHAR BeingDebugged<span class="op">;</span>                                                    <span class="co">//0x2</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        UCHAR BitField<span class="op">;</span>                                                     <span class="co">//0x3</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            UCHAR ImageUsesLargePages<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                    <span class="co">//0x3</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            UCHAR IsProtectedProcess<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                     <span class="co">//0x3</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            UCHAR IsImageDynamicallyRelocated<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                            <span class="co">//0x3</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            UCHAR SkipPatchingUser32Forwarders<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                           <span class="co">//0x3</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            UCHAR IsPackagedProcess<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                      <span class="co">//0x3</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            UCHAR IsAppContainer<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                         <span class="co">//0x3</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            UCHAR IsProtectedProcessLight<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                <span class="co">//0x3</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            UCHAR IsLongPathAwareProcess<span class="op">:</span><span class="dv">1</span><span class="op">;</span>                                 <span class="co">//0x3</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    VOID<span class="op">*</span> Mutant<span class="op">;</span>                                                           <span class="co">//0x4</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    VOID<span class="op">*</span> ImageBaseAddress<span class="op">;</span>                                                 <span class="co">//0x8</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _PEB_LDR_DATA<span class="op">*</span> Ldr<span class="op">;</span>                                              <span class="co">//0xc</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _RTL_USER_PROCESS_PARAMETERS<span class="op">*</span> ProcessParameters<span class="op">;</span>                 <span class="co">//0x10</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a> <span class="op">}</span></span></code></pre></div>
+<p>LDR结构体</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">//0x30 bytes (sizeof)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _PEB_LDR_DATA <span class="co">//也就是</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    ULONG Length<span class="op">;</span>                                                           <span class="co">//0x0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    UCHAR Initialized<span class="op">;</span>                                                      <span class="co">//0x4</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    VOID<span class="op">*</span> SsHandle<span class="op">;</span>                                                         <span class="co">//0x8</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _LIST_ENTRY InLoadOrderModuleList<span class="op">;</span>                               <span class="co">//0xc</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _LIST_ENTRY InMemoryOrderModuleList<span class="op">;</span>                             <span class="co">//0x14</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _LIST_ENTRY InInitializationOrderModuleList<span class="op">;</span>                     <span class="co">//0x1c</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    VOID<span class="op">*</span> EntryInProgress<span class="op">;</span>                                                  <span class="co">//0x24</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    UCHAR ShutdownInProgress<span class="op">;</span>                                               <span class="co">//0x28</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    VOID<span class="op">*</span> ShutdownThreadId<span class="op">;</span>                                                 <span class="co">//0x2c</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="op">};</span> </span></code></pre></div>
+<p>_LDR_DATA_TABLE_ENTRY结构体</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _LDR_DATA_TABLE_ENTRY</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY InLoadOrderLinks<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY InMemoryOrderLinks<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY InInitializationOrderLinks<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>     PVOID DllBase<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>     PVOID EntryPoint<span class="op">;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     ULONG SizeOfImage<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>     UNICODE_STRING FullDllName<span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     UNICODE_STRING BaseDllName<span class="op">;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>     ULONG Flags<span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     WORD LoadCount<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     WORD TlsIndex<span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>     <span class="kw">union</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>     <span class="op">{</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>          LIST_ENTRY HashLinks<span class="op">;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>          <span class="kw">struct</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>          <span class="op">{</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>               PVOID SectionPointer<span class="op">;</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>               ULONG CheckSum<span class="op">;</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>          <span class="op">};</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>     <span class="op">};</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>     <span class="kw">union</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>     <span class="op">{</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>          ULONG TimeDateStamp<span class="op">;</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>          PVOID LoadedImports<span class="op">;</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>     <span class="op">};</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>     _ACTIVATION_CONTEXT <span class="op">*</span> EntryPointActivationContext<span class="op">;</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>     PVOID PatchInformation<span class="op">;</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY ForwarderLinks<span class="op">;</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY ServiceTagLinks<span class="op">;</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>     LIST_ENTRY StaticLinks<span class="op">;</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> LDR_DATA_TABLE_ENTRY<span class="op">,</span> <span class="op">*</span>PLDR_DATA_TABLE_ENTRY<span class="op">;</span></span></code></pre></div>
+<p>因为Windows内核结构体不是公开的,所以本次提供的结构体,,,可能有误</p>
+<h2 id="inloadordermodulelist">InLoadOrderModuleList</h2>
+<p>这是从laod顺序获取kernel32.dll的信息</p>
+<p>我们先正常遍历一下所有模块信息</p>
+<h3 id="x86x64-c代码">x86,x64 C代码</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef __NTDLL_H__</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef TO_LOWERCASE</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TO_LOWERCASE</span><span class="op">(</span><span class="pp">out</span><span class="op">,</span><span class="pp"> c1</span><span class="op">)</span><span class="pp"> </span><span class="op">(</span><span class="pp">out </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">&lt;=</span><span class="pp"> </span><span class="ch">&#39;Z&#39;</span><span class="pp"> </span><span class="op">&amp;&amp;</span><span class="pp"> c1 </span><span class="op">&gt;=</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">?</span><span class="pp"> c1 </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">-</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="ch">&#39;a&#39;</span><span class="op">:</span><span class="pp"> c1</span><span class="op">)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _UNICODE_STRING</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    USHORT  Length<span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    USHORT  MaximumLength<span class="op">;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    PWSTR   Buffer<span class="op">;</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> UNICODE_STRING<span class="op">,</span> <span class="op">*</span> PUNICODE_STRING<span class="op">;</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB_LDR_DATA</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    ULONG       Length<span class="op">;</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    BOOLEAN     Initialized<span class="op">;</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    HANDLE      SsHandle<span class="op">;</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InLoadOrderModuleList<span class="op">;</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InMemoryOrderModuleList<span class="op">;</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InInitializationOrderModuleList<span class="op">;</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    PVOID       EntryInProgress<span class="op">;</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB_LDR_DATA<span class="op">,</span> <span class="op">*</span> PPEB_LDR_DATA<span class="op">;</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">// 这里我们不想使用任何由外部模块导入的函数</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _LDR_DATA_TABLE_ENTRY <span class="op">{</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InLoadOrderLinks<span class="op">;</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InMemoryOrderLinks<span class="op">;</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InInitializationOrderLinks<span class="op">;</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    PVOID DllBase<span class="op">;</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    PVOID EntryPoint<span class="op">;</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    ULONG SizeOfImage<span class="op">;</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING FullDllName<span class="op">;</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING BaseDllName<span class="op">;</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    ULONG Flags<span class="op">;</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    WORD LoadCount<span class="op">;</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    WORD TlsIndex<span class="op">;</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>        LIST_ENTRY HashLinks<span class="op">;</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>            PVOID SectionPointer<span class="op">;</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>            ULONG CheckSum<span class="op">;</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>        ULONG TimeDateStamp<span class="op">;</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>        PVOID LoadedImports<span class="op">;</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _ACTIVATION_CONTEXT<span class="op">*</span> EntryPointActivationContext<span class="op">;</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>    PVOID PatchInformation<span class="op">;</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ForwarderLinks<span class="op">;</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ServiceTagLinks<span class="op">;</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY StaticLinks<span class="op">;</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> LDR_DATA_TABLE_ENTRY<span class="op">,</span> <span class="op">*</span> PLDR_DATA_TABLE_ENTRY<span class="op">;</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB <span class="op">{</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    BOOLEAN InheritedAddressSpace<span class="op">;</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    BOOLEAN ReadImageFileExecOptions<span class="op">;</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    BOOLEAN BeingDebugged<span class="op">;</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    BOOLEAN SpareBool<span class="op">;</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    HANDLE Mutant<span class="op">;</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>    PVOID IMAGEBaseAddress<span class="op">;</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA Ldr<span class="op">;</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB<span class="op">,</span> <span class="op">*</span> PPEB<span class="op">;</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> LPVOID get_module_by_name<span class="op">(</span>WCHAR<span class="op">*</span> module_name<span class="op">)</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    PPEB peb <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="pp">#if defined(_WIN64)</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readgsqword<span class="op">(</span><span class="bn">0x60</span><span class="op">);</span><span class="co">//读gs</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readfsdword<span class="op">(</span><span class="bn">0x30</span><span class="op">);</span><span class="co">//读fs</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA ldr <span class="op">=</span> peb<span class="op">-&gt;</span>Ldr<span class="op">;</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY Flink <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>ldr<span class="op">-&gt;</span>InLoadOrderModuleList<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY curr_module <span class="op">=</span> Flink<span class="op">;</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>curr_module <span class="op">!=</span> NULL <span class="op">&amp;&amp;</span> curr_module<span class="op">-&gt;</span>DllBase <span class="op">!=</span> NULL<span class="op">)</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>        WCHAR<span class="op">*</span> curr_name <span class="op">=</span> curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer<span class="op">;</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>        wprintf<span class="op">(</span><span class="st">L&quot;</span><span class="sc">%s\n</span><span class="st">&quot;</span><span class="op">,</span> curr_name<span class="op">);</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>        <span class="co">//for (i = 0; module_name[i] != 0 &amp;&amp; curr_name[i] != 0; i++) </span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    WCHAR c1, c2;</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    //统一大小一下</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c1, module_name[i]);</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c2, curr_name[i]);</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    if (c1 != c2) </span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>        <span class="co">//        break;</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>        <span class="co">//if (module_name[i] == 0 &amp;&amp; curr_name[i] == 0) //说明比到最后了</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    return curr_module-&gt;DllBase;</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>        curr_module <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>curr_module<span class="op">-&gt;</span>InLoadOrderLinks<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> NULL<span class="op">;</span></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>    get_module_by_name<span class="op">(</span><span class="st">L&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>输出如下</p>
+<figure>
+<img src="./img/image-20231213202234656.png"
+alt="image-20231213202234656" />
+<figcaption aria-hidden="true">image-20231213202234656</figcaption>
+</figure>
+<p>说明我们的kernel32.dll是第3个加载的</p>
+<p>所以如果写汇编一次性获取的话</p>
+<h3 id="x86内联汇编">x86内联汇编</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test<span class="op">(){</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    HMODULE x86_kernel_base<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    HMODULE xx <span class="op">=</span> GetModuleHandleA<span class="op">(</span><span class="st">&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//原理是InMemoryOrderModuleList的第一个结构体指向就是kernel32的,然后从结构体获取Dirbase</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    __asm<span class="op">{</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        push eax<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr fs <span class="op">:</span> <span class="op">[</span><span class="dv">30</span><span class="er">h</span><span class="op">];</span><span class="co">// 指向PEB结构</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">0</span><span class="er">Ch</span><span class="op">];</span> <span class="co">//指向LDR Ptr32 _PEB_LDR_DATA</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">0</span><span class="er">Ch</span><span class="op">];</span> <span class="co">//指向的是当前进程</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span> <span class="co">//指向ntdll.exe</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span> <span class="co">//指向kernel32.dll</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="bn">0x18</span><span class="op">];</span> <span class="co">//指向DllBase基址</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        mov x86_kernel_base<span class="op">,</span> eax<span class="op">;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        pop eax<span class="op">;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;now: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> x86_kernel_base<span class="op">);</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;org: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> xx<span class="op">);</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    test<span class="op">();</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>输出如下</p>
+<figure>
+<img src="./img/image-20231210215407670.png"
+alt="image-20231210215407670" />
+<figcaption aria-hidden="true">image-20231210215407670</figcaption>
+</figure>
+<h3 id="x64汇编引用">x64汇编引用</h3>
+<p>vs2019: x64不能内敛汇编</p>
+<p>demo.asm</p>
+<pre class="assembly"><code>.CODE
+ 
+getK32 PROC
+        mov rax,gs:[60h] ;PEB
+        mov rax,[rax+18h]; LDR
+        mov rsi,[rax+10h];  InLoadOrderModuleList -&gt; 当前
+        lodsq;
+        xchg rax,rsi;
+        lodsq;
+        mov rax,[rax+30h];
+        RET
+getK32 ENDP
+
+END</code></pre>
+<p>demo.c</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define  _CRT_SECURE_NO_WARNINGS</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;demo.h&quot;</span><span class="pp">  </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    PVOID peb<span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    HMODULE x64_kernel_base<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    HMODULE xx <span class="op">=</span> GetModuleHandleA<span class="op">(</span><span class="st">&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    x64_kernel_base <span class="op">=</span> getK32<span class="op">();</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;now: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> x64_kernel_base<span class="op">);</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;org: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> xx<span class="op">);</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    test<span class="op">();</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>demo.h</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma once</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef __ASMCODE_H</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define __ASMCODE_H</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span><span class="op">*</span> __stdcall getK32<span class="op">();</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div>
+<p>最后成功获取</p>
+<figure>
+<img src="./img/image-20231213205607130.png"
+alt="image-20231213205607130" />
+<figcaption aria-hidden="true">image-20231213205607130</figcaption>
+</figure>
+<figure>
+<img src="./img/image-20231213210033417.png"
+alt="image-20231213210033417" />
+<figcaption aria-hidden="true">image-20231213210033417</figcaption>
+</figure>
+<h2 id="inmemoryordermodulelist">InMemoryOrderModuleList</h2>
+<p>这是从内存顺序获取kernel32.dll的信息</p>
+<p>代码如下
+注意,,我们的结构体<code>struct _LDR_DATA_TABLE_ENTRY</code>已经发生了变化</p>
+<h3 id="x86x64-c代码-1">x86,x64 C代码</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef __NTDLL_H__</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef TO_LOWERCASE</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TO_LOWERCASE</span><span class="op">(</span><span class="pp">out</span><span class="op">,</span><span class="pp"> c1</span><span class="op">)</span><span class="pp"> </span><span class="op">(</span><span class="pp">out </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">&lt;=</span><span class="pp"> </span><span class="ch">&#39;Z&#39;</span><span class="pp"> </span><span class="op">&amp;&amp;</span><span class="pp"> c1 </span><span class="op">&gt;=</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">?</span><span class="pp"> c1 </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">-</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="ch">&#39;a&#39;</span><span class="op">:</span><span class="pp"> c1</span><span class="op">)</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _UNICODE_STRING</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    USHORT  Length<span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    USHORT  MaximumLength<span class="op">;</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    PWSTR   Buffer<span class="op">;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> UNICODE_STRING<span class="op">,</span> <span class="op">*</span> PUNICODE_STRING<span class="op">;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB_LDR_DATA</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    ULONG       Length<span class="op">;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    BOOLEAN     Initialized<span class="op">;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    HANDLE      SsHandle<span class="op">;</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InLoadOrderModuleList<span class="op">;</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InMemoryOrderModuleList<span class="op">;</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InInitializationOrderModuleList<span class="op">;</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    PVOID       EntryInProgress<span class="op">;</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB_LDR_DATA<span class="op">,</span> <span class="op">*</span> PPEB_LDR_DATA<span class="op">;</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">// 这里我们不想使用任何由外部模块导入的函数</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _LDR_DATA_TABLE_ENTRY <span class="op">{</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">//LIST_ENTRY InLoadOrderLinks;</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InMemoryOrderLinks<span class="op">;</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InInitializationOrderLinks<span class="op">;</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    PVOID DllBase<span class="op">;</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    PVOID EntryPoint<span class="op">;</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    ULONG SizeOfImage<span class="op">;</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING FullDllName<span class="op">;</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING BaseDllName<span class="op">;</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    ULONG Flags<span class="op">;</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    WORD LoadCount<span class="op">;</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    WORD TlsIndex<span class="op">;</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>        LIST_ENTRY HashLinks<span class="op">;</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>            PVOID SectionPointer<span class="op">;</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>            ULONG CheckSum<span class="op">;</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>        ULONG TimeDateStamp<span class="op">;</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>        PVOID LoadedImports<span class="op">;</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _ACTIVATION_CONTEXT<span class="op">*</span> EntryPointActivationContext<span class="op">;</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>    PVOID PatchInformation<span class="op">;</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ForwarderLinks<span class="op">;</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ServiceTagLinks<span class="op">;</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY StaticLinks<span class="op">;</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> LDR_DATA_TABLE_ENTRY<span class="op">,</span> <span class="op">*</span> PLDR_DATA_TABLE_ENTRY<span class="op">;</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB <span class="op">{</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>    BOOLEAN InheritedAddressSpace<span class="op">;</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>    BOOLEAN ReadImageFileExecOptions<span class="op">;</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>    BOOLEAN BeingDebugged<span class="op">;</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>    BOOLEAN SpareBool<span class="op">;</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>    HANDLE Mutant<span class="op">;</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>    PVOID IMAGEBaseAddress<span class="op">;</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA Ldr<span class="op">;</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB<span class="op">,</span> <span class="op">*</span> PPEB<span class="op">;</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> LPVOID get_module_by_name<span class="op">(</span>WCHAR<span class="op">*</span> module_name<span class="op">)</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>    PPEB peb <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="pp">#if defined(_WIN64)</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readgsqword<span class="op">(</span><span class="bn">0x60</span><span class="op">);</span><span class="co">//读gs</span></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readfsdword<span class="op">(</span><span class="bn">0x30</span><span class="op">);</span><span class="co">//读fs</span></span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA ldr <span class="op">=</span> peb<span class="op">-&gt;</span>Ldr<span class="op">;</span></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY Flink <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>ldr<span class="op">-&gt;</span>InMemoryOrderModuleList<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY curr_module <span class="op">=</span> Flink<span class="op">;</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>curr_module <span class="op">!=</span> NULL <span class="op">&amp;&amp;</span> curr_module<span class="op">-&gt;</span>DllBase <span class="op">!=</span> NULL<span class="op">)</span></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>        WCHAR<span class="op">*</span> curr_name <span class="op">=</span> curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer<span class="op">;</span></span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>        wprintf<span class="op">(</span><span class="st">L&quot;</span><span class="sc">%s\n</span><span class="st">&quot;</span><span class="op">,</span> curr_name<span class="op">);</span></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>        <span class="co">//for (i = 0; module_name[i] != 0 &amp;&amp; curr_name[i] != 0; i++) </span></span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    WCHAR c1, c2;</span></span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    //统一大小一下</span></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c1, module_name[i]);</span></span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c2, curr_name[i]);</span></span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    if (c1 != c2) </span></span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>        <span class="co">//        break;</span></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>        <span class="co">//if (module_name[i] == 0 &amp;&amp; curr_name[i] == 0) //说明比到最后了</span></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    return curr_module-&gt;DllBase;</span></span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>        curr_module <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>curr_module<span class="op">-&gt;</span>InMemoryOrderLinks<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> NULL<span class="op">;</span></span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>    get_module_by_name<span class="op">(</span><span class="st">L&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>输出如下</p>
+<figure>
+<img src="./img/image-20231213202429510.png"
+alt="image-20231213202429510" />
+<figcaption aria-hidden="true">image-20231213202429510</figcaption>
+</figure>
+<h3 id="x86内联汇编-1">x86内联汇编</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    HMODULE x86_kernel_base<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    HMODULE xx <span class="op">=</span> GetModuleHandleA<span class="op">(</span><span class="st">&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//原理是InMemoryOrderModuleList的第一个结构体指向就是kernel32的,然后从结构体获取Dirbase</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    __asm <span class="op">{</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        push eax<span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr fs <span class="op">:</span> <span class="op">[</span><span class="dv">30</span><span class="er">h</span><span class="op">]</span> <span class="op">;</span><span class="co">// 指向PEB结构</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">0</span><span class="er">Ch</span><span class="op">];</span> <span class="co">//指向LDR Ptr32 _PEB_LDR_DATA</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">14</span><span class="er">h</span><span class="op">];</span> <span class="co">//指向当前进程</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span> <span class="co">//指向ntdll</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span> <span class="co">//指向Kernel32.dll</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">10</span><span class="er">h</span><span class="op">];</span> <span class="co">//指向DllBase基址</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        mov x86_kernel_base<span class="op">,</span> eax<span class="op">;</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        pop eax<span class="op">;</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;now: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> x86_kernel_base<span class="op">);</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;org: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> xx<span class="op">);</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    test<span class="op">();</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="x64汇编引用-1">x64汇编引用</h3>
+<p>其它代码见上一个例子</p>
+<p>demo.asm</p>
+<pre class="assembly"><code>.CODE
+ 
+getK32 PROC
+        mov rax,gs:[60h] ;PEB
+        mov rax,[rax+18h]; LDR
+        mov rsi,[rax+10h + 2*8];  InLoadOrderModuleList -&gt; 当前
+        lodsq;
+        xchg rax,rsi;
+        lodsq;
+        mov rax,[rax+30h - 2*8];
+        RET
+getK32 ENDP
+
+END</code></pre>
+<figure>
+<img src="./img/image-20231213205925402.png"
+alt="image-20231213205925402" />
+<figcaption aria-hidden="true">image-20231213205925402</figcaption>
+</figure>
+<h2
+id="ininitializationordermodulelist">InInitializationOrderModuleList</h2>
+<p>这是从初始化顺序获取kernel32.dll的信息</p>
+<p>代码如下
+注意,,我们的结构体<code>struct _LDR_DATA_TABLE_ENTRY</code>已经发生了变化</p>
+<h3 id="x86x64通用代码">x86,x64通用代码</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Windows.h&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef __NTDLL_H__</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef TO_LOWERCASE</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define TO_LOWERCASE</span><span class="op">(</span><span class="pp">out</span><span class="op">,</span><span class="pp"> c1</span><span class="op">)</span><span class="pp"> </span><span class="op">(</span><span class="pp">out </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">&lt;=</span><span class="pp"> </span><span class="ch">&#39;Z&#39;</span><span class="pp"> </span><span class="op">&amp;&amp;</span><span class="pp"> c1 </span><span class="op">&gt;=</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">?</span><span class="pp"> c1 </span><span class="op">=</span><span class="pp"> </span><span class="op">(</span><span class="pp">c1 </span><span class="op">-</span><span class="pp"> </span><span class="ch">&#39;A&#39;</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="ch">&#39;a&#39;</span><span class="op">:</span><span class="pp"> c1</span><span class="op">)</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _UNICODE_STRING</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    USHORT  Length<span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    USHORT  MaximumLength<span class="op">;</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    PWSTR   Buffer<span class="op">;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> UNICODE_STRING<span class="op">,</span> <span class="op">*</span> PUNICODE_STRING<span class="op">;</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB_LDR_DATA</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    ULONG       Length<span class="op">;</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    BOOLEAN     Initialized<span class="op">;</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    HANDLE      SsHandle<span class="op">;</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InLoadOrderModuleList<span class="op">;</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InMemoryOrderModuleList<span class="op">;</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY  InInitializationOrderModuleList<span class="op">;</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    PVOID       EntryInProgress<span class="op">;</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB_LDR_DATA<span class="op">,</span> <span class="op">*</span> PPEB_LDR_DATA<span class="op">;</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">// 这里我们不想使用任何由外部模块导入的函数</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _LDR_DATA_TABLE_ENTRY <span class="op">{</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">//LIST_ENTRY InLoadOrderLinks;</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">//LIST_ENTRY InMemoryOrderLinks;</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InInitializationOrderLinks<span class="op">;</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    PVOID DllBase<span class="op">;</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    PVOID EntryPoint<span class="op">;</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    ULONG SizeOfImage<span class="op">;</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING FullDllName<span class="op">;</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING BaseDllName<span class="op">;</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    ULONG Flags<span class="op">;</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>    WORD LoadCount<span class="op">;</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>    WORD TlsIndex<span class="op">;</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>        LIST_ENTRY HashLinks<span class="op">;</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>            PVOID SectionPointer<span class="op">;</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>            ULONG CheckSum<span class="op">;</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>        ULONG TimeDateStamp<span class="op">;</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>        PVOID LoadedImports<span class="op">;</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> _ACTIVATION_CONTEXT<span class="op">*</span> EntryPointActivationContext<span class="op">;</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>    PVOID PatchInformation<span class="op">;</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ForwarderLinks<span class="op">;</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY ServiceTagLinks<span class="op">;</span></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY StaticLinks<span class="op">;</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> LDR_DATA_TABLE_ENTRY<span class="op">,</span> <span class="op">*</span> PLDR_DATA_TABLE_ENTRY<span class="op">;</span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB <span class="op">{</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    BOOLEAN InheritedAddressSpace<span class="op">;</span></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    BOOLEAN ReadImageFileExecOptions<span class="op">;</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    BOOLEAN BeingDebugged<span class="op">;</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>    BOOLEAN SpareBool<span class="op">;</span></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>    HANDLE Mutant<span class="op">;</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>    PVOID IMAGEBaseAddress<span class="op">;</span></span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA Ldr<span class="op">;</span></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB<span class="op">,</span> <span class="op">*</span> PPEB<span class="op">;</span></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> LPVOID get_module_by_name<span class="op">(</span>WCHAR<span class="op">*</span> module_name<span class="op">)</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    PPEB peb <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a><span class="pp">#if defined(_WIN64)</span></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readgsqword<span class="op">(</span><span class="bn">0x60</span><span class="op">);</span><span class="co">//读gs</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    peb <span class="op">=</span> <span class="op">(</span>PPEB<span class="op">)</span>__readfsdword<span class="op">(</span><span class="bn">0x30</span><span class="op">);</span><span class="co">//读fs</span></span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA ldr <span class="op">=</span> peb<span class="op">-&gt;</span>Ldr<span class="op">;</span></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY Flink <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>ldr<span class="op">-&gt;</span>InInitializationOrderModuleList<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a>    PLDR_DATA_TABLE_ENTRY curr_module <span class="op">=</span> Flink<span class="op">;</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>curr_module <span class="op">!=</span> NULL <span class="op">&amp;&amp;</span> curr_module<span class="op">-&gt;</span>DllBase <span class="op">!=</span> NULL<span class="op">)</span></span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer <span class="op">==</span> NULL<span class="op">)</span></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>        WCHAR<span class="op">*</span> curr_name <span class="op">=</span> curr_module<span class="op">-&gt;</span>BaseDllName<span class="op">.</span>Buffer<span class="op">;</span></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>        wprintf<span class="op">(</span><span class="st">L&quot;</span><span class="sc">%s\n</span><span class="st">&quot;</span><span class="op">,</span> curr_name<span class="op">);</span></span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>        <span class="co">//for (i = 0; module_name[i] != 0 &amp;&amp; curr_name[i] != 0; i++) </span></span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    WCHAR c1, c2;</span></span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    //统一大小一下</span></span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c1, module_name[i]);</span></span>
+<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    TO_LOWERCASE(c2, curr_name[i]);</span></span>
+<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    if (c1 != c2) </span></span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a>        <span class="co">//        break;</span></span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>        <span class="co">//if (module_name[i] == 0 &amp;&amp; curr_name[i] == 0) //说明比到最后了</span></span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a>        <span class="co">//{</span></span>
+<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">//    return curr_module-&gt;DllBase;</span></span>
+<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a>        <span class="co">//}</span></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a>        curr_module <span class="op">=</span> <span class="op">(</span>PLDR_DATA_TABLE_ENTRY<span class="op">)</span>curr_module<span class="op">-&gt;</span>InInitializationOrderLinks<span class="op">.</span>Flink<span class="op">;</span></span>
+<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> NULL<span class="op">;</span></span>
+<span id="cb19-112"><a href="#cb19-112" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-113"><a href="#cb19-113" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a>    get_module_by_name<span class="op">(</span><span class="st">L&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>输出如下,,这一次输出不同了</p>
+<figure>
+<img src="./img/image-20231213202530661.png"
+alt="image-20231213202530661" />
+<figcaption aria-hidden="true">image-20231213202530661</figcaption>
+</figure>
+<p>少了当前进程模块</p>
+<h3 id="x86内联汇编-2">x86内联汇编</h3>
+<p>然后用汇编一次性获取</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> test<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    HMODULE x86_kernel_base<span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    HMODULE xx <span class="op">=</span> GetModuleHandleA<span class="op">(</span><span class="st">&quot;kernel32.dll&quot;</span><span class="op">);</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//原理是InMemoryOrderModuleList的第一个结构体指向就是kernel32的,然后从结构体获取Dirbase</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    __asm <span class="op">{</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        push eax<span class="op">;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> fs<span class="op">:</span> <span class="op">[</span><span class="dv">30</span><span class="er">h</span><span class="op">]</span> <span class="op">;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">0</span><span class="er">ch</span><span class="op">];</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax <span class="op">+</span> <span class="dv">1</span><span class="er">ch</span><span class="op">];</span><span class="co">// ntdll.dll</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span><span class="co">// KERNELBASE.dll</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> dword ptr<span class="op">[</span>eax<span class="op">];</span><span class="co">// KERNEL32.DLL</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        mov eax<span class="op">,</span> <span class="op">[</span>eax <span class="op">+</span> <span class="dv">0</span><span class="er">8h</span><span class="op">];</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        mov x86_kernel_base<span class="op">,</span> eax<span class="op">;</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        pop eax<span class="op">;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;now: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> x86_kernel_base<span class="op">);</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;org: </span><span class="sc">%p\n</span><span class="st">&quot;</span><span class="op">,</span> xx<span class="op">);</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    test<span class="op">();</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>输出如下</p>
+<figure>
+<img src="./img/image-20231210220051909.png"
+alt="image-20231210220051909" />
+<figcaption aria-hidden="true">image-20231210220051909</figcaption>
+</figure>
+<h3 id="x64汇编引用-2">x64汇编引用</h3>
+<p>其它代码见上一个例子</p>
+<pre class="assembly"><code>.CODE
+ 
+getK32 PROC
+        mov rax,gs:[60h] ;PEB
+        mov rax,[rax+18h]; LDR
+        mov rsi,[rax+10h + 2*8 + 2*8];  InLoadOrderModuleList -&gt; 当前
+        lodsq;
+        xchg rax,rsi;
+        lodsq;
+        mov rax,[rax+30h - 2*8 - 2*8];
+        RET
+getK32 ENDP
+
+END</code></pre>
+<figure>
+<img src="./img/image-20231213210148083.png"
+alt="image-20231213210148083" />
+<figcaption aria-hidden="true">image-20231213210148083</figcaption>
+</figure>
+<h2 id="优化问题">优化问题</h2>
+<p>什么是优化问题,,,就是基于字节码的优化,,让尽可能少的字节码去获取kernel32的基地址</p>
+<p>比如原始的</p>
+<pre class="assembly"><code>mov eax, dword ptr fs : [30h] ;// 指向PEB结构
+mov eax, dword ptr[eax + 0Ch]; //指向LDR Ptr32 _PEB_LDR_DATA
+mov eax, dword ptr[eax + 14h]; //指向当前进程
+mov eax, dword ptr[eax]; //指向ntdll
+mov eax, dword ptr[eax]; //指向Kernel32.dll
+mov eax, dword ptr[eax + 10h]; //指向DllBase基址
+mov x86_kernel_base, eax;</code></pre>
+<p>优化后</p>
+<pre class="assembly"><code>xor ecx, ecx
+mov eax, fs: [ecx + 0x30] ;//获取PEB
+mov eax, [eax + 0xc];// 获取LDR
+mov esi, [eax + 0x14]; //获取 InMemOrder,然后已经指向了当前进程
+lodsd;  //指向ntdll
+xchg eax, esi;   //数据交换
+lodsd; //指向Kernel32.dll
+mov ebx, [eax + 0x10]; //获取Base address</code></pre>
+<p>下面这种,在字节码上可能存在更小的空间</p>
+<h1 id="基于暴力搜索法">基于暴力搜索法</h1>
+<p>其实原理是</p>
+<pre class="assembly"><code>_declspec(naked) void test01() {
+    __asm {
+        //在这里,我们得提供ebx是一个kernel32的基地址
+        shr edx, 16;//
+        shl edx, 16;//
+    tag_Next:
+        //xor dx, dx; //尾部清0
+        cmp  word ptr[edx], 0x5A4D;
+        jz tag_IsPe;
+        sub edx, 0x10000;
+        jmp tag_Next;
+    tag_IsPe:
+        mov  eax, [edx + 0x3c];
+        cmp  word  ptr[eax + edx], 0x4550;
+        jnz  tag_Next;
+        xchg  eax, edx;
+    }
+}</code></pre>
+<p>当我们提供一个kernel32.dll的地址</p>
+<p>然后跟着这个地址往上遍历,,,就可以找到kernel32.dll的PE头了</p>
+<p>关于汇编代码的一点讲解</p>
+<p>kernel32.dll的<strong>块对齐值是00001000h</strong>,
+并且一般<strong>DLL以1M为边界</strong>，</p>
+<p>所以我们可以通过<strong>10000h</strong> (64k)
+作为<strong>跨度</strong>，进行一个遍历</p>
+<p>该方法的不足: 一是代码比较多，二是要处理搜索无效页面引发的异常</p>
+<p>有很多地方我们都可以找到kernel32.dll的某个函数,,通过这个函数地址我们就可以追踪到kernel32的基地址</p>
+<p>当然通过一些dll的顺序,,,比如我们获取了ntdll,,,从ntdll遍历上一个dll,没准就是kernel32.dll</p>
+<p>这些都是可以的</p>
+<h2 id="特征1">特征1</h2>
+<p>原理; 远处线程注入的时候,,,,线程执行时,,特殊的栈环境</p>
+<p>使用的前提: 需要在线程函数开始执行的地方获取</p>
+<p>在远处线程注入的时候,先是之后就到了我们自己的线程了</p>
+<p>下面是<code>ntdll_RtlUserThreadStart</code>
+其中eax指向了我们的线程函数</p>
+<figure>
+<img src="./img/image-20231213150925039.png"
+alt="image-20231213150925039" />
+<figcaption aria-hidden="true">image-20231213150925039</figcaption>
+</figure>
+<p>当我们的线程得以执行的时候</p>
+<figure>
+<img src="./img/image-20231213150956491.png"
+alt="image-20231213150956491" />
+<figcaption aria-hidden="true">image-20231213150956491</figcaption>
+</figure>
+<p>可以看到,,,此刻栈顶是</p>
+<pre><code>018FFC38  76E200C9  KERNEL32.DLL:kernel32_BaseThreadInitThunk+19</code></pre>
+<p>那么我们就可以利用 76E200C9 去获取kernel32了</p>
+<p>然后我们就可以利用这样的方式去获取kernel32的基地址</p>
+<pre class="assembly"><code>_declspec(naked) void test01() {
+    __asm {
+        mov  edx, [esp];//
+        shr edx, 16;//
+        shl edx, 16;//
+    tag_Next:
+        //xor dx, dx; //尾部清0
+        cmp  word ptr[edx], 0x5A4D;
+        jz tag_IsPe;
+        sub edx, 0x10000;
+        jmp tag_Next;
+    tag_IsPe:
+        mov  eax, [edx + 0x3c];
+        cmp  word  ptr[eax + edx], 0x4550;
+        jnz  tag_Next;
+        xchg  eax, edx;
+    }
+}</code></pre>
+<p>我把这样的x86的shellcode注入到x86进程后</p>
+<p>下面是线程执行的情况</p>
+<figure>
+<img src="./img/image-20231213151251605.png"
+alt="image-20231213151251605" />
+<figcaption aria-hidden="true">image-20231213151251605</figcaption>
+</figure>
+<p>执行完毕后,,可以看见我们已经获取了kernel32.dll的基地址了<code>0x76E00000</code></p>
+<h2 id="特征2">特征2</h2>
+<p>原理: SEH处理链最后一个处理函数是kern32的</p>
+<p>使用前提:
+目前,,我的vs2019编译出来的东西,,最后一个处理函数他不是kernel32.dll的某个函数,,所以失败</p>
+<p>基于特殊的SEH处理函数</p>
+<figure>
+<img src="./img/image-20231213151744692.png"
+alt="image-20231213151744692" />
+<figcaption aria-hidden="true">image-20231213151744692</figcaption>
+</figure>
+<p>然后UnHandleExceptionFilter是位于kernel32的</p>
+<p>于是我们就可以利用这个去遍历kern32的基地址的</p>
+<p>但是….</p>
+<p>这个方法目前已经失效了</p>
+<p>为什么…因为最后异常处理函数不再是UnHandleExceptionFilter</p>
+<p>而是什么???</p>
+<figure>
+<img src="./img/image-20231213155303954.png"
+alt="image-20231213155303954" />
+<figcaption aria-hidden="true">image-20231213155303954</figcaption>
+</figure>
+<p>可以看到这是最后一个处理函数</p>
+<figure>
+<img src="./img/image-20231213155318803.png"
+alt="image-20231213155318803" />
+<figcaption aria-hidden="true">image-20231213155318803</figcaption>
+</figure>
+<p>其处理函数是指向ntdll的</p>
+<p>所以不是kernel32的基地址了</p>
+<figure>
+<img src="./img/image-20231213155409060.png"
+alt="image-20231213155409060" />
+<figcaption aria-hidden="true">image-20231213155409060</figcaption>
+</figure>
+<p>那么我们可不可以从ntdll往上遍历呢….</p>
+<p>从ntdll到wow64cpu.dll,然后到kernel32.dll</p>
+<p>这看上去也还是一个不错的方法的</p>
+<p>但是会遇到一个问题…</p>
+<p>那就是内存访问异常,,,,</p>
+<p>我遇到的情况是当遍历了wow64cpu.dll,,然后往上遍历</p>
+<figure>
+<img src="./img/image-20231213155627277.png"
+alt="image-20231213155627277" />
+<figcaption aria-hidden="true">image-20231213155627277</figcaption>
+</figure>
+<p>此刻,,,,edx是771B0000,,,,</p>
+<p>出现了缺页的异常,,,,该地址没有对应的物理页,,,,</p>
+<p>所以我们还得加一个异常处理,,,,,</p>
+<p>但是这就会显得很麻烦了</p>
+<p>重要的是,,如果你无法关闭目标进程的safeseh机制,,你的shellcode代码无法注册进seh处理链条</p>
+<p>下面是一个例子,,,,是在目标进程成功利用seh机制的情况下</p>
+<pre class="assembly"><code>    __asm {
+        call tag_demo;
+        tag_demo:
+        pop edx;
+        lea eax, tag_except;
+        sub eax, tag_demo;
+        add edx, eax;
+        push edx;
+        push dword ptr fs : [0] ;
+        mov  dword ptr fs : [0] , esp
+
+        mov  edx, fs : [00] ;
+    tag_Next :
+        inc [edx];
+        jz tag_Krnl;
+        dec[edx];
+        mov  edx, [edx];
+        jmp tag_Next;
+    tag_Krnl:
+        dec  [edx];
+        mov  edx, [edx + 4];
+        shr edx, 16;
+        shl edx, 16;
+        mov ecx, 3;
+    tag_Loop :
+        nop;
+        cmp  word ptr [edx], 0x5A4D;
+        jz tag_IsPe;
+        sub edx, 0x10000;
+        jmp tag_Loop;
+    tag_IsPe:
+        mov  eax, [edx + 0x3c];
+        cmp  word ptr [eax + edx], 0x4550;
+        jnz tag_Next;
+        sub edx, 0x10000;
+        dec ecx;
+        jnz tag_Loop;
+        xchg  eax, edx;
+
+        mov eax, [ESP];
+        mov FS : [0] , EAX;
+        add esp, 8;
+        ret;
+    tag_except:
+        xor eax, eax;
+        dec eax;// EXCEPTION_CONTINUE_EXECUTION 是-1??
+        ret
+    //其实在遍历的时候,还是要处理一下内存访问的异常,,,,
+
+    }
+}</code></pre>
+<h1 id="其它">其它</h1>
+<p>其实我们找到一个kernel32.dll相关的函数,,,就可以找到kernel32的基地址了</p>
+<p>这个函数不论是什么,,,,只要属于kernel32就行</p>
+<p>当然通过其它dll,,,然后找到kernel32也行</p>
+<h1 id="关于start入口点的stack情况">关于start入口点的stack情况</h1>
+<p>在我们程序进入start后如下</p>
+<figure>
+<img src="./img/7dd3496d4e184434a98edc11de043e96Untitled.png"
+alt="7dd3496d4e184434a98edc11de043e96Untitled" />
+<figcaption
+aria-hidden="true">7dd3496d4e184434a98edc11de043e96Untitled</figcaption>
+</figure>
+<p>在栈里面,,我们看到一些特殊的数据,,比如<code>75B000C9</code>和<code>75B000B0</code></p>
+<p>我们读取这个数据,,然后从75B000C9往上找,</p>
+<p>从75B0000往上找,找到的第一个模块就是kernel32.dll的模块</p>
+<p>如何找到第一个模块?</p>
+<p>那就是看它是不是一个模块了,,比如是不是MZ开头,,,,也就是判断知否含有一个PE文件该有的身份特征了</p>
+<p>比如通过如下方式去寻找</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>DWORD32 GetKernel32_Addr<span class="op">(</span>DWORD32 init_addr<span class="op">)</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> High_Page<span class="op">;</span> <span class="co">// edi</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    High_Page <span class="op">=</span> init_addr <span class="op">&amp;</span> <span class="bn">0xFFFF0000</span><span class="op">;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(*(</span>DWORD<span class="op">*)</span>High_Page <span class="op">==</span> <span class="bn">0x00905A4D</span> <span class="op">&amp;&amp;</span> <span class="op">*(</span>DWORD<span class="op">*)(*(</span>DWORD<span class="op">*)(</span>High_Page <span class="op">+</span> <span class="dv">60</span><span class="op">)</span> <span class="op">+</span> High_Page<span class="op">)</span> <span class="op">==</span> <span class="bn">0x00004550</span><span class="op">)</span><span class="co">//寻找PE和MZ标志</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        High_Page <span class="op">-=</span> <span class="bn">0x10000</span><span class="op">;</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>High_Page <span class="op">&lt;</span> <span class="bn">0x70000000</span><span class="op">)</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> High_Page<span class="op">;</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="后来的发现">后来的发现</h1>
+<p>我发现一些结构体,,,其实微软已经公开了</p>
+<p>但是在哪一个头文件,,,以前不知道罢了</p>
+<pre><code>#include &lt;winternl.h&gt;</code></pre>
+<p>比如结构体</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">//LDR_DATA_TABLE_ENTRY</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _LDR_DATA_TABLE_ENTRY <span class="op">{</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved1<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InMemoryOrderLinks<span class="op">;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved2<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    PVOID DllBase<span class="op">;</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved3<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    UNICODE_STRING FullDllName<span class="op">;</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved4<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved5<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma warning(push)</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma warning(disable: 4201) </span><span class="co">// we&#39;ll always use the Microsoft compiler</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">union</span> <span class="op">{</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        ULONG CheckSum<span class="op">;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        PVOID Reserved6<span class="op">;</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> DUMMYUNIONNAME<span class="op">;</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma warning(pop)</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    ULONG TimeDateStamp<span class="op">;</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> LDR_DATA_TABLE_ENTRY<span class="op">,</span> <span class="op">*</span>PLDR_DATA_TABLE_ENTRY<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">//_PEB_LDR_DATA </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB_LDR_DATA <span class="op">{</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved1<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved2<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    LIST_ENTRY InMemoryOrderModuleList<span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB_LDR_DATA<span class="op">,</span> <span class="op">*</span>PPEB_LDR_DATA<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">//PEB</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> _PEB <span class="op">{</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved1<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    BYTE BeingDebugged<span class="op">;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved2<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved3<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    PPEB_LDR_DATA Ldr<span class="op">;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    PRTL_USER_PROCESS_PARAMETERS ProcessParameters<span class="op">;</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved4<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    PVOID AtlThunkSListPtr<span class="op">;</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved5<span class="op">;</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    ULONG Reserved6<span class="op">;</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved7<span class="op">;</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    ULONG Reserved8<span class="op">;</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    ULONG AtlThunkSListPtr32<span class="op">;</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved9<span class="op">[</span><span class="dv">45</span><span class="op">];</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved10<span class="op">[</span><span class="dv">96</span><span class="op">];</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    PPS_POST_PROCESS_INIT_ROUTINE PostProcessInitRoutine<span class="op">;</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    BYTE Reserved11<span class="op">[</span><span class="dv">128</span><span class="op">];</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    PVOID Reserved12<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    ULONG SessionId<span class="op">;</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> PEB<span class="op">,</span> <span class="op">*</span>PPEB<span class="op">;</span></span></code></pre></div>
+<p>可以看到<code>winternl.h</code>中还是有很多东西的,,,,只不过没有详细的给出,,,但是也够用了</p>
+<p>在_PEB中,我们可以找到 <code>PPEB_LDR_DATA Ldr</code></p>
+<p>在<code>_PEB_LDR_DATA</code>中,我们可以找到<code>InMemoryOrderModuleList</code></p>
+<p>在<code>_LDR_DATA_TABLE_ENTRY</code>中,我们可以找到<code>DllBase</code>和<code>ullDllName</code></p>
+<p>所以微软也还是提供了一些优先的信息的</p>
+<p>通过以下链接,,我找到了一份代码并分析了一下</p>
+<pre><code>https://nickharbour.wordpress.com/2010/07/01/writing-shellcode-with-a-c-compiler/
+https://segmentfault.com/a/1190000000375591</code></pre>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

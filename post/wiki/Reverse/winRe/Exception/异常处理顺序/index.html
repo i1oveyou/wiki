@@ -1,0 +1,143 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-winRe-Exception-异常处理顺序</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-winRe-Exception-异常处理顺序</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#异常处理顺序"
+        id="toc-异常处理顺序">异常处理顺序</a></li>
+        <li><a href="#返回" id="toc-返回">返回</a></li>
+        <li><a href="#处理过程" id="toc-处理过程">处理过程 🟥</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="异常处理顺序">异常处理顺序</h1>
+<h1 id="返回">返回</h1>
+<p>关于手动汇编注册的返回类型,也就是处于SEH链表的那些函数</p>
+<pre><code>// Exception disposition return values
+enum _EXCEPTION_DISPOSITION
+{
+    ExceptionContinueExecution,         // 0 继续执行异常代码 (可以视为已经处理)
+    ExceptionContinueSearch,            // 1 丢给下一个异常处理器
+    ExceptionNestedException,           //在OS内部使用
+    ExceptionCollidedUnwind             //在OS内部使用
+} EXCEPTION_DISPOSITION;</code></pre>
+<p>关于VEH/UEF/VCH/SEH的返回类型</p>
+<pre><code>EXCEPTION_EXECUTE_HANDLER(1) 执行except代码
+EXCEPTION_CONTINUE_SEARCH(0) 寻找下一个
+EXCEPTION_CONTINUE_EXECUTION(-1) 重新执行</code></pre>
+<p>VCH不是一个处理异常的东西,他是老板</p>
+<p>非调试状态:</p>
+<p>当VEH</p>
+<p>返回<code>EXCEPTION_CONTINUE_SEARCH , EXCEPTION_EXECUTE_HANDLER</code>
+都会进入 SEH|UEF|死掉</p>
+<p>返回<code>EXCEPTION_CONTINUE_EXECUTION</code> 进入 VCH
+通报异常已经处理,然后去往ContextRecord-&gt;Eip</p>
+<p>当SEH</p>
+<p>返回 EXCEPTION_CONTINUE_SEARCH , 进入UEF|死掉</p>
+<p>返回 EXCEPTION_EXECUTE_HANDLER 进入
+__except(){}不在回去,然后继续执行,也不进入VCH</p>
+<p>返回 EXCEPTION_CONTINUE_EXECUTION 进入 VCH
+通报异常已经处理,然后去往ContextRecord-&gt;Eip</p>
+<p>当UEF</p>
+<p>返回 EXCEPTION_EXECUTE_HANDLER ,然后程序自己g,退出了,</p>
+<p>返回 EXCEPTION_CONTINUE_SEARCH ,然后程序非常g,退出了,</p>
+<p>返回 EXCEPTION_CONTINUE_EXECUTION 进入 VCH
+通报异常已经处理,然后去往ContextRecord-&gt;Eip</p>
+<p>VCH的</p>
+<p>前面只有返回 EXCEPTION_CONTINUE_EXECUTION 才可以进入VCH后,</p>
+<p>VCH无论返回什么都会去往
+<code>pExcepInfo-&gt;ContextRecord-&gt;Eip</code> 的地方</p>
+<p>__finally是无论异常怎么处理都会计入的地方</p>
+<p>也就是g之前也会进入finall</p>
+<h1 id="处理过程">处理过程 🟥</h1>
+<p>当异常被处理，并且返回EXCEPTION_CONTINUE_EXECUTION时，会触发VCH。</p>
+<p>说的通俗一点：</p>
+<p>VCH就好像是老板，而VEH和SEH、UEF等算是打工的，</p>
+<p>它们是”异常处理器”，而VCH是”继续处理器”。</p>
+<p>当异常这个烂摊子让”打工的”收拾完之后，会通知”老板”，老板来做决定。</p>
+<p>如果没人处理异常，烂摊子没人收拾，老板自然不会去”收拾烂摊子”了。</p>
+<ul>
+<li>bxc &lt;<看雪>&gt;</li>
+</ul>
+<p>图1</p>
+<figure>
+<img src="./img/Untitled.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+<p>图2</p>
+<figure>
+<img src="./img/Untitled%201.png" alt="Untitled" />
+<figcaption aria-hidden="true">Untitled</figcaption>
+</figure>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

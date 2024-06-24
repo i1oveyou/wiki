@@ -1,0 +1,176 @@
+<!doctype html>
+<html >
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--[if lt IE 9]>
+                <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="template.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/template.css" />
+
+    <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- <script type='text/javascript' src='menu/js/jquery.cookie.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script> -->
+    <!-- <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script> -->
+
+    <!-- <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" /> -->
+  
+    <!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+        
+  
+    <!-- <script src="script.js"></script> -->
+  
+    <!-- <script src="jquery.sticky-kit.js "></script> -->
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.hoverIntent.minified.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/script.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/diversen/pandoc-bootstrap-adaptive-template@959c3622/jquery.sticky-kit.js"></script>
+    <meta name="generator" content="pandoc" />
+  <title>wiki-Reverse-Android-入教须知</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+
+    
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title">wiki-Reverse-Android-入教须知</span>
+        <ul class="nav pull-right doc-info">
+                            </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+
+        <ul>
+        <li><a href="#安卓操作系统架构"
+        id="toc-安卓操作系统架构">安卓操作系统架构</a></li>
+        <li><a href="#安卓应用程序组件"
+        id="toc-安卓应用程序组件">安卓应用程序组件</a></li>
+        </ul>
+
+        </div>
+      </div>
+            <div class="span9">
+
+      
+      <h1 id="安卓操作系统架构">安卓操作系统架构</h1>
+<p><img src="./img/image-20240615110818116.png" alt="image-20240615110818116" style="zoom: 80%;" /></p>
+<blockquote>
+<p>Linux Kernel</p>
+</blockquote>
+<p>在所有层的最底下是
+Linux，它提供了基本的系统功能，比如进程管理，内存管理，设备管理（如摄像头，键盘，显示器）</p>
+<blockquote>
+<p>Android Runtime</p>
+</blockquote>
+<p>有了这个,dex可以跑在Linux上</p>
+<blockquote>
+<p>Libraries</p>
+</blockquote>
+<p>Android包含一个C/C++库的集合，供Android系统的各个组件使用。这些功能通过Android的应用程序框架（application
+framework）暴露给开发者</p>
+<blockquote>
+<p>Application Framework</p>
+</blockquote>
+<p>通过提供开放的开发平台，Android使开发者能够编制极其丰富和新颖的应用程序。</p>
+<blockquote>
+<p>Applications</p>
+</blockquote>
+<p>应用框架层以 Java 类的形式为应用程序提供许多高级的服务。</p>
+<h1 id="安卓应用程序组件">安卓应用程序组件</h1>
+<p><strong>四个主要组件</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">组件名</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Activities</td>
+<td style="text-align: left;">描述UI，并且处理用户与机器屏幕的交互</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Services</td>
+<td style="text-align: left;">处理与应用程序关联的后台操作</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Broadcast Receivers</td>
+<td
+style="text-align: left;">处理Android操作系统和应用程序之间的通信</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Content Providers</td>
+<td style="text-align: left;">处理数据和数据库管理方面的问题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>附加组件</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">组件名</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fragments</td>
+<td
+style="text-align: left;">代表活动中的一个行为或者一部分用户界面</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Views</td>
+<td
+style="text-align: left;">绘制在屏幕上的UI元素，包括按钮，列表等</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Layouts</td>
+<td
+style="text-align: left;">控制屏幕格式，展示视图外观的View的继承</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Intents</td>
+<td style="text-align: left;">组件间的消息连线</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Resources</td>
+<td
+style="text-align: left;">外部元素，例如字符串资源、常量资源及图片资源等</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manifest</td>
+<td style="text-align: left;">应用程序的配置文件</td>
+</tr>
+</tbody>
+</table>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>
