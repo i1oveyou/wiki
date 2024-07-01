@@ -9,6 +9,8 @@ title: wiki-tool-逆向工具-IDA-IDAPython
 
 # links
 
+
+
 ```python
 https://www.cnblogs.com/iBinary/p/14642662.html
 https://hex-rays.com/products/ida/news/7_0/docs/api70_porting_guide/
@@ -22,7 +24,11 @@ import idaapi
 import idautils
 ```
 
+
+
 # 信息获取
+
+
 
 我们获取地址的函数如下
 

@@ -204,3 +204,9 @@ git push -u origin master
 - 一个仓库有多个参与者,,那么其它用户可以上传了
 - 自己在wsl里面使用了ssh
 
+
+
+```
+ssh -T git@github.com
+```
+

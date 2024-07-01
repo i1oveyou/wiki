@@ -1,18 +1,13 @@
----
-title: wiki-Reverse-Android-兵器-adb
----
-
-
 # adb
 
 
 
 ```
-adb forward tcp:23946 tcp:23946
-adb install -t loadso-middle.apk
-adb logcat | find "dqx_logcat"
-adb logcat -c
-adb logcat -s System.err:V*:W
+adb forward tcp:23946 tcp:23946 #端口转发
+adb install -t loadso-middle.apk # 测试模式安装
+adb logcat | find "dqx_logcat" # 日志过滤输出
+adb logcat -c # 清除日志 
+adb logcat -s System.err:V*:W #
 ```
 
 
@@ -25,19 +20,29 @@ chcp 65001
 
 
 
+# Android shell
 
 
 
-
-# shell
-
-am 代表活动管理器，
+am 代表活动管理器
 
 pm 代表包管理器
 
 
 
+查看已经安装的apk包
 
+```
+pm list packages 
+```
+
+
+
+进行一个过滤
+
+```
+pm list packages uncrackable
+```
 
 
 
@@ -70,34 +75,6 @@ adb shell am clear-debug-app
 
 
 
-查看启动的类
-
-```
-pm resolve-activity --brief -c android.intent.category.LAUNCHER com.example.txtshow | tail -n1
-com.example.txtshow/.MainActivity
-```
-
-
-
-
-
-
-
-查看已安装的包
-
-```
-pm list packages  
-```
-
-
-
-过率效果
-
-```
-pm list packages uncrackable
-# 名称含有uncrackable的包
-```
-
 
 
 查看apk进程
@@ -112,11 +89,66 @@ ps -A | grep owasp
 
 
 
+
+
+查看手机架构
+
+```
+getprop ro.product.cpu.abi
+```
+
+
+
+
+
 # wsl中启动adb
 
 貌似linux的adb和win10的exe不能一起用, 导致Linux的adb不能直接连设备
 
-但是我突然发现, wsl可以运行exe,我震惊了.
+但是我突然发现, wsl可以运行exe,我震惊了, 所以在wsl中启动adb.exe 就可以连接手机了
 
 
+
+# ssh连接
+
+https://wiki.termux.com/wiki/Remote_Access
+
+https://oddity.oddineers.co.uk/2020/01/26/ssh-sftp-support-on-android-via-termux/
+
+手机下载apk: Termux
+
+进入Termux终端
+
+```
+pkg upgrade
+pkg install openssh
+
+whoami #查看用于连接的用户名
+
+passwd #设置当前用户的密码
+
+sshd #开启ssh服务,端口是8022,不是22
+
+ssh-keygen -t rsa -b 2048 -f id_rsa #在home目录,输入指令,生成密钥
+```
+
+
+
+$PREFIX/etc/ssh/sshd_config
+
+
+
+sftp
+
+```
+pkg install openssh-sftp-server
+sftp -P 8022 192.168.1.20
+```
+
+
+
+```
+pkill sshd
+termux-setup-storage
+```
 
